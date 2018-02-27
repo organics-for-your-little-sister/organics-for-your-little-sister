@@ -3,11 +3,69 @@ const Sequelize = require('sequelize')
 const db = require('../db')
 
 const User = db.define('user', {
+  firstName: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  lastName: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
   email: {
     type: Sequelize.STRING,
     unique: true,
+    allowNull: false,
+    validate: {
+      isEmail: true
+    }
+  },
+
+  mailingAddressStreet: {
+    type: Sequelize.STRING,
     allowNull: false
   },
+  mailingAddressCity: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  mailingAddressState: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  mailingAddressZipCode: {
+    type: Sequelize.INTEGER,
+    allowNull: false
+  },
+
+  paymentInfoCardNumber: {
+    type: Sequelize.INTEGER,
+    allowNull: false,
+    validate: {
+      isCreditCard: true
+    }
+  },
+  paymentInfoName: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+  paymentInfoMonth: {
+    type: Sequelize.INTEGER,
+    allowNull: false,
+    validate: {
+      min: 1,
+      max: 12
+    }
+  },
+  paymentInfoYear: {
+    type: Sequelize.INTEGER,
+    allowNull: false,
+    validate: {
+      min: Sequelize.NOW,
+      max: 12
+    }
+  },
+  paymentInfoCVV: {},
+
   password: {
     type: Sequelize.STRING,
     // Making `.password` act like a func hides it when serializing to JSON.
@@ -26,7 +84,10 @@ const User = db.define('user', {
   },
   googleId: {
     type: Sequelize.STRING
-  }
+  },
+  // forAdminUser - some fields
+  // differentiate logged/unlogged users
+  // fullmailingaddress - virtual
 })
 
 module.exports = User
