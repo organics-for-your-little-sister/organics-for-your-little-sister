@@ -11,19 +11,12 @@ const LineItem = db.define('lineitem', {
   price: {
     type: Sequelize.FLOAT,
   }
-},)
+})
 
-// LineItem.prototype.getPrice = function(product){
-//   return Product.findOne({ where: { id: this.productId }})
-//     .then( theProduct => {
-//       return theProduct.price * this.quantity
-//     })
-// }
-
-LineItem.hook('beforeValidate', (product)=>{
-  return Product.findOne({where: {id: product.id }})
+LineItem.hook('beforeValidate', (lineItem) => {
+  return Product.findOne({where: {id: lineItem.productId }})
     .then( theProduct => {
-      return theProduct.price * this.quantity
+      lineItem.price = theProduct.price * lineItem.quantity
     })
 })
 

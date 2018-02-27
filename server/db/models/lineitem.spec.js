@@ -8,34 +8,36 @@ describe('LineItem model', () => {
     return db.sync({force: true})
   })
 
-  describe('LineItem hook', ()=>{
-    describe('getPrice', ()=>{
-      let tampon;
-      let theLineItem
+  describe('LineItem beforeValidate hook', () => {
+    let tampon;
+    let theLineItem
 
-      beforeEach( ()=>{
-        return Product.create({
-          title: 'Fine Silk',
-          description: 'Amazing silk for your little sister',
-          price: 10,
-          inventoryQuantity: 100,
-          category: 'luxury'})
-            .then( product => {
-              tampon = product
-            })
+    beforeEach( () => {
+      //make a product
+      return Product.create({
+        title: 'Fine Silk',
+        description: 'Amazing silk for your little sister',
+        price: 10,
+        inventoryQuantity: 100,
+        category: 'luxury'})
+          .then( product => {
+            tampon = product
+          })
+    })
+    //make a line item
+    let newItem;
+    beforeEach( () => {
+       newItem = LineItem.build({
+        quantity: 2,
+        productId: tampon.id})
+       return newItem.save()
+          .then( created => {
+            theLineItem = created
       })
+    })
 
-      beforeEach( ()=>{
-        return LineItem.create({
-          quantity: 2,
-          productId: tampon.id})
-            .then( created => {
-              theLineItem = created
-            })
-
-      })
-
-      it('returns total price of the product based on the quantity', ()=>{
+    describe('addingPrice', () => {
+      it('returns total price of the product based on the quantity', () => {
         console.log(theLineItem)
         expect(theLineItem.price).to.be.equal(20);
       })
