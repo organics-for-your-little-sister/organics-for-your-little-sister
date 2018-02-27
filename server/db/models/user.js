@@ -1,6 +1,7 @@
 const crypto = require('crypto')
 const Sequelize = require('sequelize')
 const db = require('../db')
+const date = new Date();
 
 const User = db.define('user', {
   firstName: {
@@ -60,12 +61,10 @@ const User = db.define('user', {
     type: Sequelize.INTEGER,
     allowNull: false,
     validate: {
-      min: Sequelize.NOW,
-      max: 12
+      min: date.getFullYear(),
+      max: date.getFullYear() + 5
     }
   },
-  paymentInfoCVV: {},
-
   password: {
     type: Sequelize.STRING,
     // Making `.password` act like a func hides it when serializing to JSON.
@@ -85,9 +84,16 @@ const User = db.define('user', {
   googleId: {
     type: Sequelize.STRING
   },
-  // forAdminUser - some fields
-  // differentiate logged/unlogged users
-  // fullmailingaddress - virtual
+
+  isAdmin: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
+  },
+  isLoggedIn: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
+  }
+  
 })
 
 module.exports = User
