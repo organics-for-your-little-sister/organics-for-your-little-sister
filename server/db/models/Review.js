@@ -28,5 +28,5 @@ const Review = db.define('review', {
 // All reviews must belong to a user
 // All reviews must be at least X characters
 
-Review.belongsTo(Product);
-Review.belongsTo(User)
+// Review.belongsTo(Product);
+// Review.belongsTo(User)

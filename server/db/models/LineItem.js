@@ -10,28 +10,26 @@ const LineItem = db.define('lineitem', {
   },
   price: {
     type: Sequelize.FLOAT,
-    allowNull: false
   }
-}
-)
+},)
 
-LineItem.belongsTo(Product); // ---> we get productId;
-//LineItem.belongsTo(Order); // ---> we get orderId;
+// LineItem.prototype.getPrice = function(product){
+//   return Product.findOne({ where: { id: this.productId }})
+//     .then( theProduct => {
+//       return theProduct.price * this.quantity
+//     })
+// }
 
-LineItem.hook = ('beforeSave', function(lineitem) {
-    LineItem.findOne({ where: { productId: Product.id }, include: { model: Product }})
-     .then( product => {
-        lineitem.price = product.price * lineitem.quantity
-     })
+LineItem.hook('beforeValidate', (product)=>{
+  return Product.findOne({where: {id: product.id }})
+    .then( theProduct => {
+      return theProduct.price * this.quantity
+    })
 })
 
-
-LineItem.prototype.getPrice = function(product){
-  return this.findOne({ where: { productId: product.id}})
-    .then( theProduct => {
-
-    })
-}
+LineItem.belongsTo(Product); // ---> we get productId;
+// getProduct setProduct
+//LineItem.belongsTo(Order); // ---> we get orderId;
 
 
 module.exports = LineItem
