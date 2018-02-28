@@ -40,7 +40,7 @@ router.put('/:id', (req, res, next)=>{
 })
 
 router.delete('/:id', (req, res, next)=>{
-  Review.destory({where: {id: req.params.id}})
-    .then( ()=> res.sendStatus(204))
+  Review.destroy({where: {id: req.params.id}})
+    .then( () => res.sendStatus(204))
     .catch(next)
 })
