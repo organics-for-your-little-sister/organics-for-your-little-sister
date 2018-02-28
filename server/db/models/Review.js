@@ -21,6 +21,7 @@ const Review = db.define('review', {
   }
 })
 
+module.exports = Review;
 
 
 // Reviews
