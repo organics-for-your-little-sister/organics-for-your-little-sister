@@ -34,13 +34,13 @@ router.get('/:id', (req, res, next) => {
 
 
 router.post('/', (req, res, next) => {
-	User.create(req.body)
+	User.create(req.body) // watch out for isAdmin changes
 		.then(user => res.status(201).json(user))
 		.catch(next);
 })
 
 router.put('/:id', (req, res, next) => {
-	User.update(req.body, {
+	User.update(req.body, { // watch out for isAdmin changes, only if your logged-in id matches the id
 		where: {id: req.params.id},
     returning: true
 		})

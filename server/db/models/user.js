@@ -6,21 +6,29 @@ const date = new Date();
 const User = db.define('user', {
   firstName: {
     type: Sequelize.STRING,
-    allowNull: false
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    }
   },
   lastName: {
     type: Sequelize.STRING,
-    allowNull: false
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    }
   },
   email: {
     type: Sequelize.STRING,
     unique: true,
     allowNull: false,
     validate: {
+      notEmpty: true,
       isEmail: true
     }
   },
 
+// an address model so a user can have many addresses
   mailingAddressStreet: {
     type: Sequelize.STRING,
     allowNull: false
@@ -38,33 +46,33 @@ const User = db.define('user', {
     allowNull: false
   },
 
-  paymentInfoCardNumber: {
+  paymentInfoCardNumber: { // connected to paypal or stripe
     type: Sequelize.STRING,
     allowNull: false,
-    // validate: {
-    //   isCreditCard: true
-    // }
-  },
-  paymentInfoName: {
-    type: Sequelize.STRING,
-    allowNull: false,
-  },
-  paymentInfoMonth: {
-    type: Sequelize.INTEGER,
-    allowNull: false,
     validate: {
-      min: 1,
-      max: 12
-    }
+      isCreditCard: true
+    }// test this part again
   },
-  paymentInfoYear: {
-    type: Sequelize.INTEGER,
-    allowNull: false,
-    validate: {
-      min: date.getFullYear(),
-      max: date.getFullYear() + 5
-    }
-  },
+  // paymentInfoName: {
+  //   type: Sequelize.STRING,
+  //   allowNull: false,
+  // },
+  // paymentInfoMonth: {
+  //   type: Sequelize.INTEGER,
+  //   allowNull: false,
+  //   validate: {
+  //     min: 1,
+  //     max: 12
+  //   }
+  // },
+  // paymentInfoYear: {
+  //   type: Sequelize.INTEGER,
+  //   allowNull: false,
+  //   validate: {
+  //     min: date.getFullYear(),
+  //     max: date.getFullYear() + 5
+  //   }
+  // },
   password: {
     type: Sequelize.STRING,
     // Making `.password` act like a func hides it when serializing to JSON.
