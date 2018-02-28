@@ -9,6 +9,38 @@ describe('User model', () => {
     return db.sync({force: true})
   })
 
+
+  describe('User Model Name', () => {
+
+  let user;
+  beforeEach(() => {
+    user = User.build({
+      firstName: 'Becka',
+      lastName: 'Rebecca',
+      email: 'BeckaRebecca@oeij.com',
+      mailingAddressStreet: '35 First Ave',
+      mailingAddressCity: 'New York',
+      mailingAddressState: 'NY',
+      mailingAddressZipCode: '10019',
+      paymentInfoCardNumber: '9483746392847382',
+      paymentInfoName: 'Becka Rebecca',
+      paymentInfoMonth: 8,
+      paymentInfoYear: 2019,
+      password: 'badpassword'
+    })
+  })
+  describe('attributes definition', () => {
+    it('includes `firstName`, `lastName`, `email`, `mailingAddressStreet`, `mailingAddressCity`, `mailingAddressState`, `mailingAddressZipCode`, `paymentInfoCardNumber`, `paymentInfoName`, `paymentInfoMonth`, and `paymentInfoYear` fields', () => {
+      return user.save()
+        .then(savedUser => {
+          expect(savedUser.firstName).to.equal('Becka');
+          expect(savedUser.email).to.equal('BeckaRebecca@oeij.com');
+          expect(savedUser.mailingAddressCity).to.equal('New York');
+          expect(savedUser.paymentInfoCardNumber).to.equal('9483746392847382');
+          expect(savedUser.paymentInfoMonth).to.equal(8);
+        })
+    })
+
   describe('instanceMethods', () => {
     describe('correctPassword', () => {
       let cody
@@ -16,7 +48,17 @@ describe('User model', () => {
       beforeEach(() => {
         return User.create({
           email: 'cody@puppybook.com',
-          password: 'bones'
+          password: 'bones',
+          firstName: 'Becka',
+          lastName: 'Rebecca',
+          mailingAddressStreet: '35 First Ave',
+          mailingAddressCity: 'New York',
+          mailingAddressState: 'NY',
+          mailingAddressZipCode: '10019',
+          paymentInfoCardNumber: '9483746392847382',
+          paymentInfoName: 'Becka Rebecca',
+          paymentInfoMonth: 8,
+          paymentInfoYear: 2019
         })
           .then(user => {
             cody = user
@@ -33,3 +75,7 @@ describe('User model', () => {
     }) // end describe('correctPassword')
   }) // end describe('instanceMethods')
 }) // end describe('User model')
+
+})
+
+})

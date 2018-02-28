@@ -3,7 +3,7 @@ const {User} = require('../db/models')
 module.exports = router
 
 //GET:-All Users
-router.get('/',function(req,res,next){
+router.get('/', (req, res, next) => {
 	User.findAll({})
 	.then(function(users){
 		res.status(200).send(users);
@@ -12,7 +12,7 @@ router.get('/',function(req,res,next){
 });
 
 //GET:-User by ID
-router.get('/:id',function(req,res,next){
+router.get('/:id', (req, res, next) => {
     User.findById(req.params.id)
 		.then(function(user){
 			res.status(200).send(user);
@@ -34,13 +34,13 @@ router.get('/:id',function(req,res,next){
 
 
 router.post('/', (req, res, next) => {
-	User.create(req.body)
+	User.create(req.body) // watch out for isAdmin changes
 		.then(user => res.status(201).json(user))
 		.catch(next);
 })
 
 router.put('/:id', (req, res, next) => {
-	User.update(req.body, {
+	User.update(req.body, { // watch out for isAdmin changes, only if your logged-in id matches the id
 		where: {id: req.params.id},
     returning: true
 		})
