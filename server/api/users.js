@@ -2,16 +2,35 @@ const router = require('express').Router()
 const {User} = require('../db/models')
 module.exports = router
 
-router.get('/', (req, res, next) => {
-  User.findAll({
-    // explicitly select only the id and email fields - even though
-    // users' passwords are encrypted, it won't help if we just
-    // send everything to anyone who asks!
-    attributes: ['id', 'email']
-  })
-    .then(users => res.json(users))
-    .catch(next)
-})
+//GET:-All Users
+router.get('/',function(req,res,next){
+	User.findAll({})
+	.then(function(users){
+		res.status(200).send(users);
+	})
+	.catch(next);
+});
+
+//GET:-User by ID
+router.get('/:id',function(req,res,next){
+    User.findById(req.params.id)
+		.then(function(user){
+			res.status(200).send(user);
+		})
+		.catch(next);
+});
+
+
+// router.get('/', (req, res, next) => {
+//   User.findAll({
+//     // explicitly select only the id and email fields - even though
+//     // users' passwords are encrypted, it won't help if we just
+//     // send everything to anyone who asks!
+//     attributes: ['id', 'email']
+//   })
+//     .then(users => res.json(users))
+//     .catch(next)
+// })
 
 
 router.post('/', (req, res, next) => {
