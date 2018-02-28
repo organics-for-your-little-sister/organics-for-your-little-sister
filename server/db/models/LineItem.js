@@ -6,19 +6,13 @@ const Product = require('./Product');
 const LineItem = db.define('lineitem', {
   quantity: {
     type: Sequelize.INTEGER,
-    defaultValue: 1
+    defaultValue: 1,
+    allowNull: false
   },
   price: {
     type: Sequelize.FLOAT,
   }
 })
-
-// LineItem.prototype.getPrice = function(product){
-//   return Product.findOne({ where: { id: this.productId }})
-//     .then( theProduct => {
-//       return theProduct.price * this.quantity
-//     })
-// }
 
 LineItem.hook('beforeValidate', (lineItem) => {
   return Product.findOne({where: {id: lineItem.productId }})
