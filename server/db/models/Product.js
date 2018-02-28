@@ -18,7 +18,7 @@ const Product = db.define('product', {
     defaultValue: 0
   },
   category: {
-    type: Sequelize.ENUM,
+    type: Sequelize.ENUM(Sequelize.STRING),
     values: ['cotton based', 'animal fiber based', 'luxury', 'no applicator']
   }
 })

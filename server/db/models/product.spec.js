@@ -45,15 +45,15 @@ describe('Product model', () => {
       });
     });
 
-  // it('only accept particular values for the category', () => {
-  //   tampon.category = 'super duper luxury tampon';
-  //   return tampon.validate()
-  //   .then(() => {
-  //     throw new Error('validation should fail when any option other than cotton based, animal fiber based, luxury, or no applicator is set to a product category');
-  //   },
-  //     (result) => {
-  //       expect(result).to.be.an.instanceOf(Error);
-  //     })
-  //   })
+  it('only accept particular values for the category', () => {
+    tampon.category = 'super duper luxury tampon';
+    return tampon.validate()
+    .then(() => {
+      throw new Error('validation should fail when any option other than cotton based, animal fiber based, luxury, or no applicator is set to a product category');
+    },
+      (result) => {
+        expect(result).to.be.an.instanceOf(Error);
+      })
+    })
   })
 })
