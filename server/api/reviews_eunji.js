@@ -8,15 +8,22 @@ router.get('/', (req, res, next)=>{
     .then( reviews => res.json(reviews))
     .catch(next)
 })
+
+router.get('/:id', (req, res, next) =>{
+  Review.findById(req.params.id)
+    .then(review => res.json(review))
+    .catch(next)
+})
+
 // see all reviews by userId
 router.get('/users/:id', (req, res, next)=>{
-  Review.findById({ where: { userId: req.params.id }})
+  Review.findAll({ where: { userId: req.params.id }})
     .then( reviewsByUser => res.json(reviewsByUser))
     .catch(next)
 })
 // see all reviews by productId
 router.get('/products/:id', (req, res, next)=>{
-  Review.findById({ where: { productId: req.params.id}})
+  Review.findAll({ where: { productId: req.params.id}})
     .then( reviewsByProduct => res.json(reviewsByProduct))
     .catch(next)
 })

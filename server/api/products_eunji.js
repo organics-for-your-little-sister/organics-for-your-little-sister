@@ -14,7 +14,7 @@ router.get('/:id', (req, res, next)=>{
     .catch(next)
 })
 
-// api/products/
+
 router.get('/:categoryName', (req, res, next)=>{
   Product.findAll({ where: { category: req.params.categoryName}})
     .then( products => res.json(products))
