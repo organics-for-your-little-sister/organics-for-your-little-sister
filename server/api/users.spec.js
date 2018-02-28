@@ -12,11 +12,21 @@ describe('User routes', () => {
   })
 
   describe('/api/users/', () => {
-    const codysEmail = 'cody@puppybook.com'
 
     beforeEach(() => {
       return User.create({
-        email: codysEmail
+        email: 'cody@puppybook.com',
+        password: 'bones',
+        firstName: 'Becka',
+        lastName: 'Rebecca',
+        mailingAddressStreet: '35 First Ave',
+        mailingAddressCity: 'New York',
+        mailingAddressState: 'NY',
+        mailingAddressZipCode: '10019',
+        paymentInfoCardNumber: '9483746392847382',
+        paymentInfoName: 'Becka Rebecca',
+        paymentInfoMonth: 8,
+        paymentInfoYear: 2019
       })
     })
 
@@ -26,7 +36,7 @@ describe('User routes', () => {
         .expect(200)
         .then(res => {
           expect(res.body).to.be.an('array')
-          expect(res.body[0].email).to.be.equal(codysEmail)
+          expect(res.body[0].email).to.be.equal('cody@puppybook.com')
         })
     })
   }) // end describe('/api/users')
