@@ -12,3 +12,25 @@ router.get('/', (req, res, next) => {
     .then(users => res.json(users))
     .catch(next)
 })
+
+
+router.post('/', (req, res, next) => {
+	User.create(req.body)
+		.then(user => res.status(201).json(user))
+		.catch(next);
+})
+
+router.put('/:id', (req, res, next) => {
+	User.update(req.body, {
+		where: {id: req.params.id},
+    returning: true
+		})
+		.then(([_, updated]) => res.status(201).json(updated[0]))
+		.catch(next)
+})
+
+router.delete('/:id', (req, res, next) => {
+	User.destroy({where: {id: req.params.id}})
+		.then(() => res.sendStatus(204))
+		.catch(next)
+})
