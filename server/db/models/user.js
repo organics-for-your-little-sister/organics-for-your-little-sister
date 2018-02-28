@@ -41,9 +41,9 @@ const User = db.define('user', {
   paymentInfoCardNumber: {
     type: Sequelize.INTEGER,
     allowNull: false,
-    validate: {
-      isCreditCard: true
-    }
+    // validate: {
+    //   isCreditCard: true
+    // }
   },
   paymentInfoName: {
     type: Sequelize.STRING,
@@ -93,7 +93,7 @@ const User = db.define('user', {
     type: Sequelize.BOOLEAN,
     defaultValue: false
   }
-  
+
 })
 
 module.exports = User

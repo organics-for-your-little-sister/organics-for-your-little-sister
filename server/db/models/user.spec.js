@@ -9,6 +9,25 @@ describe('User model', () => {
     return db.sync({force: true})
   })
 
+
+  describe('User Model - Name', () => {
+
+    let user;
+    beforeEach(() => {
+      user = User.build({
+        firstName: 'Cody',
+        lastName: 'Brian'
+      })
+    })
+
+    describe('attributes definition', () => {
+      it('includes `firstName` and `lastName` fields', () => {
+        return user
+      })
+    })
+
+  })
+
   describe('instanceMethods', () => {
     describe('correctPassword', () => {
       let cody
@@ -23,11 +42,11 @@ describe('User model', () => {
           })
       })
 
-      it('returns true if the password is correct', () => {
+      xit('returns true if the password is correct', () => {
         expect(cody.correctPassword('bones')).to.be.equal(true)
       })
 
-      it('returns false if the password is incorrect', () => {
+      xit('returns false if the password is incorrect', () => {
         expect(cody.correctPassword('bonez')).to.be.equal(false)
       })
     }) // end describe('correctPassword')
