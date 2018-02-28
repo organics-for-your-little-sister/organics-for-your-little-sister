@@ -17,6 +17,7 @@ describe('thunk creators', () => {
 
   const initialState = {user: {}}
 
+//fake axios & fake store being created
   beforeEach(() => {
     mockAxios = new MockAdapter(axios)
     store = mockStore(initialState)
@@ -51,4 +52,6 @@ describe('thunk creators', () => {
         })
     })
   })
+
+
 })
