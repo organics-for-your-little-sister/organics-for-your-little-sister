@@ -8,7 +8,9 @@ const LineItem = require('./LineItem');
  *
  *    BlogPost.belongsTo(User)
  */
-
+LineItem.belongsTo(Product);
+Review.belongsTo(Product);
+Review.belongsTo(User);
 
 /**
  * We'll export all of our models here, so that any time a module needs a model,
