@@ -80,15 +80,16 @@ describe('Product model', () => {
     })
   })
 
-//   describe('ratingCalc instance method', () => {
+  describe('ratingCalc instance method', () => {
 
-//     it('when invoked, returns the average review rating', () => {
-//       return tampon.save()
-//         .then(savedProduct => {
-//           expect(savedProduct.avgRating).to.equal(null);
-//           savedProduct.ratingCalc();
-//           expect(savedProduct.avgRating).to.equal(3)
-//         })
-//     })
-//   })
+    it('when invoked, returns the average review rating', () => {
+      return tampon.save()
+        .then(savedProduct => {
+          expect(savedProduct.avgRating).to.equal(3);
+          savedProduct.ratingCalc();
+          console.log(savedProduct.avgRating)
+          expect(savedProduct.avgRating).to.equal(3)
+        })
+    })
+  })
 })

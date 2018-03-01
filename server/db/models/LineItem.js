@@ -10,9 +10,14 @@ const LineItem = db.define('lineitem', {
     allowNull: false
   },
   price: {
-    type: Sequelize.FLOAT,
+    type: Sequelize.INTEGER,
   }
 })
+
+LineItem.prototype.priceCalc = function() {
+  this.price = this.price / 10
+  return this.price;
+}
 
 LineItem.hook('beforeValidate', (lineItem) => {
   return Product.findOne({where: {id: lineItem.productId }})
