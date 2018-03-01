@@ -2,6 +2,7 @@ const db = require('../db');
 const Sequelize = require('sequelize');
 const Product = require('./Product');
 
+const sum = arr.reduce((a,b)=>{ return a+b }, 0); 
 
 const LineItem = db.define('lineitem', {
   quantity: {
@@ -10,9 +11,10 @@ const LineItem = db.define('lineitem', {
     allowNull: false
   },
   price: {
-    type: Sequelize.INTEGER
+    type: Sequelize.INTEGER  
   }
 })
+
 
 LineItem.hook('beforeValidate', (lineItem) => {
   return Product.findOne({where: {id: lineItem.productId }})
@@ -20,7 +22,6 @@ LineItem.hook('beforeValidate', (lineItem) => {
       lineItem.price = theProduct.price * lineItem.quantity
     })
 })
-
 
 
 module.exports = LineItem
