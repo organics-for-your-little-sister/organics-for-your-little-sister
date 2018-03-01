@@ -17,7 +17,7 @@ describe('LineItem model', () => {
         return Product.create({
           title: 'Fine Silk',
           description: 'Amazing silk for your little sister',
-          price: 10,
+          price: 100,
           inventoryQuantity: 100,
           category: 'luxury'})
             .then( product => {
