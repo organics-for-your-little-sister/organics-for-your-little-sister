@@ -37,7 +37,7 @@ describe('Product model', () => {
         .then(savedProduct => {
           expect(savedProduct.title).to.equal('luxury angora super tampon');
           expect(savedProduct.description).to.equal(descriptionText);
-          expect(savedProduct.price).to.equal(150);
+          expect(savedProduct.price).to.equal(15);
           expect(savedProduct.inventoryQuantity).to.equal(12);
           expect(savedProduct.category).to.equal('luxury');
         })
@@ -67,18 +67,6 @@ describe('Product model', () => {
 //     })
    })
 
-  describe('priceCalc instance method', () => {
-
-    it('when invoked, returns the price in the database divided by 10 so the number appears correctly', () => {
-      return tampon.save()
-        .then(savedProduct => {
-          expect(savedProduct.price).to.equal(150)
-          savedProduct.priceCalc();
-          expect(savedProduct.price).to.equal(15)
-        });
-
-    })
-  })
 
   describe('ratingCalc instance method', () => {
 

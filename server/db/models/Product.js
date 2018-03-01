@@ -12,7 +12,10 @@ const Product = db.define('product', {
   },
   price: {
     type: Sequelize.INTEGER,
-    allowNull: false
+    allowNull: false,
+    set(val) {
+      this.setDataValue('price', val / 10)
+    }
   },
   inventoryQuantity: {
     type: Sequelize.INTEGER,
@@ -34,10 +37,6 @@ const Product = db.define('product', {
   }
 })
 
-Product.prototype.priceCalc = function() {
-  this.price = this.price / 10
-  return this.price;
-}
 
 Product.prototype.ratingCalc = function() {
   return Review.findAll({

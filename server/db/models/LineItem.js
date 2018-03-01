@@ -14,10 +14,6 @@ const LineItem = db.define('lineitem', {
   }
 })
 
-LineItem.prototype.priceCalc = function() {
-  this.price = this.price / 10
-  return this.price;
-}
 
 LineItem.hook('beforeValidate', (lineItem) => {
   return Product.findOne({where: {id: lineItem.productId }})
@@ -25,7 +21,6 @@ LineItem.hook('beforeValidate', (lineItem) => {
       lineItem.price = theProduct.price * lineItem.quantity
     })
 })
-
 
 
 module.exports = LineItem
