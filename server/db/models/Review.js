@@ -31,3 +31,6 @@ module.exports = Review;
 
 // Review.belongsTo(Product);
 // Review.belongsTo(User)
+
+// average rating ptototype.getAverage
+// helper.js - func isAmin / isLoggedIn / 

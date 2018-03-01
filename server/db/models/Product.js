@@ -10,17 +10,20 @@ const Product = db.define('product', {
     type: Sequelize.TEXT
   },
   price: {
-    type: Sequelize.FLOAT,
+    type: Sequelize.FLOAT, // do not use float for the price but integer 9.99 -> 999cents  
     allowNull: false
   },
   inventoryQuantity: {
     type: Sequelize.INTEGER,
-    defaultValue: 0
+    defaultValue: 0 /// min = 0; could go lower than 0; 
   },
   category: {
     type: Sequelize.ENUM(Sequelize.STRING),
     values: ['cotton based', 'animal fiber based', 'luxury', 'no applicator']
   }
 })
+
+//better to make a virtual here for the price. 
+
 
 module.exports = Product
