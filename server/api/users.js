@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {User} = require('../db/models')
+const {User, Review} = require('../db/models')
 const { isLoggedIn, makeError, isAdmin } = require('../../utilities');
 module.exports = router
 
@@ -13,7 +13,7 @@ router.get('/', isLoggedIn, isAdmin, (req, res, next) => {
 //GET:-User by ID
 router.get('/:id', isLoggedIn, (req, res, next) => {
 	if (req.user.id === req.params.id || req.user.isAdmin === true) {
-    User.findById(req.params.id)
+    User.findById(req.params.id, {include: [{model: Review}]})
 		.then(user => res.status(200).json(user))
 		.catch(next);
 	}
