@@ -22,17 +22,8 @@ const Order = db.define('order',{
         allowNull: false
     }
 })
-Order.hook('beforeValidate',(order) =>{
-    return LineItem.findAll({
-        where: {
-            orderId: order.id
-        }
-    })
-    .then(lineItems => {
-        lineItems.reduce(function(element,){
-
-        },0)
-    })
-})
+// Order.hook('beforeValidate',(order) =>{
+    
+// })
 
 module.exports = Order
