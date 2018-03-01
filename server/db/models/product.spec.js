@@ -11,10 +11,10 @@ describe('Product model', () => {
   let descriptionText = 'This tampon is absorbant and soft. You can trust that it will prevent leaks on even your highest flow days all while ensuring your comfort. No animals were harmed in the creation of this luxurious organiz angora tampon.'
 
   let tampon;
-  let review;
+  let review1;
   let review2;
   beforeEach(() => {
-    tampon = Product.build({
+    return Product.create({
       title: 'luxury angora super tampon',
       description: descriptionText,
       price: 150,
@@ -23,27 +23,58 @@ describe('Product model', () => {
       id: 1
 
     })
-    review = Review.create({
-      reviewText: 'this tampon rocks',
-      rating: 5,
-      productId: 1
+    .then(product => {
+      tampon = product
     })
-    review2 = Review.create({
+    .then(() => {
+      return Review.create({
+        reviewText: 'this tampon rocks',
+        rating: 5,
+        productId: tampon.id
+      })
+    })
+    .then(review => {review1 = review})
+    .then(() => {
+      return Review.create({
       reviewText: 'worst tampon ever',
       rating: 1,
-      productId: 1
+      productId: tampon.id
+      })
     })
+    .then(review => {review2 = review})
   })
+
+  // beforeEach(() => {
+  //   return Review.create({
+  //     reviewText: 'this tampon rocks',
+  //     rating: 5,
+  //     productId: tampon.id
+  //   })
+  //     .then(review => {review1 = review})
+  // })
+
+  // beforeEach(() => {
+  //   return Review.create({
+  //     reviewText: 'worst tampon ever',
+  //     rating: 1,
+  //     productId: tampon.id
+  //   })
+  //     .then(review => {review2 = review})
+  // })
+
+  // afterEach(() => {
+  //   return Promise.all([
+  //     Product.destroy(tampon)
+  //   ])
+  // })
+
   describe('attributes definition', () => {
     it('includes `title`, `description`, `price`, `inventoryQuantity`, and `category` fields', () => {
-      return tampon.save()
-        .then(savedProduct => {
-          expect(savedProduct.title).to.equal('luxury angora super tampon');
-          expect(savedProduct.description).to.equal(descriptionText);
-          expect(savedProduct.price).to.equal(15);
-          expect(savedProduct.inventoryQuantity).to.equal(12);
-          expect(savedProduct.category).to.equal('luxury');
-        })
+      expect(tampon.title).to.equal('luxury angora super tampon');
+      expect(tampon.description).to.equal(descriptionText);
+      expect(tampon.price).to.equal(15);
+      expect(tampon.inventoryQuantity).to.equal(12);
+      expect(tampon.category).to.equal('luxury');
     })
 
     it('requires title and price', () => {
@@ -74,13 +105,8 @@ describe('Product model', () => {
   describe('ratingCalc instance method', () => {
 
     it('when invoked, returns the average review rating', () => {
-      return tampon.save()
-        .then(savedProduct => {
-          expect(savedProduct.avgRating).to.equal(3);
-          savedProduct.ratingCalc();
-          console.log(savedProduct.avgRating)
-          expect(savedProduct.avgRating).to.equal(3)
-        })
+      tampon.ratingCalc();
+      expect(tampon.avgRating).to.equal(3);
     })
   })
 })

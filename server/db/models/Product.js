@@ -29,24 +29,24 @@ const Product = db.define('product', {
     values: ['cotton based', 'animal fiber based', 'luxury', 'no applicator']
   },
   avgRating: {
-    type: Sequelize.INTEGER,
-    }
+    type: Sequelize.INTEGER
+  }
 })
 
 
 Product.prototype.ratingCalc = function() {
-  return Review.findAll({
+  Review.findAll({
     where: {
       productId: this.id
     }
   })
   .then(allReviews => {
-    //console.log(reviews)
     if (allReviews.length) {
-      this.avgRating = allReviews.reduce((accum, currentVal) => {
+      const allRatings = allReviews.map(review => review.rating);
+      this.avgRating = allRatings.reduce((accum, currentVal) => {
         return accum + currentVal
-      }) / allReviews.length;
-      return this.avgRating
+        }) / allReviews.length;
+      return this.avgRating;
     }
   })
 }
