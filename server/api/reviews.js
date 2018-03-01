@@ -16,17 +16,17 @@ router.get('/:id', (req, res, next) => {
 })
 
 // see all reviews by userId
-router.get('/users/:id', (req, res, next) => {
-  Review.findAll({ where: { userId: req.params.id }})
-    .then( reviewsByUser => res.json(reviewsByUser))
-    .catch(next)
-})
-// see all reviews by productId
-router.get('/products/:id', (req, res, next)=> {
-  Review.findAll({ where: { productId: req.params.id}})
-    .then( reviewsByProduct => res.json(reviewsByProduct))
-    .catch(next)
-})
+// router.get('/users/:id', (req, res, next) => {
+//   Review.findAll({ where: { userId: req.params.id }})
+//     .then( reviewsByUser => res.json(reviewsByUser))
+//     .catch(next)
+// })
+// // see all reviews by productId
+// router.get('/products/:id', (req, res, next)=> {
+//   Review.findAll({ where: { productId: req.params.id}})
+//     .then( reviewsByProduct => res.json(reviewsByProduct))
+//     .catch(next)
+// })
 
 router.post('/', (req, res, next) => {
   Review.create(req.body)

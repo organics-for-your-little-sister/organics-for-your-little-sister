@@ -29,6 +29,18 @@ router.get('/category/:category', (req, res, next) => {
   .catch(next)
 })
 
+router.get('/:productId/reviews/:reviewId', (req, res, next)=>{
+
+	Review.findById({ where: { productId: req.params.productId }})
+		.then( reviews => {
+			const theReview = reviews.filter( aReview => aReview.id === req.params.reviewId )
+			res.json(theReview)
+		})
+		.catch(next)
+
+})
+
+
 router.post('/', (req, res, next) => {
   Product.create(req.body)
     .then(product => {

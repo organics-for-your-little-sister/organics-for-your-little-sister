@@ -20,6 +20,16 @@ router.get('/:id', (req, res, next) => {
 		.catch(next);
 });
 
+router.get('/:userId/reviews/:reviewId', (req, res, next)=>{
+	Review.findById({ where: { userId: req.params.userId }})
+		.then( reviews => {
+			const theReview = reviews.filter( aReview => aReview.id === req.params.reviewId )
+			res.json(theReview)
+		})
+		.catch(next)
+
+})
+
 
 // router.get('/', (req, res, next) => {
 //   User.findAll({
@@ -34,11 +44,11 @@ router.get('/:id', (req, res, next) => {
 
 
 router.post('/', (req, res, next) => {
-		if(req.body.isAdmin === 'false'){
+
 			User.create(req.body) // watch out for isAdmin changes
 			.then(user => res.status(201).json(user))
 			.catch(next);
-		}
+
 })
 
 router.put('/:id', (req, res, next) => {
