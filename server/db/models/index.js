@@ -4,7 +4,6 @@ const Review = require('./Review');
 const LineItem = require('./LineItem');
 const Address = require('./Address');
 const Order = require('./order');
-
 /**
  * If we had any associations to make, this would be a great place to put them!
  * ex. if we had another model called BlogPost, we might say:
@@ -13,7 +12,6 @@ const Order = require('./order');
  */
 LineItem.belongsTo(Product);
 User.hasMany(Product);
-
 Review.belongsTo(Product);
 Product.hasMany(Review);
 User.hasMany(Address);

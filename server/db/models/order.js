@@ -1,8 +1,6 @@
-const crypto = require('crypto')
 const Sequelize = require('sequelize')
 const db = require('../db')
 const LineItem = require('./LineItem')
-
 
 const Order = db.define('order',{
     
@@ -25,7 +23,7 @@ const Order = db.define('order',{
         }
     }
 })
-Order.hook('beforeValidate',(order) =>{
+Order.hook('beforeValidate', (order) => {
     return LineItem.findAll({
         where: {
             orderId: order.id
