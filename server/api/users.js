@@ -1,10 +1,10 @@
 const router = require('express').Router()
-const {User} = require('../db/models')
+const {User,Address} = require('../db/models')
 module.exports = router
 
 //GET:-All Users
 router.get('/',(req,res,next)=> {
-	User.findAll({})
+	User.findAll({include: [{model: Address}]})
 	.then(function(users){
 		res.status(200).send(users);
 	})
@@ -13,13 +13,14 @@ router.get('/',(req,res,next)=> {
 
 //GET:-User by ID
 router.get('/:id', (req, res, next) => {
-    User.findById(req.params.id)
+    User.findById(req.params.id,{
+		include: [{model: Address}]
+	})
 		.then(function(user){
 			res.status(200).send(user);
 		})
 		.catch(next);
 });
-
 
 // router.get('/', (req, res, next) => {
 //   User.findAll({

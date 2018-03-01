@@ -11,7 +11,7 @@ const LineItem = db.define('lineitem', {
     allowNull: false
   },
   price: {
-    type: Sequelize.INTEGER,
+    type: Sequelize.INTEGER  
   }
 })
 
