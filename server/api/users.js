@@ -3,7 +3,7 @@ const {User} = require('../db/models')
 module.exports = router
 
 //GET:-All Users
-router.get('/', (req, res, next) => {
+router.get('/',(req,res,next)=> {
 	User.findAll({})
 	.then(function(users){
 		res.status(200).send(users);
