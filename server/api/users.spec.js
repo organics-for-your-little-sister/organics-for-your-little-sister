@@ -19,14 +19,6 @@ describe('User routes', () => {
         password: 'bones',
         firstName: 'Becka',
         lastName: 'Rebecca',
-        mailingAddressStreet: '35 First Ave',
-        mailingAddressCity: 'New York',
-        mailingAddressState: 'NY',
-        mailingAddressZipCode: '10019',
-        paymentInfoCardNumber: '9483746392847382',
-        paymentInfoName: 'Becka Rebecca',
-        paymentInfoMonth: 8,
-        paymentInfoYear: 2019
       })
     })
 

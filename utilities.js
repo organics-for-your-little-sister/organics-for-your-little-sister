@@ -4,7 +4,7 @@ const makeError = (status, message) => {
 	return err;
 }
 
-const isLoggedIn = (req, res, next)=> {
+const isLoggedIn = (req, res, next) => {
 	// only get here if you log in
 	// if there is a req.user someone is logged in
 	// send 401 unauthorized

@@ -2,8 +2,6 @@ const db = require('../db');
 const Sequelize = require('sequelize');
 const Product = require('./Product');
 
-const sum = arr.reduce((a,b)=>{ return a+b }, 0); 
-
 const LineItem = db.define('lineitem', {
   quantity: {
     type: Sequelize.INTEGER,
