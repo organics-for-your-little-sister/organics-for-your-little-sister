@@ -20,15 +20,18 @@ describe('Product model', () => {
       price: 150,
       inventoryQuantity: 12,
       category: 'luxury',
+      id: 1
 
     })
     review = Review.create({
       reviewText: 'this tampon rocks',
-      rating: 5
+      rating: 5,
+      productId: 1
     })
     review2 = Review.create({
       reviewText: 'worst tampon ever',
-      rating: 1
+      rating: 1,
+      productId: 1
     })
   })
   describe('attributes definition', () => {

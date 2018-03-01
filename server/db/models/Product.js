@@ -30,11 +30,7 @@ const Product = db.define('product', {
   },
   avgRating: {
     type: Sequelize.INTEGER,
-    validate: {
-      min: 0,
-      max: 5
     }
-  }
 })
 
 
@@ -44,12 +40,12 @@ Product.prototype.ratingCalc = function() {
       productId: this.id
     }
   })
-  .then(reviews => {
-    console.log(reviews)
-    if (reviews.length) {
-      this.avgRating = reviews.reduce((accum, currentVal) => {
+  .then(allReviews => {
+    //console.log(reviews)
+    if (allReviews.length) {
+      this.avgRating = allReviews.reduce((accum, currentVal) => {
         return accum + currentVal
-      }) / reviews.length;
+      }) / allReviews.length;
       return this.avgRating
     }
   })
