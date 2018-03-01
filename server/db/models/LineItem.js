@@ -22,9 +22,6 @@ LineItem.hook('beforeValidate', (lineItem) => {
     })
 })
 
-LineItem.belongsTo(Product); // ---> we get productId;
-// getProduct setProduct
-//LineItem.belongsTo(Order); // ---> we get orderId;
 
 
 module.exports = LineItem
