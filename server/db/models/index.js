@@ -9,9 +9,16 @@ const LineItem = require('./LineItem');
  *    BlogPost.belongsTo(User)
  */
 LineItem.belongsTo(Product);
+User.hasMany(Product);
+
 Review.belongsTo(Product);
-Review.belongsTo(User);
 Product.hasMany(Review);
+
+Review.belongsTo(User);
+User.hasMany(Review);
+
+
+
 
 /**
  * We'll export all of our models here, so that any time a module needs a model,
