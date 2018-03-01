@@ -11,8 +11,9 @@ const Order = require('./Order');
  *    BlogPost.belongsTo(User)
  */
 LineItem.belongsTo(Product);
+User.hasMany(Product);
+
 Review.belongsTo(Product);
-Review.belongsTo(User);
 Product.hasMany(Review);
 LineItem.belongsTo(Order);
 Order.hasMany(LineItem);
@@ -20,6 +21,12 @@ Order.belongsTo(User);
 User.hasMany(Order);
 // User.hasMany(Address);
 // Address.belongsTo(User);
+
+
+Review.belongsTo(User);
+User.hasMany(Review);
+
+
 
 
 /**

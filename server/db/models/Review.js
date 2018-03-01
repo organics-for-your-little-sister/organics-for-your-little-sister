@@ -22,9 +22,3 @@ const Review = db.define('review', {
 })
 
 module.exports = Review;
-
-
-// Reviews
-// All reviews must belong to a product
-// All reviews must belong to a user
-// All reviews must be at least X characters

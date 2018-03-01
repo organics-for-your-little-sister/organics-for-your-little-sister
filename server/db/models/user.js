@@ -46,13 +46,13 @@ const User = db.define('user', {
     allowNull: false
   },
 
-  paymentInfoCardNumber: { // connected to paypal or stripe
-    type: Sequelize.STRING,
-    allowNull: false,
-    validate: {
-      isCreditCard: true
-    }// test this part again
-  },
+  // paymentInfoCardNumber: { // connected to paypal or stripe
+  //   type: Sequelize.STRING,
+  //   allowNull: false,
+  //   validate: {
+  //     isCreditCard: true
+  //   }// test this part again
+  // },
   // paymentInfoName: {
   //   type: Sequelize.STRING,
   //   allowNull: false,

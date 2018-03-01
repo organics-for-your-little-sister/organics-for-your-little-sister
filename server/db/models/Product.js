@@ -33,7 +33,6 @@ const Product = db.define('product', {
   }
 })
 
-
 Product.prototype.ratingCalc = function() {
   Review.findAll({
     where: {
@@ -50,9 +49,6 @@ Product.prototype.ratingCalc = function() {
     }
   })
 }
-
-//can you use an instance method inside an setter method?
-//how do you actually utilize an instance method?
 
 module.exports = Product
 
