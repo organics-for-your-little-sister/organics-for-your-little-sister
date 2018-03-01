@@ -6,17 +6,17 @@ const date = new Date();
 const User = db.define('user', {
   firstName: {
     type: Sequelize.STRING,
-    allowNull: false,
-    validate: {
-      notEmpty: true
-    }
+    // allowNull: false,
+    // validate: {
+    //   notEmpty: true
+    //}
   },
   lastName: {
     type: Sequelize.STRING,
-    allowNull: false,
-    validate: {
-      notEmpty: true
-    }
+    // allowNull: false,
+    // validate: {
+    //   notEmpty: true
+    // }
   },
   email: {
     type: Sequelize.STRING,
@@ -27,6 +27,7 @@ const User = db.define('user', {
       isEmail: true
     }
   },
+<<<<<<< HEAD
 
 // an address model so a user can have many addresses
   // mailingAddressStreet: {
@@ -73,6 +74,8 @@ const User = db.define('user', {
   //     max: date.getFullYear() + 5
   //   }
   // },
+=======
+>>>>>>> 63935b1e5580b57cec12c2dcab053a008fd1cd4c
   password: {
     type: Sequelize.STRING,
     // Making `.password` act like a func hides it when serializing to JSON.

@@ -1,0 +1,37 @@
+const router = require('express').Router();
+const { LineItem, Product } = require('../db/models');
+module.exports = router;
+
+
+
+router.get('/', (req, res, next)=>{
+ LineItem.findAll()
+   .then( lineItems => res.json(lineItems))
+   .catch(next);
+})
+
+// lineitems/1
+router.get('/:lineId', (req, res, next)=>{
+ LineItem.findById(req.params.lineId, { include: [{model: Product }]})
+ .then(lineitem => res.json(lineitem))
+ .catch(next);
+
+})
+
+router.post('/', (req, res, next)=>{
+ LineItem.create(req.body)
+   .then( lineitem => res.status(204).json(lineitem))
+   .catch(next)
+})
+
+router.put('/:lineId', (req, res, next)=>{
+ LineItem.update(req.body, { where: { id: req.params.id}, returning: true })
+   .then(([num, updated]) => res.json(updated[0]))
+   .catch(next)
+})
+
+router.delete('/:id', (req, res, next)=>{
+ LineItem.destroy({ where: { id: req.params.id }})
+   .then(()=> res.sendStatus(204))
+   .catch(next);
+})

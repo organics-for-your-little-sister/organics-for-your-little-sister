@@ -29,6 +29,7 @@ router.get('/category/:category', (req, res, next) => {
   .catch(next)
 })
 
+<<<<<<< HEAD
 router.get('/:productId/reviews/:reviewId', (req, res, next)=>{
 
 	Review.findById({ where: { productId: req.params.productId }})
@@ -41,6 +42,18 @@ router.get('/:productId/reviews/:reviewId', (req, res, next)=>{
 })
 
 
+=======
+router.get('/:productId/reviews/:reviewId', (req, res, next) => {
+ Review.findById({ where: { productId: req.params.productId }})
+   .then( reviews => {
+     const theReview = reviews.filter( aReview => aReview.id === req.params.reviewId )
+     res.json(theReview)
+   })
+   .catch(next)
+
+})
+
+>>>>>>> 63935b1e5580b57cec12c2dcab053a008fd1cd4c
 router.post('/', (req, res, next) => {
   Product.create(req.body)
     .then(product => {
