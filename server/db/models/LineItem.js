@@ -10,7 +10,7 @@ const LineItem = db.define('lineitem', {
     allowNull: false
   },
   price: {
-    type: Sequelize.FLOAT,
+    type: Sequelize.INTEGER
   }
 })
 
