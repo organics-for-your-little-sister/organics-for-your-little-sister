@@ -1,11 +1,11 @@
 const router = require('express').Router()
-const {User, Review} = require('../db/models')
+const {User, Review, Address} = require('../db/models')
 const { isLoggedIn, makeError, isAdmin } = require('../../utilities');
 module.exports = router
 
 //GET:-All Users
 router.get('/', isLoggedIn, isAdmin, (req, res, next) => {
-	User.findAll()
+	User.findAll({include: [{model: Address}]})
 	.then(users => res.status(200).json(users))
 	.catch(next);
 });
@@ -13,7 +13,7 @@ router.get('/', isLoggedIn, isAdmin, (req, res, next) => {
 //GET:-User by ID
 router.get('/:id', isLoggedIn, (req, res, next) => {
 	if (req.user.id === req.params.id || req.user.isAdmin === true) {
-    User.findById(req.params.id, {include: [{model: Review}]})
+    User.findById(req.params.id, {include: [{model: Review}, {model: Address}]})
 		.then(user => res.status(200).json(user))
 		.catch(next);
 	}
@@ -21,7 +21,6 @@ router.get('/:id', isLoggedIn, (req, res, next) => {
 		return next(makeError(403, 'You cannot view other member\'s profiles'));
 	}
 });
-
 
 router.post('/', (req, res, next) => {
 	User.create({
