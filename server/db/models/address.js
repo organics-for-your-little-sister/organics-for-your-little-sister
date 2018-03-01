@@ -1,35 +1,23 @@
-const Sequelize = require('sequelize');
-const db = require('../db');
+const Sequelize = require('sequelize')
+const db = require('../db')
 
 
 const Address = db.define('address', {
   mailingAddressStreet: {
     type: Sequelize.STRING,
-    allowNull: false,
-    validate: {
-      notEmpty: true
-    }
+    allowNull: false
   },
   mailingAddressCity: {
     type: Sequelize.STRING,
-    allowNull: false,
-    validate: {
-      notEmpty: true
-    }
+    allowNull: false
   },
   mailingAddressState: {
     type: Sequelize.STRING,
-    allowNull: false,
-    validate: {
-      notEmpty: true
-    }
+    allowNull: false
   },
   mailingAddressZipCode: {
     type: Sequelize.STRING,
-    allowNull: false,
-    validate: {
-      notEmpty: true
-    }
+    allowNull: false
   }
 })
 
