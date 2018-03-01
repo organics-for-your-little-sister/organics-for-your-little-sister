@@ -29,22 +29,22 @@ const User = db.define('user', {
   },
 
 // an address model so a user can have many addresses
-  mailingAddressStreet: {
-    type: Sequelize.STRING,
-    allowNull: false
-  },
-  mailingAddressCity: {
-    type: Sequelize.STRING,
-    allowNull: false
-  },
-  mailingAddressState: {
-    type: Sequelize.STRING,
-    allowNull: false
-  },
-  mailingAddressZipCode: {
-    type: Sequelize.INTEGER,
-    allowNull: false
-  },
+  // mailingAddressStreet: {
+  //   type: Sequelize.STRING,
+  //   allowNull: false
+  // },
+  // mailingAddressCity: {
+  //   type: Sequelize.STRING,
+  //   allowNull: false
+  // },
+  // mailingAddressState: {
+  //   type: Sequelize.STRING,
+  //   allowNull: false
+  // },
+  // mailingAddressZipCode: {
+  //   type: Sequelize.INTEGER,
+  //   allowNull: false
+  // },
 
   // paymentInfoCardNumber: { // connected to paypal or stripe
   //   type: Sequelize.STRING,

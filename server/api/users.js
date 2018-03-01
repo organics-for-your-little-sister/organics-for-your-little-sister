@@ -1,21 +1,21 @@
 const router = require('express').Router()
-const {User} = require('../db/models')
+const {User, Review} = require('../db/models')
 module.exports = router
 
 //GET:-All Users
 router.get('/', (req, res, next) => {
 	User.findAll({})
 	.then(function(users){
-		res.status(200).send(users);
+		res.status(200).json(users);
 	})
 	.catch(next);
 });
 
 //GET:-User by ID
 router.get('/:id', (req, res, next) => {
-    User.findById(req.params.id)
+    User.findById(req.params.id, {include: [{ model: Review }]})
 		.then(function(user){
-			res.status(200).send(user);
+			res.status(200).json(user);
 		})
 		.catch(next);
 });
@@ -34,9 +34,11 @@ router.get('/:id', (req, res, next) => {
 
 
 router.post('/', (req, res, next) => {
-	User.create(req.body) // watch out for isAdmin changes
-		.then(user => res.status(201).json(user))
-		.catch(next);
+		if(req.body.isAdmin === 'false'){
+			User.create(req.body) // watch out for isAdmin changes
+			.then(user => res.status(201).json(user))
+			.catch(next);
+		}
 })
 
 router.put('/:id', (req, res, next) => {
