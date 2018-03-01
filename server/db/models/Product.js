@@ -2,6 +2,11 @@ const db = require('../db');
 const Sequelize = require('sequelize');
 const Review = require('./Review');
 
+const images = ['https://www.mynaturalmarket.com/365-by-Whole-Foods-Market-Tampons-with-Applicator-Regular.html']
+
+const getRandomImage = () => images[Math.floor(Math.random() * images.length)];
+
+
 const Product = db.define('product', {
   title: {
     type: Sequelize.STRING,
@@ -30,6 +35,12 @@ const Product = db.define('product', {
   },
   avgRating: {
     type: Sequelize.INTEGER
+  },
+  image: {
+    type: Sequelize.STRING,
+    defaultValue: function() {
+      return getRandomImage();
+    }
   }
 })
 
