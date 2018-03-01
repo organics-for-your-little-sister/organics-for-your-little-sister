@@ -11,9 +11,10 @@ const LineItem = db.define('lineitem', {
     allowNull: false
   },
   price: {
-    type: Sequelize.FLOAT,
+    type: Sequelize.INTEGER,
   }
 })
+
 
 LineItem.hook('beforeValidate', (lineItem) => {
   return Product.findOne({where: {id: lineItem.productId }})
@@ -21,7 +22,6 @@ LineItem.hook('beforeValidate', (lineItem) => {
       lineItem.price = theProduct.price * lineItem.quantity
     })
 })
-
 
 
 module.exports = LineItem
