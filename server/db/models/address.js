@@ -16,7 +16,7 @@ const Address = db.define('address', {
     allowNull: false
   },
   mailingAddressZipCode: {
-    type: Sequelize.STRING,
+    type: Sequelize.INTEGER,
     allowNull: false
   }
 })
