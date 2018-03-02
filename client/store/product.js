@@ -84,6 +84,8 @@ export default function reducer(products=[], action){
       return action.product
     case CATEGORY_PRODUCTS:
       return action.products
+    case PRODUCT_SINGLE_REVIEW:
+      return action.review;
     case NEW_PRODUCT:
       return [...products, action.product]
     case EDIT_PRODUCT:
