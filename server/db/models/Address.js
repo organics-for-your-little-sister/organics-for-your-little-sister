@@ -1,4 +1,3 @@
-const crypto = require('crypto')
 const Sequelize = require('sequelize')
 const db = require('../db')
 
@@ -17,7 +16,7 @@ const Address = db.define('address', {
     allowNull: false
   },
   mailingAddressZipCode: {
-    type: Sequelize.INTEGER,
+    type: Sequelize.STRING,
     allowNull: false
   }
 })
