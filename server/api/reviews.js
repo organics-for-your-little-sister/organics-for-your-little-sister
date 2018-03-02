@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { Review } = require('../db/models');
+const { isLoggedIn, makeError, isAdmin } = require('../../utilities');
 module.exports = router;
 
 // see all reviews
@@ -15,32 +16,29 @@ router.get('/:id', (req, res, next) => {
     .catch(next)
 })
 
-// see all reviews by userId
-router.get('/users/:id', (req, res, next) => {
-  Review.findAll({ where: { userId: req.params.id }})
-    .then( reviewsByUser => res.json(reviewsByUser))
-    .catch(next)
-})
-// see all reviews by productId
-router.get('/products/:id', (req, res, next)=> {
-  Review.findAll({ where: { productId: req.params.id}})
-    .then( reviewsByProduct => res.json(reviewsByProduct))
-    .catch(next)
-})
-
-router.post('/', (req, res, next) => {
+router.post('/', isLoggedIn, (req, res, next) => {
   Review.create(req.body)
-    .then() /// how to add productId and reviewId
+    .then( review => res.status(201).json(review))
+    .catch(next)
 })
 
-router.put('/:id', (req, res, next) => {
-  Review.update(req.body, { where: { id: req.params.id }, returning: true })
+router.put('/:id', isLoggedIn, (req, res, next) => {
+  if(req.user.id === req.params.id || req.user.isAdmin === true ){
+    Review.update(req.body, { where: { id: req.params.id }, returning: true })
     .then(([num, updated]) => res.json(updated[0]))
     .catch(next)
+  } else {
+    return next(makeError(403, 'You cannot update other member\'s reviews'))    
+  }
 })
 
-router.delete('/:id', (req, res, next) => {
-  Review.destroy({where: {id: req.params.id}})
+router.delete('/:id', isLoggedIn, (req, res, next) => {
+  if(req.user.id === req.params.id || req.user.isAdmin === true ){
+    Review.destroy({where: {id: req.params.id}})
     .then( () => res.sendStatus(204))
     .catch(next)
+  } else {
+    return next(makeError(403, 'You cannot delete other member\'s reviews'))
+  }
+  
 })
