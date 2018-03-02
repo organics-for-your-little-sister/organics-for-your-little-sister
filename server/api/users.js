@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {User, Review, Address, Order} = require('../db/models')
+const {User, Review, Address, Order, LineItem, Product } = require('../db/models')
 const { isLoggedIn, makeError, isAdmin } = require('../../utilities');
 module.exports = router
 
@@ -16,16 +16,47 @@ router.get('/:id', isLoggedIn, (req, res, next) => {
     User.findById(req.params.id, {include: [{model: Review}, {model: Address}, {model: Order}]})
 		.then(user => res.status(200).json(user))
 		.catch(next);
-	}
-	else {
+	} else {
 		return next(makeError(403, 'You cannot view other member\'s profiles'));
 	}
 });
 
+
+//GET all the orders of the specific user: ex) users/1/orders 
+router.get('/:userId/orders/', isLoggedIn, (req, res, next)=>{
+	if(req.user.id === req.params.userId || req.user.isAdmin === true ){
+		Order.findAll({ where: { userId: req.params.userId}, include: [{ model: User}, {model: LineItem}]})
+		.then( manyOrders => res.json(manyOrders))
+		.catch(next)
+	} else {
+		return next(makeError(403, 'You cannot view other member\'s order'))
+	}
+})
+
+// GET a single order of the specific user: ex) users/1/orders/2
 router.get('/:userId/orders/:orderId', isLoggedIn, (req, res, next)=>{
-	if( req.user.id === req.params.userId || req.user.isAdmin === true ){
-		Order.findById(req.params.orderId, {include: })
-	}	
+	if(req.user.id === req.params.userId || req.user.isAdmin === true ){
+		Order.findById(req.params.orderId,{include: [{model: User}, {model: LineItem}]} )
+		.then( theOrder => res.json(theOrder))
+		.catch(next)
+	} else {
+		return next(makeError(403, 'You cannot view other member\'s order'))
+	}
+})
+
+// GET all the reviews of the specific user users/1/reviews 
+router.get('/:userId/reviews', (req, res, next)=>{
+		Review.findAll({ where: { userId: req.params.userId }, include: [{model: User}, {model: Product }]})
+			.then( manyReviews => res.json(manyReviews))
+			.catch(next)
+	
+})
+
+// GET a single review of the specific user: ex) users/1/reviews/2
+router.get('/:userId/reviews/:reviewId', (req, res, next)=>{
+	Review.findById(req.params.reviewId, {include: [{model: User}, {model: Product }]})
+		.then(aReview => res.json(aReview))
+		.catch(next)
 })
 
 router.post('/', (req, res, next) => {

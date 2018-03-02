@@ -12,9 +12,9 @@ router.get('/', isAdmin, (req,res,next)=> {
 	.catch(next);
 });
 
-//GET:-Order by ID
-router.get('/:id', isLoggedIn, (req, res, next) => {
-
+//GET:-Order by ID orders/1
+router.get('/:orderid', isLoggedIn, (req, res, next) => {
+	if( req.user.orderId === req.params.id || req.user.isAdmin === true ){
 		Order.findById(req.params.id,{
 			include: [{model: User},{model: LineItem}]
 		})
@@ -22,10 +22,10 @@ router.get('/:id', isLoggedIn, (req, res, next) => {
 				res.status(200).json(order);
 			})
 			.catch(next);
-	
-    
+	} else {
+		return next(makeError(403, 'You cannot view other member\'s order'))
+	}    
 });
-
 
 router.post('/', (req, res, next) => {
 	Order.create(req.body) 
