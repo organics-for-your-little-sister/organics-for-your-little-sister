@@ -12,8 +12,8 @@ router.get('/', isLoggedIn, isAdmin, (req, res, next) => {
 
 //GET:-User by ID
 router.get('/:id', isLoggedIn, (req, res, next) => {
-	if (req.user.id === req.params.id || req.user.isAdmin === true) {
-    User.findById(req.params.id, {include: [{model: Review}, {model: Address}, {model: Order}]})
+	if (req.user.id === +req.params.id || req.user.isAdmin === true) {
+    User.findById(req.params.id, {include: [{model: Review}, {model: Address}]})
 		.then(user => res.status(200).json(user))
 		.catch(next);
 	} else {

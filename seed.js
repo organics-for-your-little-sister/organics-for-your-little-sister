@@ -1,12 +1,13 @@
 'use strict';
 
 const db = require('./server/db');
-const User = require('./server/db/models/user');
-const LineItem = require('./server/db/models/LineItem');
-// const Order = require('./server/db/models/order');
-const Product = require('./server/db/models/Product');
-const Review = require('./server/db/models/Review');
-//const Address = require('./server/db/models/address');
+const User = db.models.user
+const LineItem = db.models.lineitem
+const Order = db.models.order
+const Product = db.models.product
+const Address = db.models.address
+const Review = db.models.review
+
 
 const users = [{
   firstName: 'Jasmine',
@@ -20,6 +21,8 @@ const users = [{
   firstName: 'Jennifer',
   lastName: 'K',
   email: 'jennifer@k.com',
+  isAdmin: true,
+  password: '123'
 }]
 
 const products = [{
@@ -45,17 +48,6 @@ const products = [{
   avgRating: 2
 }]
 
-const lineItems = [{
-  quantity: 2,
-  productId: 1
-}, {
-  quantity: 6,
-  productId: 1
-}, {
-  quantity: 1,
-  productId: 2
-}]
-
 
 const reviews = [{
   reviewText: 'This tampon sux',
@@ -74,17 +66,68 @@ const reviews = [{
   userId: 3
 }]
 
+const orders = [{
+  orderStatus: 'cart',
+  userId: 1
+}, {
+  orderStatus: 'cart',
+  userId: 2
+}, {
+  orderStatus: 'cart',
+  userId: 1
+}]
+
+const lineItems = [{
+  quantity: 2,
+  productId: 1,
+  orderId: 1,
+}, {
+  quantity: 6,
+  productId: 1,
+  orderId: 2,
+}, {
+  quantity: 1,
+  productId: 2,
+  orderId: 1
+}]
+
+const addresses = [{
+  mailingAddressStreet: '201 Great Ln',
+  mailingAddressCity: 'GreatTown',
+  mailingAddressState: 'GT',
+  mailingAddressZipCode: '11112',
+  userId: 1
+}, {
+  mailingAddressStreet: '123 Howdy St',
+  mailingAddressCity: 'Howdyville',
+  mailingAddressState: 'HV',
+  mailingAddressZipCode: '11123',
+  userId: 2
+}, {
+  mailingAddressStreet: '18 Tampax ln',
+  mailingAddressCity: 'Tampax',
+  mailingAddressState: 'TX',
+  mailingAddressZipCode: '88818',
+  userId: 3
+}]
+
 const seed = () =>
   Promise.all(users.map(user => User.create(user)))
   .then(() =>
     Promise.all(products.map(product => Product.create(product)))
     )
   .then(() =>
+    Promise.all(orders.map(order => Order.create(order)))
+    )
+  .then(() =>
     Promise.all(lineItems.map(lineItem => LineItem.create(lineItem)))
     )
   .then(() =>
     Promise.all(reviews.map(review => Review.create(review)))
-    );
+    )
+  .then(() =>
+    Promise.all(addresses.map(address => Address.create(address)))
+    )
 
 const main = () => {
   console.log('Syncing the db');
