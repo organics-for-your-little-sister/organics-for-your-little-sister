@@ -9,10 +9,9 @@ const LineItem = db.define('lineitem', {
     allowNull: false
   },
   price: {
-    type: Sequelize.INTEGER  
+    type: Sequelize.INTEGER
   }
 })
-
 
 LineItem.hook('beforeValidate', (lineItem) => {
   return Product.findOne({where: {id: lineItem.productId }})
