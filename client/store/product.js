@@ -76,7 +76,7 @@ export const thunkRemoveProduct = (id) =>
 
 // REDUCER
 
-export default function reducer(products=[], action){
+export default function (products=[], action){
   switch(action.type){
     case ALL_PRODUCTS:
       return action.products

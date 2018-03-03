@@ -19,3 +19,15 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+
+.product {
+  display: flex;
+  background-color: lavender;
+  flex-direction: row;
+  margin: 10px;
+
+}
+
+h2 {
+  color: red;
+}
