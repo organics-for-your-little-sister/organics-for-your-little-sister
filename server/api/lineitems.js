@@ -2,8 +2,6 @@ const router = require('express').Router();
 const { LineItem, Product } = require('../db/models');
 module.exports = router;
 
-
-
 router.get('/', (req, res, next) => {
  LineItem.findAll()
    .then( lineItems => res.json(lineItems))

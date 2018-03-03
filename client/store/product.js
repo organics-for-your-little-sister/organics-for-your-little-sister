@@ -70,13 +70,13 @@ export const thunkEditProduct = (id, product) =>
 export const thunkRemoveProduct = (id) =>
   dispatch =>
     axios.delete(`/api/products/${id}`)
-      .then(()=> dispatch(removeProduct(id)))
+      .then(() => dispatch(removeProduct(id)))
       .catch(err => console.error('error from thunkRemoveProduct', err))
 
 // REDUCER
 
-export default function reducer(products=[], action){
-  switch(action.type){
+export default function reducer(products = [], action){
+  switch (action.type){
     case ALL_PRODUCTS:
       return action.products
     case SINGLE_PRODUCT:
