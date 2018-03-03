@@ -1,3 +1,4 @@
+const db = require('../db');
 const User = require('./user');
 const Product = require('./Product');
 const Review = require('./Review');
@@ -11,11 +12,10 @@ const Order = require('./order');
  *    BlogPost.belongsTo(User)
  */
 LineItem.belongsTo(Product);
-User.hasMany(Product);
 Review.belongsTo(Product);
 Product.hasMany(Review);
-User.hasMany(Address);
 Address.belongsTo(User);
+User.hasMany(Address);
 Order.hasMany(LineItem);
 LineItem.belongsTo(Order);
 User.hasMany(Order);
@@ -29,5 +29,5 @@ User.hasMany(Review);
  * instead of: const User = require('../db/models/user')
  */
 module.exports = {
-  User, Product, Review, LineItem, Address, Order 
+  User, Product, Review, LineItem, Address, Order, db
 }

@@ -2,11 +2,11 @@ const Sequelize = require('sequelize')
 const db = require('../db')
 const LineItem = require('./LineItem')
 
-const Order = db.define('order',{
-    
+const Order = db.define('order', {
+
     orderStatus: {
         type: Sequelize.ENUM(Sequelize.STRING),
-        values: ['cart','orderComplete','shipped']
+        values: ['cart', 'orderComplete', 'shipped']
       },
     totalOrderPrice: {
         type: Sequelize.INTEGER,
@@ -30,15 +30,14 @@ Order.hook('beforeValidate', (order) => {
         }
     })
     .then(lineItems => {
-        order.totalOrderPrice = lineItems.reduce((accu,lineItem) => {
+        order.totalOrderPrice = lineItems.reduce((accu, lineItem) => {
            return accu + lineItem.price;
-        },0)
-     order.totalOrderQuantity = lineItems.reduce((accu,lineItem) => {
+        }, 0)
+     order.totalOrderQuantity = lineItems.reduce((accu, lineItem) => {
          return accu + lineItem.quantity;
-        },0)     
+        }, 0)
     })
 })
-
 
 
 module.exports = Order;
