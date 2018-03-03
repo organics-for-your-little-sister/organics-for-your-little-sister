@@ -76,21 +76,29 @@ export const thunkRemoveProduct = (id) =>
 // REDUCER
 
 export default function reducer(products = [], action){
-  switch (action.type){
+  switch (action.type) {
+
     case ALL_PRODUCTS:
       return action.products
+
     case SINGLE_PRODUCT:
       return action.product
+
     case CATEGORY_PRODUCTS:
       return action.products
+
     case PRODUCT_SINGLE_REVIEW:
-      return action.review;
+      return action.review
+
     case NEW_PRODUCT:
       return [...products, action.product]
+
     case EDIT_PRODUCT:
       return products.map( product => action.product.id === product.id ? action.product : product ) // returning a new array with action.product.
+
     case REMOVE_PRODUCT:
       return products.filter( product => product.id !== action.id ) // returning a new array that excluded a product of the action.id
+
     default:
       return products;
   }

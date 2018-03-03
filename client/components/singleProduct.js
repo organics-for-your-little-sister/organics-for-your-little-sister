@@ -14,19 +14,23 @@ class singleProduct extends Component {
     console.log('props?', this.props)
     return (
       <div>
-        {
-          this.props
-        }
+      Is this rendering?
       </div>
     )
   }
 }
 
-const mapStateToProps = null
-
-const mapDispatchToProps = dispatch => {
+const mapStateToProps = (state, ownProps) => {
+  const id = ownProps.location.pathname.substring(ownProps.location.pathname.length - 1)
   return {
-    fetchProduct: () => dispatch(thunkSingleProduct())
+    product: state.product
+  }
+}
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+  const id = ownProps.location.pathname.substring(ownProps.location.pathname.length - 1)
+  return {
+    fetchProduct: () => dispatch(thunkSingleProduct(id))
   }
 }
 
