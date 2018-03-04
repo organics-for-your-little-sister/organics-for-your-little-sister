@@ -14,7 +14,7 @@ class SingleProduct extends Component {
     let product = this.props.product
     console.log('single product props render: ', Array.isArray(product), product)
     return (
-      <div>
+      <div className="container" "col-md-8">
         <img src={product.image} alt={product.title} />
         <ul>
           <li>${product.price}</li>
