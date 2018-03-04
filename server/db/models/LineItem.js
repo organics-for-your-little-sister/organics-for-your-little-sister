@@ -13,7 +13,6 @@ const LineItem = db.define('lineitem', {
   }
 })
 
-
 LineItem.hook('beforeValidate', (lineItem) => {
   return Product.findOne({where: {id: lineItem.productId }})
     .then( theProduct => {
