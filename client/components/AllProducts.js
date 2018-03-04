@@ -5,20 +5,19 @@ import {thunkAllProducts, thunkNewProduct} from '../store/product';
 const AllProducts = (props) => {
   const products = props.products;
   return (
-    <div>
+    <div className="allProductsContainer">
       {console.log(props)}
       { products && products.map( product => {
         return (
           <div key={product.id} className="product">
-            <h2>{product.title}</h2>
-          <ul>
-            <li>{product.category}</li>
+            <h2 className="title">{product.title}</h2>
             <img src={product.image} alt={product.title} />
-            <li>{product.description}</li>
-            <li>${product.price}</li>
-            <button onClick={props.handleClick}>Add to Cart</button>
-
+          <ul>
+            <li>category: {product.category}</li>
+            <li>description: {product.description}</li>
           </ul>
+            <h3>${product.price}</h3>
+            <button onClick={props.handleClick}>Add to Cart</button>
         </div>)
       })}
     </div>
