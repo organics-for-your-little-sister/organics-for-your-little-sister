@@ -20,8 +20,7 @@ class AllProducts extends Component {
             <h2 className="title">{product.title}</h2>
             <img src={product.image} alt={product.title} />
           <ul>
-            <li>category: {product.category}</li>
-            <li>description: {product.description}</li>
+            <li>{product.category} tampon</li>
           </ul>
             <h3>${product.price}</h3>
             <button onClick={this.props.handleClick}>Add to Cart</button>
