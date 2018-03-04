@@ -10,7 +10,7 @@ router.get('/', isLoggedIn, isAdmin, (req, res, next) => {
 	.catch(next);
 });
 
-//GET:-User by ID
+//GET:-Single User by ID
 router.get('/:id', isLoggedIn, (req, res, next) => {
 	if (req.user.id === +req.params.id || req.user.isAdmin === true) {
     User.findById(req.params.id, {include: [{model: Review}, {model: Address}]})
@@ -23,14 +23,14 @@ router.get('/:id', isLoggedIn, (req, res, next) => {
 
 
 //GET all the orders of the specific user: ex) users/1/orders 
-router.get('/:userId/orders/', isLoggedIn, (req, res, next)=>{
-	if(req.user.id === req.params.userId || req.user.isAdmin === true ){
+router.get('/:userId/orders/', (req, res, next)=>{
+	//if(req.user.id === req.params.userId || req.user.isAdmin === true ){
 		Order.findAll({ where: { userId: req.params.userId}, include: [{ model: User}, {model: LineItem}]})
 		.then( manyOrders => res.json(manyOrders))
 		.catch(next)
-	} else {
-		return next(makeError(403, 'You cannot view other member\'s order'))
-	}
+	//} else {
+	//	return next(makeError(403, 'You cannot view other member\'s order'))
+	//}
 })
 
 // GET a single order of the specific user: ex) users/1/orders/2
@@ -48,8 +48,7 @@ router.get('/:userId/orders/:orderId', isLoggedIn, (req, res, next)=>{
 router.get('/:userId/reviews', (req, res, next)=>{
 		Review.findAll({ where: { userId: req.params.userId }, include: [{model: User}, {model: Product }]})
 			.then( manyReviews => res.json(manyReviews))
-			.catch(next)
-	
+			.catch(next)	
 })
 
 // GET a single review of the specific user: ex) users/1/reviews/2
@@ -77,9 +76,7 @@ router.put('/:id', isLoggedIn, (req, res, next) => {
 		})
 		.then(([_, updated]) => res.status(201).json(updated[0]))
 		.catch(next)
-	}
-	else {
-		if (req.user.id === req.params.id) {
+	} else if (req.user.id === req.params.id) {
 			User.update({
 				firstName: req.body.firstName,
 				lastName: req.body.lastName,
@@ -94,7 +91,6 @@ router.put('/:id', isLoggedIn, (req, res, next) => {
 		else {
 			return next(makeError(403, 'You cannot edit other member\'s profiles'));
 		}
-	}
 })
 
 router.delete('/:id', isLoggedIn, isAdmin, (req, res, next) => {

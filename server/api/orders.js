@@ -4,7 +4,7 @@ const { isLoggedIn, makeError, isAdmin } = require('../../utilities');
 module.exports = router
 
 //GET:-All Orders
-router.get('/', isAdmin, (req,res,next)=> {
+router.get('/', (req,res,next)=> {
 	Order.findAll({})
 	.then(function(orders){
 		res.status(200).json(orders);
@@ -12,7 +12,7 @@ router.get('/', isAdmin, (req,res,next)=> {
 	.catch(next);
 });
 
-//GET:-Order by ID orders/1
+//GET:-Single Order by orderID orders/1
 router.get('/:orderid', isLoggedIn, (req, res, next) => {
 	if( req.user.orderId === req.params.id || req.user.isAdmin === true ){
 		Order.findById(req.params.id,{
