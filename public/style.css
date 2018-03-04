@@ -19,15 +19,25 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+.allProductsContainer {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
 
 .product {
-  display: flex;
   background-color: lavender;
   flex-direction: row;
+  width: 280px;
+  height: 300px;
   margin: 10px;
 
 }
 
-h2 {
+.title {
   color: red;
+}
+
+ul {
+  width: 200px;
 }
