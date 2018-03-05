@@ -4,7 +4,7 @@ import axios from 'axios';
 const GET_ALL_ORDERS = 'GET_ALL_ORDERS';
 const GET_SINGLE_ORDER = 'GET_SINGLE_ORDER';
 const CREATE_ORDER = 'CREATE_ORDER';
-// const EDIT_ORDER = 'EDIT_ORDER';
+const EDIT_ORDER = 'EDIT_ORDER';
 const DELETE_ORDER = 'DELETE_ORDER';
 
 // ACTION CREATORS
@@ -15,6 +15,10 @@ const createOrder = (order) => ({type: CREATE_ORDER, order});
 // const deleteOrder = (id) => ({type: DELETE_ORDER, id});
 
 // THUNK CREATOR
+const editOrder = (order) => ({type: EDIT_ORDER, order});
+const deleteOrder = (id) => ({type: DELETE_ORDER, id});
+
+// THUNK CREATORS
 export const fetchAllOrders = () => {
 	return dispatch => {
 		axios.get('/api/orders')
@@ -37,9 +41,11 @@ export const fetchSingleOrder = () => {
 	}
 }
 
+
 export const fetchAllOrdersByUserX = (userId) => {
 	console.log("Inside fetchAllOrdersByUserX");
 	console.log("3. fetchAllOrdersByUserX");
+export const fetchAllOrdersByUserX = () => {
 	return dispatch => {
 		axios.get(`/api/users/${userId}/orders`)
 			.then(res => res.data)
@@ -48,7 +54,9 @@ export const fetchAllOrdersByUserX = (userId) => {
 	}
 }
 
+
 export const fetchSingleOrderByUserX = (userId,orderId) => {
+export const fetchSingleOrderByUserX = () => {
 	return dispatch => {
 		axios.get(`/api/users/${userId}/orders/${orderId}`)
 			.then(res => res.data)
@@ -104,3 +112,12 @@ export default function reducer(orders = [], action) {
 			return orders;
 	}
 }
+    case EDIT_ORDER:
+      return orders.map( order => action.order.id === order.id ? action.order : order ) // returning a new array with action.order.
+    case DELETE_ORDER:
+      return orders.filter( order => order.id !== action.id ) // returning a new array that excluded a order of the action.id
+		default:
+			return orders;
+	}
+}
+

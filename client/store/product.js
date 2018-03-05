@@ -1,11 +1,11 @@
 import axios from 'axios';
-import history from '../history';
 
 // ACTION TYPE
     // GET PRODUCTS
 const ALL_PRODUCTS = 'ALL_PRODUCTS';
 const SINGLE_PRODUCT = 'SINGLE_PRODUCT';
 const CATEGORY_PRODUCTS = 'CATEGORY_PRODUCTS';
+
     // GET PRODUCT'S REVIEWS
 // const PRODUCT_ALL_REVIEWS = 'PRODUCT_ALL_REVIEWS';
 const PRODUCT_SINGLE_REVIEW = 'PRODUCT_SINGLE_REVIEW'
@@ -19,6 +19,7 @@ const REMOVE_PRODUCT = 'REMOVE_PRODUCT';
 const allProducts = (products) => ({type: ALL_PRODUCTS, products})
 const singleProduct = (product) => ({type: SINGLE_PRODUCT, product})
 const categoryProduct = (products) => ({type: CATEGORY_PRODUCTS, products})
+
     // GET PRODUCT'S REVIEWS
 // const productAllReviews = (reviews) => ({type: PRODUCT_ALL_REVIEWS, reviews})
 const productSingleReview = (review) => ({type: PRODUCT_SINGLE_REVIEW, review})
@@ -71,27 +72,34 @@ export const thunkEditProduct = (id, product) =>
 export const thunkRemoveProduct = (id) =>
   dispatch =>
     axios.delete(`/api/products/${id}`)
-      .then(()=> dispatch(removeProduct(id)))
+      .then(() => dispatch(removeProduct(id)))
       .catch(err => console.error('error from thunkRemoveProduct', err))
 
 // REDUCER
 
-export default function reducer(products=[], action){
-  switch(action.type){
+export default function reducer(products = [], action){
+  switch (action.type) {
     case ALL_PRODUCTS:
       return action.products
+
     case SINGLE_PRODUCT:
       return action.product
+
     case CATEGORY_PRODUCTS:
       return action.products
+
     case PRODUCT_SINGLE_REVIEW:
-      return action.review;
+      return action.review
+
     case NEW_PRODUCT:
       return [...products, action.product]
+
     case EDIT_PRODUCT:
       return products.map( product => action.product.id === product.id ? action.product : product ) // returning a new array with action.product.
+
     case REMOVE_PRODUCT:
       return products.filter( product => product.id !== action.id ) // returning a new array that excluded a product of the action.id
+
     default:
       return products;
   }
