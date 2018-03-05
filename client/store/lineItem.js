@@ -26,7 +26,7 @@ export const fetchLineItem = (id) => dispatch => {
 export const addLineItem = lineItem => dispatch => {
   axios.post('/api/lineitems')
     .then(res => dispatch(createLineItem(res.data)))
-    .catch(err => console.error(`Creating lineItem: ${lineItem.id}`, err));
+    .catch(err => console.error(`Creating lineItem: `, err));
 }
 
 export const changeLineItem = (id, lineItem) => dispatch => {
