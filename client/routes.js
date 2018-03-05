@@ -14,6 +14,10 @@ import {me,fetchAllOrdersByUserX,fetchSingleOrderByUserX} from './store'
 class Routes extends Component {
   componentDidMount () {
     this.props.loadInitialData()
+    // const userAllOrdersThunk = fetchAllOrdersByUserX();
+    // const userSingleOrderThunk = fetchSingleOrderByUserX();
+    // store.dispatch(userAllOrdersThunk);
+    // store.dispatch(userSingleOrderThunk);
   }
 
   render () {

@@ -10,7 +10,7 @@ class UserAllOrders extends Component {
     console.log("1. componentDidMount");
     this.props.fetchOrders();
   }
-
+ 
   render() {
     let orders = this.props.order
     let userId=this.props.userId;
