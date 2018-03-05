@@ -1,12 +1,19 @@
-import React from 'react'
+import React, { Component } from 'react'
 import {connect} from 'react-redux';
 import {thunkAllProducts, thunkNewProduct} from '../store/product';
 
-const AllProducts = (props) => {
-  const products = props.products;
+class AllProducts extends Component {
+  constructor() {
+    super();
+  }
+  componentDidMount() {
+    this.props.thunkAllProducts();
+  }
+  render() {
+    const products = this.props.products;
   return (
     <div className="allProductsContainer">
-      {console.log(props)}
+      {console.log(this.props)}
       { products && products.map( product => {
         return (
           <div key={product.id} className="product">
@@ -17,11 +24,12 @@ const AllProducts = (props) => {
             <li>description: {product.description}</li>
           </ul>
             <h3>${product.price}</h3>
-            <button onClick={props.handleClick}>Add to Cart</button>
+            <button onClick={this.props.handleClick}>Add to Cart</button>
         </div>)
       })}
     </div>
-  )
+    )
+  }
 }
 
 const mapState = (state) => {

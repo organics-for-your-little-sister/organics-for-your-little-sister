@@ -4,7 +4,7 @@ import axios from 'axios';
 const GET_ALL_ORDERS = 'GET_ALL_ORDERS';
 const GET_SINGLE_ORDER = 'GET_SINGLE_ORDER';
 const CREATE_ORDER = 'CREATE_ORDER';
-// const EDIT_ORDER = 'EDIT_ORDER';
+const EDIT_ORDER = 'EDIT_ORDER';
 const DELETE_ORDER = 'DELETE_ORDER';
 
 // ACTION CREATORS

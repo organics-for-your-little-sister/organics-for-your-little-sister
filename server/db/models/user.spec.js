@@ -18,11 +18,10 @@ describe('User model', () => {
       firstName: 'Becka',
       lastName: 'Rebecca',
       email: 'BeckaRebecca@oeij.com',
-      password: 'badpassword'
     })
   })
   describe('attributes definition', () => {
-    it('includes `firstName`, `lastName`, and `email` fields', () => {
+    it('includes `firstName`, `lastName`, `email` fields', () => {
       return user.save()
         .then(savedUser => {
           expect(savedUser.firstName).to.equal('Becka');
@@ -40,14 +39,6 @@ describe('User model', () => {
           password: 'bones',
           firstName: 'Becka',
           lastName: 'Rebecca',
-          mailingAddressStreet: '35 First Ave',
-          mailingAddressCity: 'New York',
-          mailingAddressState: 'NY',
-          mailingAddressZipCode: '10019',
-          paymentInfoCardNumber: '9483746392847382',
-          paymentInfoName: 'Becka Rebecca',
-          paymentInfoMonth: 8,
-          paymentInfoYear: 2019
         })
           .then(user => {
             cody = user
