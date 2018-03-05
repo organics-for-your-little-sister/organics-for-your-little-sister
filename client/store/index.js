@@ -6,7 +6,6 @@ import user from './user'
 import product from './product'
 import order from './order'
 import lineItem from './lineItem'
-import product from './product'
 
 const reducer = combineReducers({user, product, lineItem, order})
 const middleware = composeWithDevTools(applyMiddleware(
