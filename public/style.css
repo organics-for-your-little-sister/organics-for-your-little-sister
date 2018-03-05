@@ -43,7 +43,14 @@ ul {
   width: 200px;
 }
 
+
+.wrapper {
+  display: flex;
+  align-items: stretch;
+}
+
 img {
   height: 100px;
   width: 100px;
 }
+
