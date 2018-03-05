@@ -69,8 +69,8 @@ const reviews = [{
 const orders = [{
   orderStatus: 'cart',
   userId: 1,
-  totalOrderQuantity: 3,
-  totalOrderPrice: 15
+  totalOrderQuantity: 2,
+  totalOrderPrice: 20
   
 }, {
   orderStatus: 'cart',
@@ -81,8 +81,8 @@ const orders = [{
 }, {
   orderStatus: 'cart',
   userId: 1,
-  totalOrderQuantity: 5,
-  totalOrderPrice: 25
+  totalOrderQuantity: 1,
+  totalOrderPrice: 15
   
 }]
 
