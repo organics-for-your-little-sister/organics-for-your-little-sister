@@ -41,7 +41,6 @@ export const fetchSingleOrder = (orderId) => {
 	}
 }
 
-
 export const fetchAllOrdersByUserX = (userId) => {
 	console.log("Inside fetchAllOrdersByUserX");
 	console.log("3. fetchAllOrdersByUserX");
@@ -94,19 +93,25 @@ export const removeOrder = (id) => {
 export default function reducer(orders = [], action) {
 	console.log("REDUCER!!!!!");
 	console.log(action);
-	switch(action.type) {
+	switch (action.type) {
+
 		case GET_ALL_ORDERS:
 		console.log("4. GET_ALL_ORDERS");
 			return action.orders;
+
 		case GET_SINGLE_ORDER:
 			return action.order;
+
 		case CREATE_ORDER:
 			return [action.order, ...orders];
-    case EDIT_ORDER:
+
+		case EDIT_ORDER:
       return orders.map( order => action.order.id === order.id ? action.order : order ) // returning a new array with action.order.
+   
     case DELETE_ORDER:
       return orders.filter( order => order.id !== action.id ) // returning a new array that excluded a order of the action.id
-		default:
+		
+    default:
 			return orders;
 	}
 }
