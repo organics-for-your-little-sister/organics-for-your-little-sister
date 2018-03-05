@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { thunkSingleProduct } from '../store/product'
+import { NewLineItem } from './index'
 
 const SingleProduct = (props) => {
   let product = props.product
@@ -17,6 +18,7 @@ const SingleProduct = (props) => {
             <li>${product.price}</li>
             <li>description: {product.description} </li>
           </ul>
+          <NewLineItem selectedProduct={product}/>
         </div>
 
       }
