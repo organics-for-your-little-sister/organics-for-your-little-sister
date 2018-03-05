@@ -1,5 +1,4 @@
 import React from 'react'
-
 import { Navbar, AllProducts, SideBar } from './components'
 import Routes from './routes'
 
