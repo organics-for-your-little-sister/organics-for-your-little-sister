@@ -14,9 +14,9 @@ class Routes extends Component {
   }
 
   render () {
-    //const {isLoggedIn} = this.props
-    //const {isLoggedIn} = true
-    //console.log(isLoggedIn)
+   const {isLoggedIn} = this.props
+    //The above correct look in the db for the admin user to login - hint, her last name starts w/ a k
+    console.log(isLoggedIn)
 
     return (
       <Switch>
