@@ -44,7 +44,14 @@ ul {
   list-style-type: none;
 }
 
+
+.wrapper {
+  display: flex;
+  align-items: stretch;
+}
+
 img {
   height: 100px;
   width: 100px;
 }
+

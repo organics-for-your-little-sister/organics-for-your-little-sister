@@ -4,8 +4,11 @@
  * having to figure out which file they belong to!
  */
 export {default as Navbar} from './navbar'
+export {default as SideBar} from './SideBar'
+
 export {default as UserHome} from './user-home'
 export {default as SingleProduct} from './SingleProduct'
 export {default as NewLineItem} from './lineItems/newLineItem'
 export {default as AllProducts} from './AllProducts'
+export {default as ProductsByCategory} from './ProductsByCategory'
 export {Login, Signup} from './auth-form'

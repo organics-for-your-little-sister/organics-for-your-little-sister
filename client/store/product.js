@@ -5,6 +5,7 @@ import axios from 'axios';
 const ALL_PRODUCTS = 'ALL_PRODUCTS';
 const SINGLE_PRODUCT = 'SINGLE_PRODUCT';
 const CATEGORY_PRODUCTS = 'CATEGORY_PRODUCTS';
+
     // GET PRODUCT'S REVIEWS
 // const PRODUCT_ALL_REVIEWS = 'PRODUCT_ALL_REVIEWS';
 const PRODUCT_SINGLE_REVIEW = 'PRODUCT_SINGLE_REVIEW'
@@ -18,6 +19,7 @@ const REMOVE_PRODUCT = 'REMOVE_PRODUCT';
 const allProducts = (products) => ({type: ALL_PRODUCTS, products})
 const singleProduct = (product) => ({type: SINGLE_PRODUCT, product})
 const categoryProduct = (products) => ({type: CATEGORY_PRODUCTS, products})
+
     // GET PRODUCT'S REVIEWS
 // const productAllReviews = (reviews) => ({type: PRODUCT_ALL_REVIEWS, reviews})
 const productSingleReview = (review) => ({type: PRODUCT_SINGLE_REVIEW, review})
@@ -77,7 +79,6 @@ export const thunkRemoveProduct = (id) =>
 
 export default function reducer(products = [], action){
   switch (action.type) {
-
     case ALL_PRODUCTS:
       return action.products
 
