@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import {connect} from 'react-redux';
 import {thunkAllProducts, thunkNewProduct} from '../store/product';
 
@@ -17,7 +18,7 @@ class AllProducts extends Component {
       { products && products.map( product => {
         return (
           <div key={product.id} className="product">
-            <h2 className="title">{product.title}</h2>
+            <Link to={`/products/${product.id}`}><h2 className="title">{product.title}</h2></Link>
             <img src={product.image} alt={product.title} />
           <ul>
             <li>{product.category} tampon</li>
