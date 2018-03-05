@@ -1,5 +1,4 @@
 import axios from 'axios';
-import history from '../history';
 
 // ACTION TYPE
     // GET PRODUCTS
@@ -73,27 +72,34 @@ export const thunkEditProduct = (id, product) =>
 export const thunkRemoveProduct = (id) =>
   dispatch =>
     axios.delete(`/api/products/${id}`)
-      .then(()=> dispatch(removeProduct(id)))
+      .then(() => dispatch(removeProduct(id)))
       .catch(err => console.error('error from thunkRemoveProduct', err))
 
 // REDUCER
 
-export default function (products=[], action){
-  switch(action.type){
+export default function reducer(products = [], action){
+  switch (action.type) {
     case ALL_PRODUCTS:
       return action.products
+
     case SINGLE_PRODUCT:
       return action.product
+
     case CATEGORY_PRODUCTS:
       return action.products
+
     case PRODUCT_SINGLE_REVIEW:
-      return action.review;
+      return action.review
+
     case NEW_PRODUCT:
       return [...products, action.product]
+
     case EDIT_PRODUCT:
       return products.map( product => action.product.id === product.id ? action.product : product ) // returning a new array with action.product.
+
     case REMOVE_PRODUCT:
       return products.filter( product => product.id !== action.id ) // returning a new array that excluded a product of the action.id
+
     default:
       return products;
   }

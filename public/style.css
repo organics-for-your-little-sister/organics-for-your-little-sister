@@ -19,6 +19,7 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+
 .allProductsContainer {
   display: flex;
   justify-content: center;
@@ -42,7 +43,14 @@ ul {
   width: 200px;
 }
 
+
 .wrapper {
   display: flex;
   align-items: stretch;
 }
+
+img {
+  height: 100px;
+  width: 100px;
+}
+

@@ -2,8 +2,9 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
-import {Login, Signup, UserHome, AllProducts, SideBar, ProductsByCategory} from './components'
-import {me, thunkAllProducts} from './store'
+import {Login, Signup, UserHome, AllProducts, SideBar, SingleProduct, ProductsByCategory} from './components'
+import {me} from './store'
+
 
 /**
  * COMPONENT
@@ -23,7 +24,7 @@ class Routes extends Component {
         <Route path="/signup" component={Signup} />
         <Route exact path="/products" component={AllProducts} />
         <Route exact path="/products/category/:categoryName" component={ProductsByCategory} />
-
+        <Route path="/products/:id" component={SingleProduct} />
         {
           isLoggedIn &&
             <Switch>
@@ -53,7 +54,6 @@ const mapDispatch = (dispatch) => {
   return {
     loadInitialData () {
       dispatch(me())
-      dispatch(thunkAllProducts())
     }
   }
 }
