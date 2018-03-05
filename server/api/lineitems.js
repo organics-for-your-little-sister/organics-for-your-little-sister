@@ -3,6 +3,12 @@ const { LineItem, Product } = require('../db/models');
 module.exports = router;
 
 router.get('/', (req, res, next) => {
+	// if(req.session.cart) {
+	// 	req.session.cart.push('a string');
+	// } else {
+	// 	req.session.cart = [];
+	// }
+	// console.log(req.session.cart)
  LineItem.findAll()
    .then( lineItems => res.json(lineItems))
    .catch(next);

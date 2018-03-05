@@ -3,13 +3,13 @@ import { withRouter, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
-import store from '../store/order';
+import store from '../store/lineItem';
 
 class MyBag extends Component {
 
   render(){
-
-    const lineItems = this.props.lineItemsArray || [];
+    console.log(this.props.lineItemArray);
+    const lineItems = this.props.lineItemArray || [];
     const subtotal = lineItems.reduce((accu, curr) => {return accu.subtotal + curr.subtotal}, 0);
 
     return (
@@ -33,7 +33,7 @@ class MyBag extends Component {
                 <tbody>
 
                   {
-                    lineItems.map(item => (
+                    lineItems.length && lineItems.map(item => (
                       <tr key={item.id}>
                         <td>{item.title} {item.image}</td>
                         <td>{item.price}</td>
@@ -75,7 +75,7 @@ class MyBag extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    lineItemsArray: state.order.lineitems
+    lineItemArray: state.order.lineitems
   }
 }
   
