@@ -15,8 +15,11 @@ const LineItem = db.define('lineitem', {
 
 LineItem.hook('beforeValidate', (lineItem) => {
   return Product.findOne({where: {id: lineItem.productId }})
-    .then( theProduct => {
-      lineItem.price = theProduct.price * lineItem.quantity
+    .then( product => {
+      lineItem.title = product.title;
+      lineItem.image = product.image;
+      lineItem.price = product.price;
+      lineItem.subtotal = lineitem.price * lineitem.quantity;
     })
 })
 

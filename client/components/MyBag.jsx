@@ -4,42 +4,69 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import store from '../store/order';
-// import newLineItem from './lineItems/newLineItem'
 
 class MyBag extends Component {
 
   render(){
+
+    const lineItems = this.props.lineItemsArray || [];
+    const subtotal = lineItems.reduce((accu, curr) => {return accu.subtotal + curr.subtotal}, 0);
+
     return (
       <div>
         <div>
           <h3>My Bag</h3>
-          <div>
-            <table className='table'>
-              <thead>
-                <tr>
-                  <th>LineItem ID</th>
-                  <th>Price</th>
-                  <th>Quantity</th>
-                  <th>ProductId</th>
-                </tr>
-              </thead>
-              <tbody>
-                {
-                  lineItemsArray.map(item => (
+
+          <div className="panel-body">
+            <div className="table-responsive">
+              <table className="table table-condensed">
+
+                <thead>
+                  <tr>
+                    <td><strong>{lineItems.length} Item(s)</strong></td>
+                    <td className="text-center"><strong>Price</strong></td>
+                    <td className="text-center"><strong>Quantity</strong></td>
+                    <td className="text-right"><strong>Total</strong></td>
+                  </tr>
+                </thead>
+                
+                <tbody>
+
+                  {
+                    lineItems.map(item => (
                       <tr key={item.id}>
-                          <td>{item.id }</td>
-                          <td>{item.price }</td>
-                          <td>{item.quantity}</td>
-                          <td>{item.productId }</td>
-                       </tr>
-                  ))
-                }
-              </tbody>
-            </table>   
-          </div> 
+                        <td>{item.title} {item.image}</td>
+                        <td>{item.price}</td>
+                        <td>{item.quantity}</td>
+                        <td>{item.subtotal}</td>
+                      </tr>
+                    ))
+                  }
+
+                  <tr>
+                    <td className="highrow"></td>
+                    <td className="highrow"></td>
+                    <td className="highrow text-center"><strong>Subtotal</strong></td>
+                    <td className="highrow text-right">{subtotal}</td>
+                  </tr>
+                  <tr>
+                    <td className="emptyrow"></td>
+                    <td className="emptyrow"></td>
+                    <td className="emptyrow text-center"><strong>Shipping</strong></td>
+                    <td className="emptyrow text-right">Free</td>
+                  </tr>
+                  <tr>
+                    <td className="emptyrow"><i className="fa fa-barcode iconbig"></i></td>
+                    <td className="emptyrow"></td>
+                    <td className="emptyrow text-center"><strong>Total</strong></td>
+                    <td className="emptyrow text-right">{subtotal}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
 
         </div>
-
       </div>
     )
   }
@@ -48,20 +75,13 @@ class MyBag extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-  order: state.order,
-  lineItemsArray: state.order.lineitems
+    lineItemsArray: state.order.lineitems
   }
 }
   
 const mapDispatchToProps = (dispatch,ownProps) => {
-  const userId= Number(ownProps.match.params.userId) 
-  const orderId= Number(ownProps.match.params.orderId) 
-  console.log('userId'+userId);
-  console.log('orderId'+orderId);
-  console.log('mapping dispatch to props')
-  console.log("2. mapDispatchToProps");
   return {
-    fetchSingleOrder: () => dispatch(fetchSingleOrderByUserX(userId,orderId))
+
   }
 }
 
