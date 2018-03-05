@@ -10,10 +10,12 @@ const ProductByCategory = (props) => {
         theProducts && theProducts.map(aProduct => {
           return <div key={aProduct.id} className="product">
             <img src={aProduct.image} alt={aProduct.title} />
+            <h2 className="title">{aProduct.title}</h2>
             <ul>
               <li>${aProduct.price}</li>
               <li>description: {aProduct.description} </li>
             </ul>
+            <button onClick={console.log('hello world')}>Add to Cart</button>
 
           </div>
         })
