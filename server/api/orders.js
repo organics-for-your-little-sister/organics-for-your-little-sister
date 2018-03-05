@@ -4,7 +4,6 @@ const { isLoggedIn, makeError, isAdmin } = require('../../utilities');
 module.exports = router
 
 //GET:-All Orders
-router.get('/', (req,res,next)=> {
 router.get('/', isAdmin, (req, res, next) => {
 
 	Order.findAll({})

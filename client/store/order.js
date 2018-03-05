@@ -11,12 +11,12 @@ const DELETE_ORDER = 'DELETE_ORDER';
 const allOrders = (orders) => ({type: GET_ALL_ORDERS, orders});
 const singleOrder = (order) => ({type: GET_SINGLE_ORDER, order});
 const createOrder = (order) => ({type: CREATE_ORDER, order});
+const editOrder = (order) => ({type: EDIT_ORDER, order});
+const deleteOrder = (id) => ({type: DELETE_ORDER, id});
 // const editOrder = (order) => ({type: EDIT_ORDER, order});
 // const deleteOrder = (id) => ({type: DELETE_ORDER, id});
 
 // THUNK CREATOR
-const editOrder = (order) => ({type: EDIT_ORDER, order});
-const deleteOrder = (id) => ({type: DELETE_ORDER, id});
 
 // THUNK CREATORS
 export const fetchAllOrders = () => {
@@ -32,7 +32,7 @@ export const fetchAllOrders = () => {
 	}
 }
 
-export const fetchSingleOrder = () => {
+export const fetchSingleOrder = (orderId) => {
 	return dispatch => {
 		axios.get(`/api/orders/${orderId}`)
 			.then(res => res.data)
@@ -45,7 +45,6 @@ export const fetchSingleOrder = () => {
 export const fetchAllOrdersByUserX = (userId) => {
 	console.log("Inside fetchAllOrdersByUserX");
 	console.log("3. fetchAllOrdersByUserX");
-export const fetchAllOrdersByUserX = () => {
 	return dispatch => {
 		axios.get(`/api/users/${userId}/orders`)
 			.then(res => res.data)
@@ -56,7 +55,6 @@ export const fetchAllOrdersByUserX = () => {
 
 
 export const fetchSingleOrderByUserX = (userId,orderId) => {
-export const fetchSingleOrderByUserX = () => {
 	return dispatch => {
 		axios.get(`/api/users/${userId}/orders/${orderId}`)
 			.then(res => res.data)
@@ -104,14 +102,6 @@ export default function reducer(orders = [], action) {
 			return action.order;
 		case CREATE_ORDER:
 			return [action.order, ...orders];
-		// case EDIT_ORDER:
-		// 	return ???
-		// case DELETE_ORDER:
-		// 	return all_orders filtered by orderId !== action.id...
-		default:
-			return orders;
-	}
-}
     case EDIT_ORDER:
       return orders.map( order => action.order.id === order.id ? action.order : order ) // returning a new array with action.order.
     case DELETE_ORDER:
@@ -120,4 +110,3 @@ export default function reducer(orders = [], action) {
 			return orders;
 	}
 }
-
