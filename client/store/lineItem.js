@@ -1,5 +1,4 @@
 import axios from 'axios';
-import newLineItem from '../components';
 
 //action type:
 const GET_LINEITEM = 'GET_LINEITEM';

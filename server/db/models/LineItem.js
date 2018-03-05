@@ -19,7 +19,7 @@ LineItem.hook('beforeValidate', (lineItem) => {
       lineItem.title = product.title;
       lineItem.image = product.image;
       lineItem.price = product.price;
-      lineItem.subtotal = lineitem.price * lineitem.quantity;
+      lineItem.subtotal = lineItem.price * lineItem.quantity;
     })
 })
 
