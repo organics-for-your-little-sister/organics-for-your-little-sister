@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { thunkSingleProduct, addLineItem } from '../store/product';
+import { thunkSingleProduct } from '../store/product';
+import { addLineItem } from '../store/lineItem';
 import { NewLineItem } from './lineItems/newLineItem';
 
 class SingleProduct extends Component {
@@ -24,8 +25,8 @@ class SingleProduct extends Component {
         </ul>
       </div>
       <div className="container right col-md-4">
-        <form>
-          <NewLineItem className="quantity" onSubmit={this.props.handleSubmit} product={this.props.product} />
+        <form onSubmit={this.props.handleSubmit}>
+          <NewLineItem className="quantity" product={this.props.product} />
           <p/>
           <button onChange={this.props.handleChange}>submit</button>
         </form>
@@ -52,7 +53,11 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     handleSubmit (evt) {
       evt.preventDefault();
-      console.log('submit', evt.target.form)
+      const newLineItem = {
+        quantity: evt.target.quantity.value,
+        price: price,
+        productId: id
+      }
     }
   }
 }
