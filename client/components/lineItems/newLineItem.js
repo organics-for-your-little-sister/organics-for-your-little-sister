@@ -4,8 +4,10 @@ import { addLineItem } from '../../store/lineItem';
 
 const newLineItem = (props) => {
 
+
   return (
     <div>
+      <input type="number" name="quantity" />
       <button onClick={props.handleClick}
         type="button">
         Add to MyBag
@@ -22,12 +24,21 @@ const mapDispatch = (dispatch, ownProps) => {
     productId: newItem.id
   }
   return {
-    handleClick : () => dispatch(addLineItem(newline))
+    handleClick : () => dispatch(addLineItem(newline)),
+    inclementClick: () => {
+      if(props.quantity < newItem.inventoryQuantity) 0;
+    }
+  }
+}
+
+const mapState = () => {
+  return {
+    quantity: 1
   }
 }
 
 
-export default connect(null, mapDispatch)(newLineItem)
+export default connect(mapState, mapDispatch)(newLineItem)
 
 
 
