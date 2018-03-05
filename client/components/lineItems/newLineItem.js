@@ -3,13 +3,11 @@ import { connect } from 'react-redux';
 import { addLineItem } from '../../store/lineItem';
 
 const newLineItem = (props) => {
-  const selectedProduct = props.selectedProduct
-  console.log(selectedProduct)
+
   return (
-    <div className="btn-group">
-      <button onSubmit={(selectedProduct) => props.handleClick(selectedProduct)}
-        type="button"
-        className="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <div>
+      <button onClick={props.handleClick}
+        type="button">
         Add to MyBag
       </button>
     </div>
@@ -17,8 +15,14 @@ const newLineItem = (props) => {
 }
 
 const mapDispatch = (dispatch, ownProps) => {
+  const newItem = ownProps.selectedProduct
+  const newline = {
+    quantity: 1,
+    price: newItem.price,
+    productId: newItem.id
+  }
   return {
-    handleClick : (item) => dispatch(addLineItem(item))
+    handleClick : () => dispatch(addLineItem(newline))
   }
 }
 

@@ -17,6 +17,7 @@ router.get('/:lineId', (req, res, next) => {
 })
 
 router.post('/', (req, res, next) => {
+  console.log(req.body)
  LineItem.create(req.body)
    .then( lineitem => res.status(204).json(lineitem))
    .catch(next)
