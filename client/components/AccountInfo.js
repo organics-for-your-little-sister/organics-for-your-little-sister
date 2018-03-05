@@ -2,11 +2,9 @@ import React from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import {Link} from 'react-router-dom'
+import { withRouter, NavLink } from 'react-router-dom';
 
 
-/**
- * COMPONENT
- */
 export const AccountInfo = (props) => {
   const userId=1;
   const accountdetails=(
@@ -16,7 +14,7 @@ export const AccountInfo = (props) => {
       <div className="col-sm-4">
         <div className="card">
           <div className="card-body">
-            <h5 className="card-title"><Link to={`/account/UserAllOrders/${userId}`}>Your Orders</Link></h5>
+            <h5 className="card-title"><Link to={`/account/orders/${userId}`}>Your Orders</Link></h5>
           </div>
         </div>
       </div>
@@ -55,3 +53,11 @@ export const AccountInfo = (props) => {
   )
 }
 
+/*const mapStateToProps = (state, ownProps) => { 
+ return {
+  order: state.order
+  }
+}*/
+
+
+//export default withRouter(connect(mapStateToProps)(AccountInfo));

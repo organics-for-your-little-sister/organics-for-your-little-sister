@@ -38,7 +38,8 @@ export const fetchSingleOrder = () => {
 }
 
 export const fetchAllOrdersByUserX = (userId) => {
-    console.log("Inside fetchAllOrdersByUserX");
+	console.log("Inside fetchAllOrdersByUserX");
+	console.log("3. fetchAllOrdersByUserX");
 	return dispatch => {
 		axios.get(`/api/users/${userId}/orders`)
 			.then(res => res.data)
@@ -47,7 +48,7 @@ export const fetchAllOrdersByUserX = (userId) => {
 	}
 }
 
-export const fetchSingleOrderByUserX = () => {
+export const fetchSingleOrderByUserX = (userId,orderId) => {
 	return dispatch => {
 		axios.get(`/api/users/${userId}/orders/${orderId}`)
 			.then(res => res.data)
@@ -89,6 +90,7 @@ export default function reducer(orders = [], action) {
 	console.log(action);
 	switch(action.type) {
 		case GET_ALL_ORDERS:
+		console.log("4. GET_ALL_ORDERS");
 			return action.orders;
 		case GET_SINGLE_ORDER:
 			return action.order;

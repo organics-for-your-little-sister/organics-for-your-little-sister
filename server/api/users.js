@@ -34,14 +34,14 @@ router.get('/:userId/orders/', (req, res, next)=>{
 })
 
 // GET a single order of the specific user: ex) users/1/orders/2
-router.get('/:userId/orders/:orderId', isLoggedIn, (req, res, next)=>{
-	if(req.user.id === req.params.userId || req.user.isAdmin === true ){
+router.get('/:userId/orders/:orderId', (req, res, next)=>{
+	//if(req.user.id === req.params.userId || req.user.isAdmin === true ){
 		Order.findById(req.params.orderId,{include: [{model: User}, {model: LineItem}]} )
 		.then( theOrder => res.json(theOrder))
 		.catch(next)
-	} else {
-		return next(makeError(403, 'You cannot view other member\'s order'))
-	}
+	//} else {
+		//return next(makeError(403, 'You cannot view other member\'s order'))
+	//}
 })
 
 // GET all the reviews of the specific user users/1/reviews 

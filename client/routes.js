@@ -5,7 +5,8 @@ import PropTypes from 'prop-types'
 import {Login, Signup, UserHome} from './components'
 import {AccountInfo} from './components/AccountInfo'
 import UserAllOrders from './components/UserAllOrders'
-import {me,fetchAllOrdersByUserX} from './store'
+import UserSingleOrder from './components/UserSingleOrder'
+import {me,fetchAllOrdersByUserX,fetchSingleOrderByUserX} from './store'
 
 /**
  * COMPONENT
@@ -22,9 +23,9 @@ class Routes extends Component {
 
     return (
       <Switch>
-
         <Route exact path="/account"  component={AccountInfo} />
-        <Route exact path="/account/UserAllOrders/:userid"  component={UserAllOrders} />
+        <Route exact path="/account/orders/:userId"  component={UserAllOrders} />
+        <Route exact path="/account/orders/:userId/singleOrder/:orderId"  component={UserSingleOrder} />
       </Switch>
     )
   }
