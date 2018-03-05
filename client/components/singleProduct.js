@@ -16,7 +16,7 @@ class SingleProduct extends Component {
     let product = this.props.product
     return (
     <div>
-      <div className="container center col-md-8">
+      <div>
         <h3>{product.title}</h3>
         <img src={product.image} alt={product.title} />
         <ul>
@@ -27,7 +27,7 @@ class SingleProduct extends Component {
       <div className="container right col-md-4">
         <form onSubmit={this.props.handleSubmit}>
           <NewLineItem className="quantity" product={this.props.product} />
-          <p/>
+          <p />
           <button onChange={this.props.handleChange}>submit</button>
         </form>
       </div>

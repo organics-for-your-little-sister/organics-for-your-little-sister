@@ -5,10 +5,7 @@ import {Link} from 'react-router-dom'
 
 
 const SideBar = (props) => {
-  const categoryObj = props.products.reduce((a, b) => { a[b.category] ? a[b.category]++ : a[b.category] = 1; return a }, {})
-  // FYI, categoryObj = {cotton: 3, luxury: 2, ..., categoryName: productNum}
-  const categoryArr = Object.keys(categoryObj)
-
+  const categoryArr = ['cotton', 'animal fiber', 'luxury']
   return (
     <div>
       <div className="sidenav">
@@ -18,7 +15,7 @@ const SideBar = (props) => {
         <Link to="/products"><li>all</li></Link>
           {
             categoryArr && categoryArr.map(category => {
-              return <Link  key={category} to={`/products/category/${category}`} ><li>{category}</li></Link >
+              return <Link  key={category} to={`/products/category/${category}`} ><li>{category}</li></Link>
             })
           }
         </ul>

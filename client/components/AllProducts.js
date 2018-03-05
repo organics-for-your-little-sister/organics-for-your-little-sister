@@ -13,7 +13,7 @@ class AllProducts extends Component {
   render() {
     const products = this.props.products;
   return (
-    <div className="allProductsContainer">
+    <div>
       {console.log(this.props)}
       { products && products.map( product => {
         return (
