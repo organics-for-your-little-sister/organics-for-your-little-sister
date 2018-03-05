@@ -18,7 +18,7 @@ const SideBar = (props) => {
         <Link to="/products"><li>all</li></Link>
           {
             categoryArr && categoryArr.map(category => {
-              return <Link  key={category} to={`/categories/${category}`} ><li>{category}</li></Link >
+              return <Link  key={category} to={`/products/category/${category}`} ><li>{category}</li></Link >
             })
           }
         </ul>

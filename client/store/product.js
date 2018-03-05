@@ -6,7 +6,7 @@ import history from '../history';
 const ALL_PRODUCTS = 'ALL_PRODUCTS';
 const SINGLE_PRODUCT = 'SINGLE_PRODUCT';
 const CATEGORY_PRODUCTS = 'CATEGORY_PRODUCTS';
-const CATEGORY_LIST = 'CATEGORY_LIST'
+
     // GET PRODUCT'S REVIEWS
 // const PRODUCT_ALL_REVIEWS = 'PRODUCT_ALL_REVIEWS';
 const PRODUCT_SINGLE_REVIEW = 'PRODUCT_SINGLE_REVIEW'
@@ -20,7 +20,7 @@ const REMOVE_PRODUCT = 'REMOVE_PRODUCT';
 const allProducts = (products) => ({type: ALL_PRODUCTS, products})
 const singleProduct = (product) => ({type: SINGLE_PRODUCT, product})
 const categoryProduct = (products) => ({type: CATEGORY_PRODUCTS, products})
-const categoryList = (category) => ({type: CATEGORY_LIST, category})
+
     // GET PRODUCT'S REVIEWS
 // const productAllReviews = (reviews) => ({type: PRODUCT_ALL_REVIEWS, reviews})
 const productSingleReview = (review) => ({type: PRODUCT_SINGLE_REVIEW, review})
@@ -31,14 +31,6 @@ const removeProduct = (id) => ({type: REMOVE_PRODUCT, id })
 
 // THUNK
     // 3 thunks of GET
-export const thunkCategoryList = () =>
-  dispatch =>
-    axios.get('/api/products')
-      .then( res => res.data )
-      .then( products => products.map( a => a.category ))
-      .then( categories => dispatch(categoryList(categories)))
-      .catch( err => console.error('error from thunkCategoryList', err))
-
 export const thunkAllProducts = () =>
   dispatch =>
     axios.get('/api/products') // please get help what path I should use
@@ -94,8 +86,6 @@ export default function (products=[], action){
       return action.product
     case CATEGORY_PRODUCTS:
       return action.products
-    case CATEGORY_LIST:
-      return action.category;
     case PRODUCT_SINGLE_REVIEW:
       return action.review;
     case NEW_PRODUCT:

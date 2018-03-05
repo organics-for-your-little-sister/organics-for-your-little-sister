@@ -6,7 +6,7 @@ const AllProducts = (props) => {
   const products = props.products;
   return (
     <div className="allProductsContainer">
-      {console.log(props)}
+
       { products && products.map( product => {
         return (
           <div key={product.id} className="product">
@@ -20,6 +20,7 @@ const AllProducts = (props) => {
             <button onClick={props.handleClick}>Add to Cart</button>
         </div>)
       })}
+
     </div>
   )
 }
