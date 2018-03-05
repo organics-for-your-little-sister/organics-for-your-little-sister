@@ -14,6 +14,7 @@ class UserAllOrders extends Component {
   render() {
     let orders = this.props.order
     let userId=this.props.userId;
+    console.log('!!!!!! INSIDE USERALLORDERS', orders);
     //console.log('userId in UserAllOrders'+this.props.userId);
     return (
       <div>
@@ -21,7 +22,7 @@ class UserAllOrders extends Component {
               <div className="order py-5 bg-light">
                 <div className="container">
                   <div className="row">
-                  {orders.map(order => (
+                  {orders.length && orders.map(order => (
                       <div className="col-md-4" key={ order.id }>
                           <div className="card mb-4 box-shadow">
                             <NavLink to={`/account/orders/${userId}/singleOrder/${order.id}`}>

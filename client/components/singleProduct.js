@@ -7,7 +7,6 @@ const SingleProduct = (props) => {
   let product = props.product
   console.log(product)
   return (
-
     <div>
       {
         product &&

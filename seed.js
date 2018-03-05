@@ -68,13 +68,22 @@ const reviews = [{
 
 const orders = [{
   orderStatus: 'cart',
-  userId: 1
+  userId: 1,
+  totalOrderQuantity: 3,
+  totalOrderPrice: 15
+  
 }, {
   orderStatus: 'cart',
-  userId: 2
+  userId: 2,
+  totalOrderQuantity: 1,
+  totalOrderPrice: 5
+  
 }, {
   orderStatus: 'cart',
-  userId: 1
+  userId: 1,
+  totalOrderQuantity: 5,
+  totalOrderPrice: 25
+  
 }]
 
 const lineItems = [{

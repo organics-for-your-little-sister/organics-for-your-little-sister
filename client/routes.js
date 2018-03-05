@@ -6,7 +6,7 @@ import {AccountInfo} from './components/AccountInfo'
 import UserAllOrders from './components/UserAllOrders'
 import UserSingleOrder from './components/UserSingleOrder'
 import {me,fetchAllOrdersByUserX,fetchSingleOrderByUserX,thunkAllProducts} from './store'
-import {Login, Signup, UserHome, AllProducts, SideBar, SingleProduct, ProductsByCategory} from './components'
+import {Login, Signup, UserHome, AllProducts, SideBar, SingleProduct, ProductsByCategory, MyBag} from './components'
 
 class Routes extends Component {
   componentDidMount () {
@@ -14,9 +14,9 @@ class Routes extends Component {
   }
 
   render () {
-    const {isLoggedIn} = this.props
-    //const {isLoggedIn} = true
-    //console.log(isLoggedIn)
+   const {isLoggedIn} = this.props
+    //The above correct look in the db for the admin user to login - hint, her last name starts w/ a k
+    console.log(isLoggedIn)
 
     return (
       <Switch>
@@ -28,6 +28,7 @@ class Routes extends Component {
         <Route path="/signup" component={Signup} />
         <Route exact path="/products" component={AllProducts} />
         <Route exact path="/products/category/:categoryName" component={ProductsByCategory} />
+        <Route path="/mybag" component={MyBag} />
         <Route path="/products/:id" component={SingleProduct} />
         {
           isLoggedIn &&

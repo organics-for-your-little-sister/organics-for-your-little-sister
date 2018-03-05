@@ -30,5 +30,7 @@ const mapDispatch = (dispatch, ownProps) => {
 export default connect(null, mapDispatch)(newLineItem)
 
 
+
 //upon clicking add to bag, a new line item is created containing the quantity, and the productID.
 //the productID can be found in the URL for that page.
+
