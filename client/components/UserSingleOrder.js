@@ -13,11 +13,8 @@ class UserSingleOrder extends Component {
   
     render() {
       let order = this.props.order
-      let lineItemsArray=[]
-      if( Array.isArray(this.props.order.lineitems)){
-        lineItemsArray=this.props.order.lineitems;
-      }
-    
+      let lineItemsArray = this.props.order.lineitems || [];
+      
       console.log(' UserSingleOrder props render: ', Array.isArray(lineItemsArray), lineItemsArray)
       return (
            <div>  
