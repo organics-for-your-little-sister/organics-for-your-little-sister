@@ -22,7 +22,8 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
           <Link to="/login">Login</Link>
           <Link to="/signup">Sign Up</Link>
         </div>
-      )}
+      )
+      }
     </nav>
     <hr />
   </div>

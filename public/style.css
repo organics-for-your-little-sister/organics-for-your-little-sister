@@ -41,3 +41,8 @@ form div {
 ul {
   width: 200px;
 }
+
+.wrapper {
+  display: flex;
+  align-items: stretch;
+}
