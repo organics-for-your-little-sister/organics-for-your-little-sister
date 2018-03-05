@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import {connect} from 'react-redux';
-import {thunkAllProducts, thunkNewProduct} from '../store/product';
+import {thunkAllProducts, thunkNewProduct, } from '../store/product';
+import { NewLineItem } from './index'
+
 
 class AllProducts extends Component {
   constructor() {
@@ -24,7 +26,7 @@ class AllProducts extends Component {
             <li>{product.category} tampon</li>
           </ul>
             <h3>${product.price}</h3>
-            <button onClick={this.props.handleClick}>Add to Cart</button>
+            <NewLineItem selectedProduct={product}/>
         </div>)
       })}
     </div>
@@ -42,7 +44,6 @@ const mapState = (state) => {
 const mapDispatch = (dispatch) => {
   return {
     thunkAllProducts: () => dispatch(thunkAllProducts()),
-    handleClick : () => console.log('hello world')
   }
 }
 

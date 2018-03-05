@@ -1,45 +1,33 @@
-import React, { Component } from 'react';
-import {connect} from 'react-redux';
-import { thunkSingleProduct } from '../../store/product'
+import React from 'react';
+import { connect } from 'react-redux';
+import { addLineItem } from '../../store/lineItem';
 
+const newLineItem = (props) => {
 
-export class NewLineItem extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-        clicks: 1
-      }
+  return (
+    <div>
+      <button onClick={props.handleClick}
+        type="button">
+        Add to MyBag
+      </button>
+    </div>
+  )
+}
 
-      this.incramentItem = this.incramentItem.bind(this);
-      this.decreaseItem = this.decreaseItem.bind(this);
-    }
-
-    incramentItem () {
-      if(this.state.clicks < 1 || this.props.product.inventoryQuantity){
-      this.setState({clicks: this.state.clicks + 1});
-      }
-    }
-
-    decreaseItem () {
-      if (this.state.clicks > 0) {
-      this.setState({clicks: this.state.clicks - 1});
-      }
-
-    }
-  render() {
-    console.log('newLineItem props: ', this.props)
-    console.log('newLineItemProps inventoryQuantity: ', this.props.product.inventoryQuantity)
-    return (
-      <div>
-        <h3>Quantity</h3>
-          <button onClick={this.incramentItem}>+</button>
-            {this.state.clicks}
-          <button onClick={this.decreaseItem}>-</button>
-      </div>
-    )
+const mapDispatch = (dispatch, ownProps) => {
+  const newItem = ownProps.selectedProduct
+  const newline = {
+    quantity: 1,
+    price: newItem.price,
+    productId: newItem.id
+  }
+  return {
+    handleClick : () => dispatch(addLineItem(newline))
   }
 }
 
+
+export default connect(null, mapDispatch)(newLineItem)
 
 
 
