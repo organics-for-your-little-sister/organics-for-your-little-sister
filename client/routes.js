@@ -6,7 +6,7 @@ import {AccountInfo} from './components/AccountInfo'
 import UserAllOrders from './components/UserAllOrders'
 import UserSingleOrder from './components/UserSingleOrder'
 import {me,fetchAllOrdersByUserX,fetchSingleOrderByUserX,thunkAllProducts} from './store'
-import {Login, Signup, UserHome, AllProducts, SideBar, SingleProduct, ProductsByCategory} from './components'
+import {Login, Signup, UserHome, AllProducts, SideBar, SingleProduct, ProductsByCategory, MyBag} from './components'
 
 class Routes extends Component {
   componentDidMount () {
@@ -28,6 +28,7 @@ class Routes extends Component {
         <Route path="/signup" component={Signup} />
         <Route exact path="/products" component={AllProducts} />
         <Route exact path="/products/category/:categoryName" component={ProductsByCategory} />
+        <Route path="/mybag" component={MyBag} />
         <Route path="/products/:id" component={SingleProduct} />
         {
           isLoggedIn &&
