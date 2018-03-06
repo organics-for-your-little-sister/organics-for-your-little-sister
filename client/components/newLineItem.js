@@ -39,6 +39,7 @@ const mapDispatch = (dispatch, ownProps) => {
   return {
     handleClick: () => {
        dispatch(postOrder(newOrder))
+       dispatch()
        dispatch(addLineItem(order.id, newline))
     }
   }
