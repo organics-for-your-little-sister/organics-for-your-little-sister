@@ -1,29 +1,45 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addLineItem } from '../store/order';
+import { addLineItem, postOrder } from '../store/order';
 
 const newLineItem = (props) => {
+  console.log('newLineItem: ', props)
+  console.log('event.target: ', event.target)
   return (
     <div>
-      <input type="number" name="quantity" placeholder="0" min="0" max={props.selectedProduct.inventoryQuantity} />
-      <button onClick={props.handleClick}
-        type="button">
-        Add to MyBag
-      </button>
+      <form onSubmit={props.onSubmit}>
+        <input type="number" name="quantity" min="0" max={props.selectedProduct.inventoryQuantity} />
+        <button type="submit">Add to MyBag</button>
+      </form>
     </div>
   )
 }
 
 const mapDispatch = (dispatch, ownProps) => {
+  const productId = +ownProps.match.params.id
   const newItem = ownProps.selectedProduct
-  const newline = {
-    quantity: 1,
-    price: newItem.price,
-    productId: newItem.id
-  }
+  const userId = ownProps.user.id
   return {
-   handleClick: () => dispatch(addLineItem(newline)),
+   onSubmit: (event) => {
+    event.preventDefault();
+    const newLine = {
+      quantity: event.target.quantity.value,
+      price: newItem.price,
+      productId: newItem.id,
+      orderId: 1
     }
+    const newOrder = {
+      orderStatus: 'cart',
+      totalOrderPrice: 0,
+      totalOrderQuantity: 0,
+      lineItem: newLineItem
+    }
+
+    dispatch(postOrder(userId, newOrder))
+    console.log('newLine: ', newLine)
+    event.target.quantity.value = 0;
+    }
+  }
 }
 
 const mapState = () => {

@@ -57,7 +57,7 @@ export const fetchAllOrdersByUserX = (userId) => {
 }
 
 
-export const fetchSingleOrderByUserX = (userId,orderId) => {
+export const fetchSingleOrderByUserX = (userId, orderId) => {
 	return dispatch => {
 		axios.get(`/api/users/${userId}/orders/${orderId}`)
 			.then(res => res.data)
@@ -66,14 +66,12 @@ export const fetchSingleOrderByUserX = (userId,orderId) => {
 	}
 }
 
-export const postOrder = () => {
-	return dispatch => {
+export const postOrder = (userId, order) => dispatch => {
 		axios.post(`/api/users/${userId}/orders`, order)
 			.then(res => res.data)
-			.then(order => dispatch(createOrder(order)))
+			.then(res => dispatch(createOrder(res.data)))
 			.catch(err => console.error('Oops! Did it just happen in postOrder thunk!?', err))
 	}
-}
 
 export const putOrder = (id, order) => {
 	return dispatch => {
