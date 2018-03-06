@@ -59,12 +59,11 @@ class UserAllOrders extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-
   const userId = +ownProps.match.params.userId; 
 
- return {
-  order: state.order,
-  userId: userId
+  return {
+    order: state.order,
+    userId: userId
   }
 }
 

@@ -10,7 +10,7 @@ const Navbar = (props) => (
     <nav>
       {
         props.isLoggedIn ? (
-        <div>
+        <div className="textColor">
           {/* The navbar will show these links after you log in */}
           <Link to="/home">Welcome, {props.userFirstName}!</Link>
           <Link to="/mybag">My Bag</Link>
