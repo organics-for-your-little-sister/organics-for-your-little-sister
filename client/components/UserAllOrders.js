@@ -61,7 +61,7 @@ class UserAllOrders extends Component {
 const mapStateToProps = (state, ownProps) => {
   console.log(' Order state: ', state)
   console.log("5. mapStateToProps to get the state");
-  const userId = Number(ownProps.match.params.userId)
+  const userId = +ownProps.match.params.userId; 
   //console.log('userId in UserAllOrders'+userId);
 
  return {

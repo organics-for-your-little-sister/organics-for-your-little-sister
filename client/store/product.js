@@ -49,12 +49,12 @@ export const thunkProductsByCategory = (categoryName) =>
       .catch(err => console.error('error from thunkProductsByCategory', err))
 
 
-     // thunk for GET SINGLE REVIEW
-export const thunkProductSingleReview = (productId, reviewId) =>
-  dispatch =>
-    axios.get(`/api/products/${productId}/reviews/${reviewId}`)
-      .then( res => dispatch(productSingleReview(res.data)))
-      .catch( err => console.error('error from thunkProductSingleReview', err))
+     // thunk for GET SINGLE REVIEW, probably don't need it...
+// export const thunkProductSingleReview = (productId, reviewId) =>
+//   dispatch =>
+//     axios.get(`/api/products/${productId}/reviews/${reviewId}`)
+//       .then( res => dispatch(productSingleReview(res.data)))
+//       .catch( err => console.error('error from thunkProductSingleReview', err))
 
     // 3 thunks of POST, EDIT, DELETE
 export const thunkNewProduct = (product) =>
@@ -76,7 +76,7 @@ export const thunkRemoveProduct = (id) =>
       .catch(err => console.error('error from thunkRemoveProduct', err))
 
 // REDUCER
-
+// one reducer for all product -> [], one for single product -> {}
 export default function reducer(products = [], action){
   switch (action.type) {
     case ALL_PRODUCTS:
