@@ -6,22 +6,21 @@ import { withRouter, NavLink } from 'react-router-dom';
 
 
 export const AccountInfo = (props) => {
-  const userId = 1;
+  const userId = 1
   const accountdetails=(
     <div>
-    "Welcome to Account Information"
     <div className="row">
       <div className="col-sm-4">
         <div className="card">
           <div className="card-body">
-            <h5 className="card-title"><Link to={`/account/orders/${userId}`} className="textColor">Your Orders</Link></h5>
+            <h5 className="card-title"><Link to={`/account/orders/${userId}`}>Your Orders</Link></h5>
           </div>
         </div>
       </div>
       <div className="col-sm-4">
         <div className="card">
           <div className="card-body">
-            <h5 className="card-title textColor">Login Information</h5>
+            <h5 className="card-title">Login Information</h5>
           </div>
         </div>
       </div>
@@ -30,14 +29,14 @@ export const AccountInfo = (props) => {
       <div className="col-sm-4">
         <div className="card">
           <div className="card-body">
-            <h5 className="card-title textColor">Addresses</h5>
+            <h5 className="card-title">Addresses</h5>
           </div>
         </div>
       </div>
       <div className="col-sm-4">
         <div className="card">
           <div className="card-body">
-            <h5 className="card-title textColor">Reviews</h5>
+            <h5 className="card-title">Reviews</h5>
           </div>
         </div>
       </div>
@@ -48,16 +47,17 @@ export const AccountInfo = (props) => {
 
   return (
     <div>
-    {accountdetails}
+    {accountdetails} 
     </div>
   )
 }
 
-/*const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state, ownProps) => { 
  return {
-  order: state.order
+  order: state.order,
+  id: + ownProps.match.params.id
   }
-}*/
+}
 
 
-//export default withRouter(connect(mapStateToProps)(AccountInfo));
+export default withRouter(connect(mapStateToProps)(AccountInfo));
