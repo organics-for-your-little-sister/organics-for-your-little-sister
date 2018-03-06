@@ -20,13 +20,13 @@ class AllProducts extends Component {
       { products && products.map( product => {
         return (
           <div key={product.id} className="product">
-            <Link to={`/products/${product.id}`}><h2 className="title">{product.title}</h2></Link>
+            <Link to={`/products/${product.id}`}><h2 className="title textColor">{product.title}</h2></Link>
             <img src={product.image} alt={product.title} />
           <ul>
-            <li>{product.category} tampon</li>
+            <li className="textColor">{product.category} tampon</li>
           </ul>
-            <h3>${product.price}</h3>
-            <NewLineItem selectedProduct={product}/>
+            <h3 className="textColor">${product.price}</h3>
+            <NewLineItem selectedProduct={product} />
         </div>)
       })}
     </div>

@@ -8,7 +8,7 @@ export {default as SideBar} from './SideBar'
 
 export {default as UserHome} from './user-home'
 export {default as SingleProduct} from './SingleProduct'
-export {default as NewLineItem} from './lineItems/newLineItem'
+export {default as NewLineItem} from './newLineItem'
 export {default as AllProducts} from './AllProducts'
 export {default as ProductsByCategory} from './ProductsByCategory'
 export {default as MyBag} from './MyBag.jsx'

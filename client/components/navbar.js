@@ -6,21 +6,21 @@ import {logout} from '../store'
 
 const Navbar = ({ handleClick, isLoggedIn }) => (
   <div>
-    <h1>organics for your little sister</h1>
+    <h1 className="textColor">Organics For Your Little Sister</h1>
     <nav>
       {
         isLoggedIn ? (
         <div>
           {/* The navbar will show these links after you log in */}
-          <Link to="/home">Home</Link>
-          <Link to="/mybag">My Bag</Link>
-          <Link to="/account">Account</Link>
-          <a href="#" onClick={handleClick}>
+          <Link className="textColor" to="/home">Home</Link>
+          <Link className="textColor" to="/mybag">My Bag</Link>
+          <Link className="textColor" to="/account">Account</Link>
+          <a className="textColor" href="#" onClick={handleClick}>
             Logout
           </a>
         </div>
       ) : (
-        <div>
+        <div className="textColor">
           {/* The navbar will show these links before you log in */}
           <Link to="/welcome">Welcome User</Link>
           <Link to="/mybag">My Bag</Link>
@@ -47,7 +47,7 @@ const mapState = state => {
 const mapDispatch = dispatch => {
   return {
     handleClick() {
-      dispatch(logout(), account())
+      dispatch(logout())
     }
   }
 }

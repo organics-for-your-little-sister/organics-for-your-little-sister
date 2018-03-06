@@ -1,12 +1,12 @@
 import React from 'react'
-import { Navbar, AllProducts, SideBar } from './components'
+import { Navbar, SideBar } from './components'
 import Routes from './routes'
 
 
 const App = () => {
   return (
     <div>
-      <Navbar />
+      <Navbar className="navbar navbar-light" />
 
       <div className="row">
 
