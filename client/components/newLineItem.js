@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addLineItem } from '../../store/lineItem';
+import { addLineItem } from '../store/lineItem';
 
 
 const newLineItem = (props) => {

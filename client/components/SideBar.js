@@ -9,10 +9,10 @@ const SideBar = (props) => {
   const categoryArr = Object.keys(categoryObj)
 
   return (
-    <div>
-      <div className="sidenav">
-        <Link to="/"><h3 className="sidenav">HOME</h3></Link>
-        <h3 className="sidenav">Categories</h3>
+    <div id="sidebar-wrapper">
+      <div>
+        <Link to="/"><h3 className="sidenav home">HOME</h3></Link>
+        <h3 className="sidenav home">Categories</h3>
         <ul>
         <Link to="/products"><li className="sidenav">all</li></Link>
           {

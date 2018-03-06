@@ -10,14 +10,14 @@ class UserAllOrders extends Component {
     console.log("1. componentDidMount");
     this.props.fetchOrders();
   }
- 
+
   render() {
     let orders = this.props.order
     let userId=this.props.userId;
     console.log('!!!!!! INSIDE USERALLORDERS', orders);
     //console.log('userId in UserAllOrders'+this.props.userId);
     return (
-      <div>
+      <div className="textColor">
         You are in The UserAllOrders
               <div className="order py-5 bg-light">
                 <div className="container">
@@ -28,57 +28,55 @@ class UserAllOrders extends Component {
                             <NavLink to={`/account/orders/${userId}/singleOrder/${order.id}`}>
                             <img src='#' className="card-img-top"/>
                               <div className="caption">
-                              <h5>
-                                    Order ID : <span> { order.id }</span>
+                              <h5 className="textColor">
+                                    Order ID : <span className="textColor"> { order.id }</span>
                              </h5>
                                 <h5>
-                                  <span> Order Status  :{ order.orderStatus }</span>
+                                  <span className="textColor"> Order Status  :{ order.orderStatus }</span>
                                 </h5>
                                 <h5>
-                                  <span> Total Order Price  :{ order.totalOrderPrice }</span>
+                                  <span className="textColor"> Total Order Price  :{ order.totalOrderPrice }</span>
                                 </h5>
                                 <h5>
-                                  <span> Total Order Quantity  :{ order.totalOrderQuantity }</span>
+                                  <span className="textColor"> Total Order Quantity  :{ order.totalOrderQuantity }</span>
                                 </h5>
-                                <small>lineitems : { order.lineitems.length }</small>
+                                <small className="textColor">lineitems : { order.lineitems.length }</small>
                               </div>
                             </NavLink>
                             <div>
-                            <a  href="#" > Remove</a>
-                            </div> 
-                          </div> 
+                            <a  href="#" className="textColor"> Remove</a>
+                            </div>
+                          </div>
                       </div>
                     ))
                   }
-              </div>    
+              </div>
             </div>
          </div>
-       
       </div>
     )
   }
 }
 
-const mapStateToProps = (state, ownProps) => { 
+const mapStateToProps = (state, ownProps) => {
   console.log(' Order state: ', state)
   console.log("5. mapStateToProps to get the state");
-  const userId= Number(ownProps.match.params.userId) 
+  const userId = Number(ownProps.match.params.userId)
   //console.log('userId in UserAllOrders'+userId);
-  
+
  return {
   order: state.order,
   userId: userId
   }
 }
 
-const mapDispatchToProps = (dispatch,ownProps) => {
+const mapDispatchToProps = (dispatch, ownProps) => {
   console.log('mapping dispatch to props')
   console.log("2. mapDispatchToProps");
   return {
     fetchOrders: () => dispatch(fetchAllOrdersByUserX(1))
   }
 }
-
 
 
 

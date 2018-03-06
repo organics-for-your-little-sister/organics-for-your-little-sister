@@ -49,6 +49,78 @@ const products = [{
   category: 'luxury',
   avgRating: 2,
   image: '/images/tampons1.png'
+}, {
+  title: 'Organic Cotton Dream',
+  description: 'A great tampon for everyone',
+  price: 100,
+  inventoryQuantity: 100,
+  category: 'cotton based',
+  avgRating: 3,
+  image: '/images/tampons1.png'
+}, {
+  title: 'Tampax Woolen Goddess',
+  description: 'Organic wool from New Zealand sheep. Guaranteed to prevent leaks',
+  price: 150,
+  inventoryQuantity: 150,
+  category: 'animal fiber based',
+  avgRating: 5,
+  image: '/images/tampons1.png'
+}, {
+  title: 'Tampax Silk',
+  description: 'Real silk for all women',
+  price: 200,
+  inventoryQuantity: 50,
+  category: 'luxury',
+  avgRating: 2,
+  image: '/images/tampons1.png'
+}, {
+  title: 'Organic Cotton Dream',
+  description: 'A great tampon for everyone',
+  price: 100,
+  inventoryQuantity: 100,
+  category: 'cotton based',
+  avgRating: 3,
+  image: '/images/tampons1.png'
+}, {
+  title: 'Tampax Woolen Goddess',
+  description: 'Organic wool from New Zealand sheep. Guaranteed to prevent leaks',
+  price: 150,
+  inventoryQuantity: 150,
+  category: 'animal fiber based',
+  avgRating: 5,
+  image: '/images/tampons1.png'
+}, {
+  title: 'Tampax Silk',
+  description: 'Real silk for all women',
+  price: 200,
+  inventoryQuantity: 50,
+  category: 'luxury',
+  avgRating: 2,
+  image: '/images/tampons1.png'
+}, {
+  title: 'Organic Cotton Dream',
+  description: 'A great tampon for everyone',
+  price: 100,
+  inventoryQuantity: 100,
+  category: 'cotton based',
+  avgRating: 3,
+  image: '/images/tampons1.png'
+}, {
+  title: 'Tampax Woolen Goddess',
+  description: 'Organic wool from New Zealand sheep. Guaranteed to prevent leaks',
+  price: 150,
+  inventoryQuantity: 150,
+  category: 'animal fiber based',
+  avgRating: 5,
+  image: '/images/tampons1.png'
+}, {
+  title: 'Tampax Silk',
+  description: 'Real silk for all women',
+  price: 200,
+  inventoryQuantity: 50,
+  category: 'luxury',
+  avgRating: 2,
+  image: '/images/tampons1.png'
 }]
 
 

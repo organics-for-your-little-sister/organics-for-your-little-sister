@@ -7,22 +7,23 @@ const SingleProduct = (props) => {
   let product = props.product
   console.log(product)
   return (
-    <div>
+    <div className="allProductsContainer">
       {
         product &&
-        <div className="product">
+        <div className="textColor product">
           <img src={product.image} alt={product.title} />
           <ul>
-            <li className="title">title: {product.title}</li>
-            <li>${product.price}</li>
-            <li>description: {product.description} </li>
+            <li className="title textColor"><h2>{product.title}</h2></li>
+            <li className="textColor">${product.price}</li>
+            <li className="textColor">{product.description} </li>
+            <li className="textColor">Rating: {product.avgRating} out of 5 stars</li>
           </ul>
           <NewLineItem selectedProduct={product} />
           <div>
           {
               product.reviews.map(review => {
                 return (
-                  <p key={review.id}>{`Reviews: ${review.reviewText}`}</p>
+                  <p className="textColor" key={review.id}>{`Reviews: ${review.reviewText}`}</p>
                 )
               })
           }
