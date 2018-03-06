@@ -15,9 +15,7 @@ const Navbar = (props) => (
           <Link to="/home">Welcome, {props.userFirstName}!</Link>
           <Link to="/mybag">My Bag</Link>
           <Link to="/account">Account</Link>
-          <Link to="/home" onClick={props.handleClick}>
-            Logout
-          </Link>
+          <Link to="/welcome" onClick={props.handleClick}>Logout</Link>
         </div>
       ) : (
         <div>
