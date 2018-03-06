@@ -34,11 +34,11 @@ class Routes extends Component {
           isLoggedIn &&
             <Switch>
               {/* Routes placed here are only available after logging in */}
-              <Route path="/home" component={UserHome} />
+              <Route path="/home" component={AllProducts} />
             </Switch>
         }
         {/* Displays our Login component as a fallback */}
-        <Route component={Login} />
+        <Route component={AllProducts} />
       </Switch>
     )
   }
