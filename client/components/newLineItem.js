@@ -1,10 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addLineItem } from '../../store/lineItem';
+import { addLineItem } from '../store/lineItem';
 
 const newLineItem = (props) => {
-
-
   return (
     <div>
       <input type="number" name="quantity" />
@@ -24,11 +22,8 @@ const mapDispatch = (dispatch, ownProps) => {
     productId: newItem.id
   }
   return {
-    handleClick : () => dispatch(addLineItem(newline)),
-    inclementClick: () => {
-      if(props.quantity < newItem.inventoryQuantity) 0;
+   handleClick: () => dispatch(addLineItem(newline)),
     }
-  }
 }
 
 const mapState = () => {
@@ -37,9 +32,7 @@ const mapState = () => {
   }
 }
 
-
 export default connect(mapState, mapDispatch)(newLineItem)
-
 
 
 //upon clicking add to bag, a new line item is created containing the quantity, and the productID.

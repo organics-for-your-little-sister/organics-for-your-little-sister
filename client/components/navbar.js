@@ -6,11 +6,11 @@ import {logout} from '../store'
 
 const Navbar = (props) => (
   <div>
-    <h1>organics for your little sister</h1>
+    <h1 className="textColor">Organics For Your Little Sister</h1>
     <nav>
       {
         props.isLoggedIn ? (
-        <div>
+        <div className="textColor">
           {/* The navbar will show these links after you log in */}
           <Link to="/home">Welcome, {props.userFirstName}!</Link>
           <Link to="/mybag">My Bag</Link>
@@ -20,7 +20,7 @@ const Navbar = (props) => (
           </Link>
         </div>
       ) : (
-        <div>
+        <div className="textColor">
           {/* The navbar will show these links before you log in */}
           <Link to="/welcome">Home</Link>
           <Link to="/mybag">My Bag</Link>
