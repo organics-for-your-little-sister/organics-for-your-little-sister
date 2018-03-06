@@ -4,7 +4,7 @@ const { isAdmin } = require('../../utilities');
 module.exports = router;
 
 router.get('/', (req, res, next) => {
-  Product.findAll()
+  Product.findAll({include: [{model: Review}]})
     .then( products => res.json(products))
     .catch(next);
 })

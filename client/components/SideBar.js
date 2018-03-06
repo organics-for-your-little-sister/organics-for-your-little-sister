@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { thunkCategoryList } from '../store/product'
 import {Link} from 'react-router-dom'
 
 
@@ -12,13 +11,13 @@ const SideBar = (props) => {
   return (
     <div>
       <div className="sidenav">
-        <Link to="/"><h3>HOME</h3></Link>
-        <h3>Categories</h3>
+        <Link to="/"><h3 className="sidenav">HOME</h3></Link>
+        <h3 className="sidenav">Categories</h3>
         <ul>
-        <Link to="/products"><li>all</li></Link>
+        <Link to="/products"><li className="sidenav">all</li></Link>
           {
             categoryArr && categoryArr.map(category => {
-              return <Link  key={category} to={`/products/category/${category}`} ><li>{category}</li></Link >
+              return <Link  key={category} to={`/products/category/${category}`}><li className="sidenav">{category}</li></Link>
             })
           }
         </ul>

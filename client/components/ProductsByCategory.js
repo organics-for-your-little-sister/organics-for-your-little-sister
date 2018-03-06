@@ -17,7 +17,7 @@ const ProductByCategory = (props) => {
               <li>${aProduct.price}</li>
               <li>description: {aProduct.description} </li>
             </ul>
-            <NewLineItem />
+            <NewLineItem selectedProduct={aProduct}/>
 
           </div>
         })

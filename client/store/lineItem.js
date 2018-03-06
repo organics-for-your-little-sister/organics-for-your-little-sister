@@ -1,4 +1,5 @@
 import axios from 'axios';
+import newLineItem from '../components';
 
 //action type:
 const GET_LINEITEM = 'GET_LINEITEM';
@@ -24,10 +25,11 @@ export const fetchLineItem = (id) => dispatch => {
   }
 
 export const addLineItem = lineItem => dispatch => {
-  axios.post('/api/lineitems')
+  axios.post('/api/lineitems', lineItem)
     .then(res => dispatch(createLineItem(res.data)))
-    .catch(err => console.error(`Creating lineItem: `, err));
+    .catch(err => console.error('error from addLineItem thunk', err));
 }
+
 
 export const changeLineItem = (id, lineItem) => dispatch => {
   axios.put(`/api/lineitems/${id}`, lineItem)
@@ -49,7 +51,7 @@ export default function reducer(lineItem = {}, action) {
       return action.lineItem;
 
     case CREATE_LINEITEM:
-      return Object.assign({}, lineItem, action.lineItem);
+      return action.lineItem
 
     case UPDATE_LINEITEM:
       return Object.assign({}, lineItem, action.lineItem)
@@ -61,4 +63,3 @@ export default function reducer(lineItem = {}, action) {
       return lineItem;
   }
 }
-

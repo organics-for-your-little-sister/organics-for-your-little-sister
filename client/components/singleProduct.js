@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { thunkSingleProduct } from '../store/product';
-import { addLineItem } from '../store/lineItem';
-import { NewLineItem } from './lineItems/newLineItem';
+import { thunkSingleProduct } from '../store/product'
+import { NewLineItem } from './index'
 
 const SingleProduct = (props) => {
   let product = props.product
@@ -18,8 +17,17 @@ const SingleProduct = (props) => {
             <li>${product.price}</li>
             <li>description: {product.description} </li>
           </ul>
+          <NewLineItem selectedProduct={product} />
+          <div>
+          {
+              product.reviews.map(review => {
+                return (
+                  <p key={review.id}>{`Reviews: ${review.reviewText}`}</p>
+                )
+              })
+          }
+          </div>
         </div>
-
       }
     </div>
   )
@@ -36,4 +44,3 @@ const mapStateToProps = (state, ownProps) => {
 
 
 export default connect(mapStateToProps)(SingleProduct);
-
