@@ -16,7 +16,6 @@ const newLineItem = (props) => {
 }
 
 const mapDispatch = (dispatch, ownProps) => {
-  const productId = +ownProps.match.params.id
   const newItem = ownProps.selectedProduct
   const userId = ownProps.user.id
   return {
