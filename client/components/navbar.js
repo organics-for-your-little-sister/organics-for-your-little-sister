@@ -12,18 +12,20 @@ const Navbar = (props) => (
         props.isLoggedIn ? (
         <div className="textColor">
           {/* The navbar will show these links after you log in */}
-          <Link to="/home">Welcome, {props.userFirstName}!</Link>
-          <Link to="/mybag">My Bag</Link>
-          <Link to="/account">Account</Link>
-          <Link to="/welcome" onClick={props.handleClick}>Logout</Link>
+          <Link className="textColor" to="/home">Welcome, {props.userFirstName}!</Link>
+          <Link className="textColor" to="/mybag">My Bag</Link>
+          <Link className="textColor" to="/account">Account</Link>
+          <Link className="textColor" to="/home" onClick={props.handleClick}>
+            Logout
+          </Link>
         </div>
       ) : (
-        <div>
+        <div className="textColor">
           {/* The navbar will show these links before you log in */}
-          <Link to="/welcome">Home</Link>
-          <Link to="/mybag">My Bag</Link>
-          <Link to="/login">Login</Link>
-          <Link to="/signup">Sign Up</Link>
+          <Link className="textColor" to="/welcome">Home</Link>
+          <Link className="textColor" to="/mybag">My Bag</Link>
+          <Link className="textColor" to="/login">Login</Link>
+          <Link className="textColor" to="/signup">Sign Up</Link>
         </div>
       )
       }

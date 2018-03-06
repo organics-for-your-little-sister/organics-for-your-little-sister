@@ -22,12 +22,12 @@ class MyBag extends Component { // a function would be sufficient
                 <thead>
                   <tr>
                     <td><strong>{lineItems.length} Item(s)</strong></td>
-                    <td className="text-center"><strong>Price</strong></td>
-                    <td className="text-center"><strong>Quantity</strong></td>
-                    <td className="text-right"><strong>Total</strong></td>
+                    <td className="text-center textColor"><strong>Price</strong></td>
+                    <td className="text-center textColor"><strong>Quantity</strong></td>
+                    <td className="text-right textColor"><strong>Total</strong></td>
                   </tr>
                 </thead>
-                
+
                 <tbody>
 
                   {
@@ -76,7 +76,7 @@ const mapStateToProps = (state, ownProps) => {
     lineItemArray: state.order.lineitems
   }
 }
-  
+
 const mapDispatchToProps = (dispatch,ownProps) => {
   return {
 

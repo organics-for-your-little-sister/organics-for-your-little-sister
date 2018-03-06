@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import {connect} from 'react-redux';
-import {thunkAllProducts, thunkNewProduct, } from '../store/product';
+import {thunkAllProducts} from '../store/product';
 import { NewLineItem } from './index'
 
 

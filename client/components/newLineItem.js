@@ -1,11 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addLineItem } from '../store/lineItem';
+import { addLineItem } from '../store/order';
 
 const newLineItem = (props) => {
   return (
     <div>
-      <input type="number" name="quantity" placeholder="0" min="0"/>
+      <input type="number" name="quantity" placeholder="0" min="0" max={props.selectedProduct.inventoryQuantity} />
       <button onClick={props.handleClick}
         type="button">
         Add to MyBag
