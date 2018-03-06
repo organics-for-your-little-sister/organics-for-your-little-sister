@@ -5,7 +5,6 @@ module.exports = router
 
 //GET:-All Orders
 router.get('/', isAdmin, (req, res, next) => {
-
 	Order.findAll({})
 	.then(function(orders){
 		res.status(200).json(orders);
