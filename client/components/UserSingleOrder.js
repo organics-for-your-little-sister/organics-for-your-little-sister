@@ -69,22 +69,16 @@ class UserSingleOrder extends Component {
   }
 
 const mapStateToProps = (state, ownProps) => { 
-  console.log(' Order state: ', state)
-  console.log("5. mapStateToProps to get the state");
-  //const orderId= Number(ownProps.match.params.orderId) 
   return {
-  order: state.order,
-  lineItemsArray: state.order.lineitems
+    order: state.order,
+    lineItemsArray: state.order.lineitems
   }
 }
   
 const mapDispatchToProps = (dispatch,ownProps) => {
-  const userId= Number(ownProps.match.params.userId) 
-  const orderId= Number(ownProps.match.params.orderId) 
-  console.log('userId'+userId);
-  console.log('orderId'+orderId);
-  console.log('mapping dispatch to props')
-  console.log("2. mapDispatchToProps");
+  const userId = +ownProps.match.params.userId;
+  const orderId = +ownProps.match.params.orderId;
+
   return {
     fetchSingleOrder: () => dispatch(fetchSingleOrderByUserX(userId,orderId))
   }
