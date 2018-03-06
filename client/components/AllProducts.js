@@ -26,7 +26,7 @@ class AllProducts extends Component {
             <li className="textColor">{product.category} tampon</li>
           </ul>
             <h3 className="textColor">${product.price}</h3>
-            <NewLineItem selectedProduct={product} user={props.user} />
+            <NewLineItem selectedProduct={product} user={this.props.user} />
         </div>)
       })}
     </div>

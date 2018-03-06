@@ -19,32 +19,40 @@ const mapState = (state, ownProps) => {
   return {
     quantity: 1,
     user: state.user,
-    order: state.order.filter( aOrder => aOrder.userId === state.user.id )
+    order: state.order
   }
 }
+//.filter( aOrder => aOrder.userId === state.user.id )
 
 const mapDispatch = (dispatch, ownProps) => {
   console.log('this is ownProps ', ownProps);
   const newItem = ownProps.selectedProduct;
   const user = ownProps.user;
-  const newline = {
-    quantity: 1,
-    price: newItem.price,
-    productId: newItem.id
-  }
-
-  const newOrder = {
-    orderStatus: 'orderComplete', userId: user.id, lineitems: [newline] }
 
   return {
     handleClick: () => {
+    const newOrder = {
+      orderStatus: 'orderComplete',
+      userId: user.id,
+  }
        dispatch(postOrder(newOrder))
-       dispatch()
-       dispatch(addLineItem(order.id, newline))
+       .then((createdOrderAction) => {
+         const newline = {
+          quantity: 1,
+          price: newItem.price,
+          productId: newItem.id,
+          orderId: createdOrderAction.order.id
+        }
+          console.log('inside postOrder.then', createdOrderAction)
+          dispatch(addLineItem(createdOrderAction.order.id, newline))
+
+          .then((createdLineItem) => {
+            console.log('inside lineitem.then', createdLineItem)
+          })
+       })
     }
   }
 }
-
 
 
 export default connect(mapState, mapDispatch)(newLineItem)

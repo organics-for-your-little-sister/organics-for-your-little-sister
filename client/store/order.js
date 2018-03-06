@@ -25,7 +25,7 @@ const deleteLineItem = (id) => ({type: DELETE_LINEITEM, id})
 // THUNK CREATORS
 export const fetchAllOrders = () => {
 	return dispatch => {
-		axios.get('/api/orders')
+		return axios.get('/api/orders')
 			.then(res => res.data)
 			.then(orders => {
 				const action = allOrders(orders);
@@ -38,7 +38,7 @@ export const fetchAllOrders = () => {
 
 export const fetchSingleOrder = (orderId) => {
 	return dispatch => {
-		axios.get(`/api/orders/${orderId}`)
+		return axios.get(`/api/orders/${orderId}`)
 			.then(res => res.data)
 			.then(order => dispatch(singleOrder(order)))
 			.catch(err => console.error('Oops! Can you find out what is wrong in fetchSingleOrder thunk?', err))
@@ -49,7 +49,7 @@ export const fetchAllOrdersByUserX = (userId) => {
 	console.log("Inside fetchAllOrdersByUserX");
 	console.log("3. fetchAllOrdersByUserX");
 	return dispatch => {
-		axios.get(`/api/users/${userId}/orders`)
+		return axios.get(`/api/users/${userId}/orders`)
 			.then(res => res.data)
 			.then(orders => dispatch(allOrders(orders)))
 			.catch(err => console.error('Oops! What did you just do in fetchAllOrdersByUserX thunk?', err))
@@ -59,7 +59,7 @@ export const fetchAllOrdersByUserX = (userId) => {
 
 export const fetchSingleOrderByUserX = (userId, orderId) => {
 	return dispatch => {
-		axios.get(`/api/users/${userId}/orders/${orderId}`)
+		return axios.get(`/api/users/${userId}/orders/${orderId}`)
 			.then(res => res.data)
 			.then(order => dispatch(singleOrder(order)))
 			.catch(err => console.error('Oops! We are kind of stuck here in fetchSingleOrderByUserX thunk...', err))
@@ -68,16 +68,16 @@ export const fetchSingleOrderByUserX = (userId, orderId) => {
 
 export const postOrder = (order) => {
 	return dispatch => {
-		axios.post(`/api/orders`, order)
+		 return axios.post(`/api/orders`, order)
 			.then(res => res.data)
-			.then(res => dispatch(createOrder(res.data)))
+			.then(res => dispatch(createOrder(res)))
 			.catch(err => console.error('Oops! Did it just happen in postOrder thunk!?', err))
 	}
 }
 
 export const putOrder = (orderId, order) => {
 	return dispatch => {
-		axios.put(`/api/orders/${orderId}`, order)
+		return axios.put(`/api/orders/${orderId}`, order)
 			.then(res => res.data)
 			.then(order => dispatch(editOrder(order)))
 			.catch(err => console.error('Oops! Looks like something is wrong in putOrder thunk.', err))
@@ -86,33 +86,39 @@ export const putOrder = (orderId, order) => {
 
 export const removeOrder = (id) => {
 	return dispatch => {
-		axios.delete(`/api/orders/${id}`, 'UserController@destroy')
+		return axios.delete(`/api/orders/${id}`, 'UserController@destroy')
 			.then(() => dispatch(deleteOrder(id)))
 			.catch(err => console.error('Oops! Time to find the error in removeOrder thunk, eh?', err))
 	}
 }
-export const addLineItem = (orderId, lineItem )=> dispatch => {
-  axios.post(`/api/lineitems/${orderId}`, lineItem)
-    .then(res => dispatch(createLineItem(res.data)))
+export const addLineItem = (orderId, lineItem ) => {
+	return dispatch => {
+  	return axios.post(`/api/lineitems/${orderId}`, lineItem)
+		.then(res => res.data)
+    .then(LineItem => {
+    	console.log('inside LI thunk', LineItem)
+    	dispatch(createLineItem(LineItem))})
     .catch(err => console.error('error from addLineItem thunk', err));
+  }
 }
 
 
 export const changeLineItem = (id, lineItem) => dispatch => {
-  axios.put(`/api/lineitems/${id}`, lineItem)
+  return axios.put(`/api/lineitems/${id}`, lineItem)
     .then(res => dispatch(editLineItem(res.data)))
     .catch(err => console.error(`Updating lineItem: ${lineItem}`, err));
 }
 
 export const removeLineItem = id => dispatch => {
-  axios.delete(`/api/lineitems/${id}`)
+  return axios.delete(`/api/lineitems/${id}`)
     .then(() => dispatch(deleteLineItem(id)))
     .catch(err => console.error(`Removing lineItem ${id} unsuccessful`, err));
 }
 
+const order = {lineItems: []}
 
 // REDUCER
-export default function reducer(state = [], action) {
+export default function reducer(state = order, action) {
 
 	switch (action.type) {
 
@@ -123,19 +129,19 @@ export default function reducer(state = [], action) {
 			return action.order;
 
 		case CREATE_ORDER:
-			return [...state, action.order];
+			return Object.assign({}, state, action.order)
 
 		case CREATE_LINEITEM:
-			return [...state, action.lineItem]
+			return Object.assign({}, state.lineItems, {lineItems: [action.lineItem]})
 
 		case DELETE_ORDER:
 			return state;
 
 		case UPDATE_LINEITEM:
-			return [...state, action.lineitem]
+			return Object.assign({}, state.lineItems, {lineItems: [...state.lineItems, action.lineitem]})
 
 		case DELETE_LINEITEM:
-			return state.filter(lineItem => state.id !== lineItem.id)
+			return state.order.lineItems.filter(lineItem => state.id !== lineItem.id)
 
 	    default:
 			return state;
