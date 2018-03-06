@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addLineItem } from '../store/order';
+import { addLineItem, postOrder, putOrder } from '../store/order';
 
 const newLineItem = (props) => {
+  console.log('PROPS:    !!! ', props)
   return (
     <div>
       <input type="number" name="quantity" placeholder="0" min="0" max={props.selectedProduct.inventoryQuantity} />
@@ -14,23 +15,36 @@ const newLineItem = (props) => {
   )
 }
 
+const mapState = (state, ownProps) => {
+  return {
+    quantity: 1,
+    user: state.user,
+    order: state.order.filter( aOrder => aOrder.userId === state.user.id )
+  }
+}
+
 const mapDispatch = (dispatch, ownProps) => {
-  const newItem = ownProps.selectedProduct
+  console.log('this is ownProps ', ownProps);
+  const newItem = ownProps.selectedProduct;
+  const user = ownProps.user;
   const newline = {
     quantity: 1,
     price: newItem.price,
     productId: newItem.id
   }
-  return {
-   handleClick: () => dispatch(addLineItem(newline)),
-    }
-}
 
-const mapState = () => {
+  const newOrder = {
+    orderStatus: 'orderComplete', userId: user.id, lineitems: [newline] }
+
   return {
-    quantity: 1
+    handleClick: () => {
+       dispatch(postOrder(newOrder))
+       dispatch(addLineItem(order.id, newline))
+    }
   }
 }
+
+
 
 export default connect(mapState, mapDispatch)(newLineItem)
 

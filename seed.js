@@ -157,7 +157,12 @@ const orders = [{
   userId: 1,
   totalOrderQuantity: 1,
   totalOrderPrice: 15
-}]
+},  {
+  orderStatus: 'cart',
+  userId: 3,
+  totalOrderQuantity: 1,
+  totalOrderPrice: 15
+}, ]
 
 const lineItems = [{
   quantity: 2,
@@ -171,6 +176,10 @@ const lineItems = [{
   quantity: 1,
   productId: 2,
   orderId: 1
+}, {
+  quantity: 1,
+  productId: 2,
+  orderId: 4
 }]
 
 const addresses = [{

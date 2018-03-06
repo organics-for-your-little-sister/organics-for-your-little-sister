@@ -26,7 +26,7 @@ class AllProducts extends Component {
             <li className="textColor">{product.category} tampon</li>
           </ul>
             <h3 className="textColor">${product.price}</h3>
-            <NewLineItem selectedProduct={product} />
+            <NewLineItem selectedProduct={product} user={props.user} />
         </div>)
       })}
     </div>
@@ -37,7 +37,8 @@ class AllProducts extends Component {
 const mapState = (state) => {
   return {
     hello: 'hello world',
-    products: state.product
+    products: state.product,
+    user: state.user
   }
 }
 

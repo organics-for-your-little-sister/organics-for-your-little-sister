@@ -66,18 +66,18 @@ export const fetchSingleOrderByUserX = (userId,orderId) => {
 	}
 }
 
-export const postOrder = () => {
+export const postOrder = (order) => {
 	return dispatch => {
-		axios.post(`/api/users/${userId}/orders`, order)
+		axios.post(`/api/orders`, order)
 			.then(res => res.data)
 			.then(order => dispatch(createOrder(order)))
 			.catch(err => console.error('Oops! Did it just happen in postOrder thunk!?', err))
 	}
 }
 
-export const putOrder = (id, order) => {
+export const putOrder = (orderId, order) => {
 	return dispatch => {
-		axios.put(`/api/orders/${id}`, order)
+		axios.put(`/api/orders/${orderId}`, order)
 			.then(res => res.data)
 			.then(order => dispatch(editOrder(order)))
 			.catch(err => console.error('Oops! Looks like something is wrong in putOrder thunk.', err))
@@ -91,8 +91,8 @@ export const removeOrder = (id) => {
 			.catch(err => console.error('Oops! Time to find the error in removeOrder thunk, eh?', err))
 	}
 }
-export const addLineItem = lineItem => dispatch => {
-  axios.post('/api/lineitems', lineItem)
+export const addLineItem = (orderId, lineItem )=> dispatch => {
+  axios.post(`/api/lineitems/${orderId}`, lineItem)
     .then(res => dispatch(createLineItem(res.data)))
     .catch(err => console.error('error from addLineItem thunk', err));
 }
