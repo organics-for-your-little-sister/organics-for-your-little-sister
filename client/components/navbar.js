@@ -20,7 +20,7 @@ const Navbar = (props) => (
           </Link>
         </div>
       ) : (
-        <div className="textColor">
+        <div>
           {/* The navbar will show these links before you log in */}
           <Link to="/welcome">Home</Link>
           <Link to="/mybag">My Bag</Link>

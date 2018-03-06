@@ -5,7 +5,7 @@ import { addLineItem } from '../store/lineItem';
 const newLineItem = (props) => {
   return (
     <div>
-      <input type="number" name="quantity" />
+      <input type="number" name="quantity" placeholder="0" min="0"/>
       <button onClick={props.handleClick}
         type="button">
         Add to MyBag
