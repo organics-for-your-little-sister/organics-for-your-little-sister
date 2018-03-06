@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import store from '../store';
+import { Link } from 'react-router-dom';
+
 
 // set up a mybag reducer so it has a state
 
@@ -30,6 +32,7 @@ class MyBag extends Component { // a function would be sufficient
                 
                 <tbody>
 
+                  <tr>
                   {
                     lineItems.length && lineItems.map(item => (
                       <tr key={item.id}>
@@ -40,6 +43,7 @@ class MyBag extends Component { // a function would be sufficient
                       </tr>
                     ))
                   }
+                  </tr>
 
                   <tr>
                     <td className="highrow"></td>
@@ -64,6 +68,10 @@ class MyBag extends Component { // a function would be sufficient
             </div>
           </div>
 
+          <div className="text-right">
+            <Link to="/checkout">Checkout</Link>
+          </div>
+
         </div>
       </div>
     )
@@ -72,6 +80,7 @@ class MyBag extends Component { // a function would be sufficient
 
 
 const mapStateToProps = (state, ownProps) => {
+  console.log(ownProps)
   return {
     lineItemArray: state.order.lineitems
   }

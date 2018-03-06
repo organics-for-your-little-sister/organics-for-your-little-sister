@@ -6,9 +6,7 @@ import { NewLineItem } from './index'
 
 
 class AllProducts extends Component {
-  constructor() {
-    super();
-  }
+
   componentDidMount() {
     this.props.thunkAllProducts();
   }

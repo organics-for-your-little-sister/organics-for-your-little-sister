@@ -7,15 +7,13 @@ import store,{fetchAllOrdersByUserX} from '../store/order';
 
 class UserAllOrders extends Component {
   componentDidMount() {
-    console.log("1. componentDidMount");
     this.props.fetchOrders();
   }
 
   render() {
     let orders = this.props.order
     let userId=this.props.userId;
-    console.log('!!!!!! INSIDE USERALLORDERS', orders);
-    //console.log('userId in UserAllOrders'+this.props.userId);
+
     return (
       <div className="textColor">
         You are in The UserAllOrders
@@ -44,7 +42,7 @@ class UserAllOrders extends Component {
                               </div>
                             </NavLink>
                             <div>
-                            <a  href="#" className="textColor"> Remove</a>
+                            <a  href="#" className="textColor">Remove</a>
                             </div>
                           </div>
                       </div>
@@ -59,6 +57,7 @@ class UserAllOrders extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
+  // console.log(ownProps)
   const userId = +ownProps.match.params.userId; 
 
   return {
@@ -68,10 +67,8 @@ const mapStateToProps = (state, ownProps) => {
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-  console.log('mapping dispatch to props')
-  console.log("2. mapDispatchToProps");
   return {
-    fetchOrders: () => dispatch(fetchAllOrdersByUserX(1))
+    fetchOrders: () => dispatch(fetchAllOrdersByUserX(+ownProps.match.params.userId))
   }
 }
 
