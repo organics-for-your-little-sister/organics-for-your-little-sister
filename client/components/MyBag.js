@@ -1,16 +1,14 @@
 import React, { Component } from 'react'
-import { withRouter, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux'
-import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
-import store from '../store/lineItem';
+import store from '../store';
 
-class MyBag extends Component {
+// set up a mybag reducer so it has a state
 
-  render(){
-    console.log(this.props.lineItemArray);
+class MyBag extends Component { // a function would be sufficient
+
+  render() {
     const lineItems = this.props.lineItemArray || [];
-    const subtotal = lineItems.reduce((accu, curr) => {return accu.subtotal + curr.subtotal}, 0);
+    const subtotal = lineItems.map(item => item.subtotal).reduce((accu, curr) => accu + curr, 0);
 
     return (
       <div>
@@ -88,4 +86,4 @@ const mapDispatchToProps = (dispatch,ownProps) => {
 
 
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(MyBag));
+export default connect(mapStateToProps, mapDispatchToProps)(MyBag);
