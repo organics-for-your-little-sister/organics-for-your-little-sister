@@ -6,6 +6,9 @@ const GET_SINGLE_ORDER = 'GET_SINGLE_ORDER';
 const CREATE_ORDER = 'CREATE_ORDER';
 const EDIT_ORDER = 'EDIT_ORDER';
 const DELETE_ORDER = 'DELETE_ORDER';
+const CREATE_LINEITEM = 'CREATE_LINEITEM';
+const UPDATE_LINEITEM = 'UPDATE_LINEITEM';
+const DELETE_LINEITEM = 'DELETE_LINEITEM';
 
 // ACTION CREATORS
 const allOrders = (orders) => ({type: GET_ALL_ORDERS, orders});
@@ -13,6 +16,10 @@ const singleOrder = (order) => ({type: GET_SINGLE_ORDER, order});
 const createOrder = (order) => ({type: CREATE_ORDER, order});
 const editOrder = (order) => ({type: EDIT_ORDER, order});
 const deleteOrder = (id) => ({type: DELETE_ORDER, id});
+const createLineItem = (lineItem) => ({type: CREATE_LINEITEM, lineItem});
+const editLineItem = (lineItem) => ({type: UPDATE_LINEITEM, lineItem});
+const deleteLineItem = (id) => ({type: DELETE_LINEITEM, id})
+
 
 
 // THUNK CREATORS
@@ -84,30 +91,53 @@ export const removeOrder = (id) => {
 			.catch(err => console.error('Oops! Time to find the error in removeOrder thunk, eh?', err))
 	}
 }
+export const addLineItem = lineItem => dispatch => {
+  axios.post('/api/lineitems', lineItem)
+    .then(res => dispatch(createLineItem(res.data)))
+    .catch(err => console.error('error from addLineItem thunk', err));
+}
+
+
+export const changeLineItem = (id, lineItem) => dispatch => {
+  axios.put(`/api/lineitems/${id}`, lineItem)
+    .then(res => dispatch(editLineItem(res.data)))
+    .catch(err => console.error(`Updating lineItem: ${lineItem}`, err));
+}
+
+export const removeLineItem = id => dispatch => {
+  axios.delete(`/api/lineitems/${id}`)
+    .then(() => dispatch(deleteLineItem(id)))
+    .catch(err => console.error(`Removing lineItem ${id} unsuccessful`, err));
+}
 
 
 // REDUCER
-export default function reducer(orders = [], action) {
+export default function reducer(state = [], action) {
 
 	switch (action.type) {
 
 		case GET_ALL_ORDERS:
-		console.log("4. GET_ALL_ORDERS");
 			return action.orders;
 
 		case GET_SINGLE_ORDER:
 			return action.order;
 
 		case CREATE_ORDER:
-			return [action.order, ...orders];
+			return [...state, action.order];
 
-		case EDIT_ORDER:
-      		return orders.map( order => action.order.id === order.id ? action.order : order ) // returning a new array with action.order.
-   
-	    case DELETE_ORDER:
-	      	return orders.filter( order => order.id !== action.id ) // returning a new array that excluded a order of the action.id
-		
+		case CREATE_LINEITEM:
+			return [...state, action.lineItem]
+
+		case DELETE_ORDER:
+			return state;
+
+		case UPDATE_LINEITEM:
+			return [...state, action.lineitem]
+
+		case DELETE_LINEITEM:
+			return state.filter(lineItem => state.id !== lineItem.id)
+
 	    default:
-			return orders;
+			return state;
 	}
 }

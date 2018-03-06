@@ -59,21 +59,18 @@ class UserAllOrders extends Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => { 
-  console.log(' Order state: ', state)
-  console.log("5. mapStateToProps to get the state");
-  const userId= +ownProps.match.params.userId 
-  //console.log('userId in UserAllOrders'+userId);
-  
- return {
-  order: state.order,
-  userId: userId
+
+
+
+const mapStateToProps = (state, ownProps) => {
+  const userId = +ownProps.match.params.userId; 
+  return {
+    order: state.order,
+    userId: userId
   }
 }
 
 const mapDispatchToProps = (dispatch,ownProps) => {
-  console.log('mapping dispatch to props')
-  console.log("2. mapDispatchToProps");
   return {
     fetchOrders: () => dispatch(fetchAllOrdersByUserX(+ownProps.match.params.userId))
   }
