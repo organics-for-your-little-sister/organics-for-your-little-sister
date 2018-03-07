@@ -4,8 +4,6 @@ import store from '../store';
 import { Link } from 'react-router-dom';
 
 
-// set up a mybag reducer so it has a state
-
 class MyBag extends Component { // a function would be sufficient
 
   render() {
@@ -80,7 +78,7 @@ class MyBag extends Component { // a function would be sufficient
 
 const mapStateToProps = (state) => {
   return {
-    lineItemArray: state.order.lineitems
+    lineItemArray: state.order.lineItems
   }
 }
 
