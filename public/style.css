@@ -1,11 +1,9 @@
 body {
   font-family: sans-serif;
   background-image: url("images/background.jpg");
-  background-repeat: no-repeat;
   background-position: center center;
   padding: 16px;
   color:  #191970;
- margin-bottom: -5px;
  background-size: cover
 }
 
@@ -41,6 +39,13 @@ form div {
   height: 400px;
   margin: 10px;
   justify-content: center;
+}
+
+.userOrder {
+  background-color: lavender;
+   display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .title {
@@ -97,4 +102,14 @@ button {
   padding: 10px 16px;
   background: lightpink;
   color: #191970;
+}
+
+.myBag {
+  background: lavender;
+    flex-direction: row;
+  width: 280px;
+  height: 400px;
+  margin: 10px;
+  justify-content: center;
+
 }

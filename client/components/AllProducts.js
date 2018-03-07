@@ -6,9 +6,7 @@ import { NewLineItem } from './index'
 
 
 class AllProducts extends Component {
-  constructor() {
-    super();
-  }
+
   componentDidMount() {
     this.props.thunkAllProducts();
   }
@@ -16,7 +14,6 @@ class AllProducts extends Component {
     const products = this.props.products;
   return (
     <div className="allProductsContainer">
-      {console.log(this.props)}
       { products && products.map( product => {
         return (
           <div key={product.id} className="product">

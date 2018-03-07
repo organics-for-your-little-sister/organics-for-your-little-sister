@@ -18,7 +18,6 @@ const ProductByCategory = (props) => {
               <li className="textColor">description: {aProduct.description} </li>
             </ul>
             <NewLineItem selectedProduct={aProduct} user={props.user} />
-
           </div>
         })
       }
