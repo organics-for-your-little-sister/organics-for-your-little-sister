@@ -84,4 +84,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(MyBag);
+export default connect(mapStateToProps)(MyBag);

@@ -4,7 +4,6 @@ body {
   background-position: center center;
   padding: 16px;
   color:  #191970;
- margin-bottom: -5px;
  background-size: cover
 }
 
@@ -107,4 +106,10 @@ button {
 
 .myBag {
   background: lavender;
+    flex-direction: row;
+  width: 280px;
+  height: 400px;
+  margin: 10px;
+  justify-content: center;
+
 }
