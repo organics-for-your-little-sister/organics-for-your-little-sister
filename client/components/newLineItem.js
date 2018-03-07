@@ -14,6 +14,7 @@ const newLineItem = (props) => {
   )
 }
 
+
 const mapState = (state) => {
   return {
     quantity: 1,
