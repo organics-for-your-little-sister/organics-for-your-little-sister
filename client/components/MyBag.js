@@ -1,7 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import store from '../store';
+<<<<<<< HEAD
 import {Link} from 'react-router-dom'
+=======
+import { Link } from 'react-router-dom';
+>>>>>>> 27108e04c2cd72fdc38cd1fb120cf2edcc60501d
 
 
 // set up a mybag reducer so it has a state
@@ -14,8 +18,8 @@ class MyBag extends Component { // a function would be sufficient
 
     return (
       <div>
-        <div>
-          <h3>My Bag</h3>
+        <div className="myBag">
+          <h3 className="textColor">My Bag</h3>
 
           <div className="panel-body">
             <div className="table-responsive">
@@ -23,7 +27,7 @@ class MyBag extends Component { // a function would be sufficient
 
                 <thead>
                   <tr>
-                    <td><strong>{lineItems.length} Item(s)</strong></td>
+                    <td><strong className="textColor">{lineItems.length} Item(s)</strong></td>
                     <td className="text-center textColor"><strong>Price</strong></td>
                     <td className="text-center textColor"><strong>Quantity</strong></td>
                     <td className="text-right textColor"><strong>Total</strong></td>
@@ -32,6 +36,7 @@ class MyBag extends Component { // a function would be sufficient
 
                 <tbody>
 
+                  <tr>
                   {
                     lineItems.length && lineItems.map(item => (
                       <tr key={item.id}>
@@ -42,24 +47,25 @@ class MyBag extends Component { // a function would be sufficient
                       </tr>
                     ))
                   }
+                  </tr>
 
                   <tr>
                     <td className="highrow"></td>
                     <td className="highrow"></td>
-                    <td className="highrow text-center"><strong>Subtotal</strong></td>
+                    <td className="highrow text-center textColor"><strong>Subtotal</strong></td>
                     <td className="highrow text-right">{subtotal}</td>
                   </tr>
                   <tr>
                     <td className="emptyrow"></td>
                     <td className="emptyrow"></td>
-                    <td className="emptyrow text-center"><strong>Shipping</strong></td>
+                    <td className="emptyrow text-center textColor"><strong>Shipping</strong></td>
                     <td className="emptyrow text-right">Free</td>
                   </tr>
                   <tr>
                     <td className="emptyrow"><i className="fa fa-barcode iconbig"></i></td>
                     <td className="emptyrow"></td>
-                    <td className="emptyrow text-center"><strong>Total</strong></td>
-                    <td className="emptyrow text-right">{subtotal}</td>
+                    <td className="emptyrow text-center textColor"><strong>Total</strong></td>
+                    <td className="emptyrow text-right textColor">{subtotal}</td>
                   </tr>
                 </tbody>
               </table>
@@ -69,26 +75,20 @@ class MyBag extends Component { // a function would be sufficient
           <div className="text-right">
             <Link to="/checkout">Checkout</Link>
           </div>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 27108e04c2cd72fdc38cd1fb120cf2edcc60501d
         </div>
       </div>
     )
   }
 }
 
-
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
   return {
     lineItemArray: state.order.lineitems
   }
 }
 
-const mapDispatchToProps = (dispatch,ownProps) => {
-  return {
-
-  }
-}
-
-
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(MyBag);
+export default connect(mapStateToProps)(MyBag);

@@ -5,10 +5,10 @@ import {Link} from 'react-router-dom'
 import { withRouter, NavLink } from 'react-router-dom';
 
 
-export const AccountInfo = (props) => {
-  const userId = 1;
-  const accountdetails=(
-    <div>
+const AccountInfo = (props) => {
+  const userId = props.user.id;
+  const accountdetails = (
+   <div className="textColor bold">
     <div className="row">
       <div className="col-sm-4">
         <div className="card">
@@ -52,12 +52,15 @@ export const AccountInfo = (props) => {
   )
 }
 
-const mapStateToProps = (state, ownProps) => { 
+
+const mapStateToProps = (state, ownProps) => {
  return {
-  order: state.order,
-  userId: +ownProps.match.params.id
+  user: state.user,
+  order: state.order
   }
 }
 
 
-export default withRouter(connect(mapStateToProps)(AccountInfo));
+
+export default connect(mapStateToProps)(AccountInfo);
+

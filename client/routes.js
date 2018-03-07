@@ -2,11 +2,8 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
-import {AccountInfo} from './components/AccountInfo'
-import UserAllOrders from './components/UserAllOrders'
-import UserSingleOrder from './components/UserSingleOrder'
-import {me,fetchAllOrdersByUserX,fetchSingleOrderByUserX,thunkAllProducts} from './store'
-import {Login, Signup, UserHome, AllProducts, SideBar, SingleProduct, ProductsByCategory, MyBag, Checkout} from './components'
+import {me, fetchAllOrdersByUserX, fetchSingleOrderByUserX, thunkAllProducts} from './store'
+import {Login, Signup, UserHome, AccountInfo, AllProducts, SideBar, SingleProduct, ProductsByCategory, UserAllOrders, UserSingleOrder, MyBag, Checkout} from './components'
 
 class Routes extends Component {
   componentDidMount () {
@@ -52,7 +49,8 @@ const mapState = (state) => {
   return {
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
+    order: state.order
   }
 }
 

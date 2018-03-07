@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { LineItem, Product } = require('../db/models');
+const { LineItem, Product, Order } = require('../db/models');
 module.exports = router;
 
 router.get('/', (req, res, next) => {
@@ -22,11 +22,15 @@ router.get('/:lineId', (req, res, next) => {
 
 })
 
-router.post('/', (req, res, next) => {
+router.post('/:orderId', (req, res, next) => {
   console.log(req.body)
- LineItem.create(req.body)
-   .then( lineitem => res.status(204).json(lineitem))
-   .catch(next)
+  Order.findById(req.params.orderId)
+    .then( (order) => {
+      LineItem.create(req.body)
+      .then( lineitem => res.status(204).json(lineitem))
+      .catch(next)
+    })
+
 })
 
 router.put('/:lineId', (req, res, next) => {

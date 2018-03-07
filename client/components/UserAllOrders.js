@@ -1,32 +1,27 @@
 import React, { Component } from 'react'
-import { withRouter, NavLink } from 'react-router-dom';
 import {connect} from 'react-redux'
-import PropTypes from 'prop-types'
 import {Link} from 'react-router-dom'
-import store,{fetchAllOrdersByUserX} from '../store/order';
+import {fetchAllOrdersByUserX} from '../store/order';
 
 class UserAllOrders extends Component {
   componentDidMount() {
-    console.log("1. componentDidMount");
     this.props.fetchOrders();
   }
  
   render() {
     let orders = this.props.order
     let userId=this.props.userId;
-    console.log('!!!!!! INSIDE USERALLORDERS', orders);
-    //console.log('userId in UserAllOrders'+this.props.userId);
     return (
-      <div>
-        You are in The UserAllOrders
-              <div className="order py-5 bg-light">
-                <div className="container">
+
+      <div className="textColor">
+        Your Orders
+              <div className="userOrder">
+                <div className="container" >
                   <div className="row">
                   {orders.length && orders.map(order => (
-                      <div className="col-md-4" key={ order.id }>
+                      <div className="col-md-6" key={ order.id }>
                           <div className="card mb-4 box-shadow">
-                            <NavLink to={`/account/orders/${userId}/singleOrder/${order.id}`}>
-                            <img src='#' className="card-img-top"/>
+                            <Link to={`/account/orders/${userId}/singleOrder/${order.id}`}>
                               <div className="caption">
                               <h5>
                                     Order ID : <span> { order.id }</span>
@@ -42,11 +37,12 @@ class UserAllOrders extends Component {
                                 </h5>
                                 <small>lineitems : { order.lineitems.length }</small>
                               </div>
-                            </NavLink>
+                            </Link>
                             <div>
-                            <a  href="#" > Remove</a>
-                            </div> 
-                          </div> 
+
+                            <a  href="#" className="textColor">Remove</a>
+                            </div>
+                          </div>
                       </div>
                     ))
                   }
@@ -63,20 +59,34 @@ class UserAllOrders extends Component {
 
 
 const mapStateToProps = (state, ownProps) => {
+<<<<<<< HEAD
   const userId = +ownProps.match.params.userId; 
+=======
+  const userId = +ownProps.match.params.userId;
+
+>>>>>>> 27108e04c2cd72fdc38cd1fb120cf2edcc60501d
   return {
     order: state.order,
     userId: userId
   }
 }
 
+<<<<<<< HEAD
 const mapDispatchToProps = (dispatch, ownProps) => {
+=======
+
+const mapDispatchToProps = (dispatch) => {
+>>>>>>> 27108e04c2cd72fdc38cd1fb120cf2edcc60501d
   return {
     fetchOrders: () => dispatch(fetchAllOrdersByUserX(+ownProps.match.params.userId))
   }
 }
 
+<<<<<<< HEAD
 
 
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(UserAllOrders));
+=======
+export default connect(mapStateToProps, mapDispatchToProps)(UserAllOrders);
+>>>>>>> 27108e04c2cd72fdc38cd1fb120cf2edcc60501d
