@@ -1,11 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import store from '../store';
-<<<<<<< HEAD
-import {Link} from 'react-router-dom'
-=======
 import { Link } from 'react-router-dom';
->>>>>>> 27108e04c2cd72fdc38cd1fb120cf2edcc60501d
+
 
 
 // set up a mybag reducer so it has a state
@@ -75,10 +72,6 @@ class MyBag extends Component { // a function would be sufficient
           <div className="text-right">
             <Link to="/checkout">Checkout</Link>
           </div>
-<<<<<<< HEAD
-=======
-
->>>>>>> 27108e04c2cd72fdc38cd1fb120cf2edcc60501d
         </div>
       </div>
     )

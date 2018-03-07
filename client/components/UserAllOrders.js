@@ -59,34 +59,21 @@ class UserAllOrders extends Component {
 
 
 const mapStateToProps = (state, ownProps) => {
-<<<<<<< HEAD
-  const userId = +ownProps.match.params.userId; 
-=======
-  const userId = +ownProps.match.params.userId;
 
->>>>>>> 27108e04c2cd72fdc38cd1fb120cf2edcc60501d
+  const userId = +ownProps.match.params.userId;
   return {
     order: state.order,
     userId: userId
   }
 }
 
-<<<<<<< HEAD
-const mapDispatchToProps = (dispatch, ownProps) => {
-=======
 
-const mapDispatchToProps = (dispatch) => {
->>>>>>> 27108e04c2cd72fdc38cd1fb120cf2edcc60501d
+const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     fetchOrders: () => dispatch(fetchAllOrdersByUserX(+ownProps.match.params.userId))
   }
 }
 
-<<<<<<< HEAD
 
-
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(UserAllOrders));
-=======
 export default connect(mapStateToProps, mapDispatchToProps)(UserAllOrders);
->>>>>>> 27108e04c2cd72fdc38cd1fb120cf2edcc60501d
+
