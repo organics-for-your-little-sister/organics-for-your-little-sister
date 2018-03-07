@@ -2,11 +2,8 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
-import {AccountInfo} from './components/AccountInfo'
-import UserAllOrders from './components/UserAllOrders'
-import UserSingleOrder from './components/UserSingleOrder'
-import {me,fetchAllOrdersByUserX,fetchSingleOrderByUserX,thunkAllProducts} from './store'
-import {Login, Signup, UserHome, AllProducts, SideBar, SingleProduct, ProductsByCategory, MyBag} from './components'
+import {me, fetchAllOrdersByUserX, fetchSingleOrderByUserX, thunkAllProducts} from './store'
+import {Login, Signup, UserHome, AccountInfo, AllProducts, SideBar, SingleProduct, ProductsByCategory, UserAllOrders, UserSingleOrder, MyBag, Checkout} from './components'
 
 class Routes extends Component {
   componentDidMount () {
@@ -29,6 +26,7 @@ class Routes extends Component {
         <Route exact path="/products" component={AllProducts} />
         <Route exact path="/products/category/:categoryName" component={ProductsByCategory} />
         <Route path="/mybag" component={MyBag} />
+        <Route path="/checkout" component={Checkout} />
         <Route path="/products/:id" component={SingleProduct} />
         {
           isLoggedIn &&

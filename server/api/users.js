@@ -21,6 +21,12 @@ router.get('/:id', isLoggedIn, (req, res, next) => {
 	}
 });
 
+router.get('/:id/addresses', (req, res, next) => {
+	Address.findAll({where: {userId: req.params.id}})
+		.then(addresses => res.json(addresses))
+		.catch(next);
+})
+
 
 //GET all the orders of the specific user: ex) users/1/orders 
 router.get('/:userId/orders/', (req, res, next)=>{

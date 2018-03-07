@@ -64,8 +64,8 @@ class UserSingleOrder extends Component {
 
 const mapStateToProps = (state) => {
   return {
-  order: state.order,
-  lineItemsArray: state.order.lineitems
+    order: state.order,
+    lineItemsArray: state.order.lineitems
   }
 }
 

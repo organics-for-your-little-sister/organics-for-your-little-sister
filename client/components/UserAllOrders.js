@@ -10,7 +10,7 @@ class UserAllOrders extends Component {
 
   render() {
     let orders = this.props.order
-    let userId = this.props.userId;
+    let userId=this.props.userId;
     return (
       <div className="textColor">
         Your Orders
@@ -38,7 +38,7 @@ class UserAllOrders extends Component {
                               </div>
                             </Link>
                             <div>
-                            <a  href="#" className="textColor"> Remove</a>
+                            <a  href="#" className="textColor">Remove</a>
                             </div>
                           </div>
                       </div>
@@ -61,9 +61,10 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
+
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchOrders: () => dispatch(fetchAllOrdersByUserX(1))
+    fetchOrders: () => dispatch(fetchAllOrdersByUserX(+ownProps.match.params.userId))
   }
 }
 
