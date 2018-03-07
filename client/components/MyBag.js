@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import store from '../store';
+import {Link} from 'react-router-dom'
+
 
 // set up a mybag reducer so it has a state
 
@@ -64,6 +66,9 @@ class MyBag extends Component { // a function would be sufficient
             </div>
           </div>
 
+          <div className="text-right">
+            <Link to="/checkout">Checkout</Link>
+          </div>
         </div>
       </div>
     )

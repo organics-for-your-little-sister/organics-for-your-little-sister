@@ -6,7 +6,7 @@ import { withRouter, NavLink } from 'react-router-dom';
 
 
 export const AccountInfo = (props) => {
-  const userId = 1
+  const userId = 1;
   const accountdetails=(
     <div>
     <div className="row">
@@ -55,7 +55,7 @@ export const AccountInfo = (props) => {
 const mapStateToProps = (state, ownProps) => { 
  return {
   order: state.order,
-  id: + ownProps.match.params.id
+  userId: +ownProps.match.params.id
   }
 }
 

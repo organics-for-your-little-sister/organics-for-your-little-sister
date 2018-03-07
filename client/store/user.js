@@ -53,6 +53,17 @@ export const logout = () =>
       })
       .catch(err => console.log(err))
 
+export const fetchUser = (userId) =>
+  dispatch =>
+    axios.get(`/api/users/${userId}`)
+      .then(res => {
+        dispatch(getUser(res.data))
+      })
+      .catch(err => console.log('fetchUser thunk creator red light flickering!!!!', err))
+
+
+
+
 /**
  * REDUCER
  */
