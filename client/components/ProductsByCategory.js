@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { thunkProductsByCategory } from '../store/product'
 import { NewLineItem } from './index'
 
 const ProductByCategory = (props) => {
@@ -17,7 +16,7 @@ const ProductByCategory = (props) => {
               <li className="textColor">${aProduct.price}</li>
               <li className="textColor">description: {aProduct.description} </li>
             </ul>
-            <NewLineItem selectedProduct={aProduct} user={props.user}/>
+            <NewLineItem selectedProduct={aProduct} user={props.user} />
 
           </div>
         })
@@ -34,9 +33,4 @@ const mapState = (state, ownProps) => {
   }
 }
 
-const mapDispatch = (dispatch) => {
-  return {
-
-  }
-}
 export default connect(mapState)(ProductByCategory)
