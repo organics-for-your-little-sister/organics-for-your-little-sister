@@ -69,7 +69,7 @@ class MyBag extends Component { // a function would be sufficient
           </div>
 
           <div className="text-right">
-            <Link to="/checkout">Checkout</Link>
+            <Link className="textColor" to="/checkout"><button>Checkout</button></Link>
           </div>
 
         </div>

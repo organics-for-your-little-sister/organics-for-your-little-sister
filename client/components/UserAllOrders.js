@@ -62,7 +62,7 @@ const mapStateToProps = (state, ownProps) => {
 }
 
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     fetchOrders: () => dispatch(fetchAllOrdersByUserX(+ownProps.match.params.userId))
   }

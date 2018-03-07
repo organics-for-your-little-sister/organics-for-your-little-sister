@@ -3,16 +3,22 @@ import { connect } from 'react-redux';
 import { addLineItem, postOrder } from '../store/order';
 
 const newLineItem = (props) => {
+
   return (
     <div>
       <input type="number" name="quantity" placeholder="0" min="0" max={props.selectedProduct.inventoryQuantity} />
       <button onClick={props.handleClick}
         type="button">
-        Add to MyBag
+        Add to Bag
       </button>
     </div>
   )
 }
+
+// const dirty = this.state.dirty
+//       let warning = '';
+//       if (!this.state.inputValue.length && dirty) warning = 'You must enter a name';
+//       else if (this.state.inputValue.length > 16) warning = 'Name must be less than 16 characters';
 
 
 const mapState = (state) => {

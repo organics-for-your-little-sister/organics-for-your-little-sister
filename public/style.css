@@ -107,7 +107,7 @@ button {
 .myBag {
   background: lavender;
     flex-direction: row;
-  width: 280px;
+  width: 800px;
   height: 400px;
   margin: 10px;
   justify-content: center;
