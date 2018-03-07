@@ -6,7 +6,7 @@ import { withRouter, NavLink } from 'react-router-dom';
 
 const AccountInfo = (props) => {
   const userId = props.user.id;
-  const accountdetails=(
+  const accountdetails = (
    <div className="textColor bold">
     Welcome to Account Information
     <div className="row">

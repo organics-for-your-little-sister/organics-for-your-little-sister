@@ -9,23 +9,24 @@ class Checkout extends Component {
 	componentDidMount() {
 		// this.props.fetchUserAddresses();
 	}
-
-
 	// render the user info:
 	// user first and last names
 	// many addresses to select from
 
 	// checkout with Stripe
- 
 	render () {
-		const address = this.props.userInfo.addresses && this.props.userInfo.addresses[0].mailingAddressStreet;
+		const addressInfo = this.props.userInfo.addresses[0]
+		const address = this.props.userInfo.addresses && `${addressInfo.mailingAddressStreet}, ${addressInfo.mailingAddressCity}, ${addressInfo.mailingAddressState} ${addressInfo.mailingAddressZipCode}`;
 
 		return (
-		
 			<div>
-				<div>
-					<h3>{this.props.userInfo.firstName} {this.props.userInfo.lastName}</h3>
-					<h5>{address}</h5>
+				<div className="myBag textColor">
+					<h3>Customer: {this.props.userInfo.firstName} {this.props.userInfo.lastName}</h3>
+					<h5> Shipping Address:<br />
+					{address}</h5>
+					<p />
+					<h5> Billing Address:<br />
+					{address}</h5>
 
 				</div>
 			</div>
@@ -35,20 +36,11 @@ class Checkout extends Component {
 
 }
 
-const mapStateToProps = (state, ownProps) => {
-	console.log('STATE!!!!!!')
-	console.log(state.user)
+const mapStateToProps = (state) => {
 	return {
 		userInfo: state.user,
 	}
 }
 
-const mapDispatchToProps = (dispatch, ownProps) => {
-	return {
 
-	}
-}
-
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(Checkout);
+export default connect(mapStateToProps)(Checkout);
