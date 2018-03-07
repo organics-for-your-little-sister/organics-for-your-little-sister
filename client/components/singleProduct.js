@@ -1,11 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-import { thunkSingleProduct } from '../store/product'
 import { NewLineItem } from './index'
 
 const SingleProduct = (props) => {
   let product = props.product
-  console.log(product)
   return (
     <div className="allProductsContainer">
       {

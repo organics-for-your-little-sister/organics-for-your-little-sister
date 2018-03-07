@@ -7,9 +7,9 @@ import { withRouter, NavLink } from 'react-router-dom';
 
 export const AccountInfo = (props) => {
   const userId = 1;
-  const accountdetails=(
-    <div>
-    "Welcome to Account Information"
+  const accountdetails = (
+    <div className="textColor bold">
+    Welcome to Account Information
     <div className="row">
       <div className="col-sm-4">
         <div className="card">

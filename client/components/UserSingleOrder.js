@@ -1,23 +1,17 @@
 import React, { Component } from 'react'
-import { withRouter, NavLink } from 'react-router-dom';
 import {connect} from 'react-redux'
-import PropTypes from 'prop-types'
-import {Link} from 'react-router-dom'
-import store,{fetchSingleOrderByUserX} from '../store/order';
+import {fetchSingleOrderByUserX} from '../store/order';
 
 class UserSingleOrder extends Component {
     componentDidMount() {
-      console.log(this.props);  
       this.props.fetchSingleOrder();
     }
-  
+
     render() {
       let order = this.props.order
       let lineItemsArray = this.props.order.lineitems || [];
-      
-      console.log(' UserSingleOrder props render: ', Array.isArray(lineItemsArray), lineItemsArray)
       return (
-           <div>  
+           <div>
                 <div>
                     <h3>Your Order</h3>
                     <div className="form-group row">
@@ -40,7 +34,7 @@ class UserSingleOrder extends Component {
                     </div>
                 </div>
                 <div>
-                        <table className = 'table' >
+                        <table className = "table" >
                         <thead>
                             <tr>
                                 <th>LineItem ID</th>
@@ -58,39 +52,30 @@ class UserSingleOrder extends Component {
                                         <td>{item.quantity}</td>
                                         <td>{item.productId }</td>
                                      </tr>
-                                ))
+                                  ))
                                 }
                             </tbody>
-                         </table>   
-                 </div>   
+                         </table>
+                 </div>
              </div>
       )
     }
   }
 
-const mapStateToProps = (state, ownProps) => { 
-  console.log(' Order state: ', state)
-  console.log("5. mapStateToProps to get the state");
-  //const orderId= Number(ownProps.match.params.orderId) 
+const mapStateToProps = (state) => {
   return {
   order: state.order,
   lineItemsArray: state.order.lineitems
   }
 }
-  
-const mapDispatchToProps = (dispatch,ownProps) => {
-  const userId= Number(ownProps.match.params.userId) 
-  const orderId= Number(ownProps.match.params.orderId) 
-  console.log('userId'+userId);
-  console.log('orderId'+orderId);
-  console.log('mapping dispatch to props')
-  console.log("2. mapDispatchToProps");
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+  const userId = +ownProps.match.params.userId
+  const orderId = +ownProps.match.params.orderId
   return {
-    fetchSingleOrder: () => dispatch(fetchSingleOrderByUserX(userId,orderId))
+    fetchSingleOrder: () => dispatch(fetchSingleOrderByUserX(userId, orderId))
   }
 }
 
 
-
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(UserSingleOrder));
+export default connect(mapStateToProps, mapDispatchToProps)(UserSingleOrder);

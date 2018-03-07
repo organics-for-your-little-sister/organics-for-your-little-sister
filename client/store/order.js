@@ -20,8 +20,6 @@ const createLineItem = (lineItem) => ({type: CREATE_LINEITEM, lineItem});
 const editLineItem = (lineItem) => ({type: UPDATE_LINEITEM, lineItem});
 const deleteLineItem = (id) => ({type: DELETE_LINEITEM, id})
 
-
-
 // THUNK CREATORS
 export const fetchAllOrders = () => {
 	return dispatch => {
@@ -29,7 +27,6 @@ export const fetchAllOrders = () => {
 			.then(res => res.data)
 			.then(orders => {
 				const action = allOrders(orders);
-				console.log(action);
 				dispatch(action);
 				})
 			.catch(err => console.error('Oops! Guess what is wrong in fetchAllOrders thunk!', err))
@@ -46,8 +43,6 @@ export const fetchSingleOrder = (orderId) => {
 }
 
 export const fetchAllOrdersByUserX = (userId) => {
-	console.log("Inside fetchAllOrdersByUserX");
-	console.log("3. fetchAllOrdersByUserX");
 	return dispatch => {
 		return axios.get(`/api/users/${userId}/orders`)
 			.then(res => res.data)
@@ -93,11 +88,9 @@ export const removeOrder = (id) => {
 }
 export const addLineItem = (orderId, lineItem ) => {
 	return dispatch => {
-  	return axios.post(`/api/lineitems/${orderId}`, lineItem)
+		return axios.post(`/api/lineitems/${orderId}`, lineItem)
 		.then(res => res.data)
-    .then(LineItem => {
-    	console.log('inside LI thunk', LineItem)
-    	dispatch(createLineItem(LineItem))})
+    .then(LineItem => dispatch(createLineItem(LineItem)))
     .catch(err => console.error('error from addLineItem thunk', err));
   }
 }
