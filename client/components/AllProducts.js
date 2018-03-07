@@ -14,7 +14,6 @@ class AllProducts extends Component {
     const products = this.props.products;
   return (
     <div className="allProductsContainer">
-      {console.log(this.props)}
       { products && products.map( product => {
         return (
           <div key={product.id} className="product">
@@ -24,7 +23,7 @@ class AllProducts extends Component {
             <li className="textColor">{product.category} tampon</li>
           </ul>
             <h3 className="textColor">${product.price}</h3>
-            <NewLineItem selectedProduct={product} />
+            <NewLineItem selectedProduct={product} user={this.props.user} />
         </div>)
       })}
     </div>
@@ -35,7 +34,8 @@ class AllProducts extends Component {
 const mapState = (state) => {
   return {
     hello: 'hello world',
-    products: state.product
+    products: state.product,
+    user: state.user
   }
 }
 

@@ -17,7 +17,7 @@ const ProductByCategory = (props) => {
               <li className="textColor">${aProduct.price}</li>
               <li className="textColor">description: {aProduct.description} </li>
             </ul>
-            <NewLineItem selectedProduct={aProduct} />
+            <NewLineItem selectedProduct={aProduct} user={props.user}/>
 
           </div>
         })
@@ -29,7 +29,8 @@ const ProductByCategory = (props) => {
 const mapState = (state, ownProps) => {
   const categoryName = ownProps.match.params.categoryName
   return {
-    products: state.product.filter(aProduct => aProduct.category === categoryName)
+    products: state.product.filter(aProduct => aProduct.category === categoryName),
+    user: state.user
   }
 }
 

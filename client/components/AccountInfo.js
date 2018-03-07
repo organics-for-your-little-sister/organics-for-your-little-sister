@@ -4,12 +4,11 @@ import PropTypes from 'prop-types'
 import {Link} from 'react-router-dom'
 import { withRouter, NavLink } from 'react-router-dom';
 
-
 const AccountInfo = (props) => {
   const userId = props.user.id;
   const accountdetails=(
-    <div>
-    "Welcome to Account Information"
+   <div className="textColor bold">
+    Welcome to Account Information
     <div className="row">
       <div className="col-sm-4">
         <div className="card">

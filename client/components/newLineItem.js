@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addLineItem } from '../store/order';
+import { addLineItem, postOrder } from '../store/order';
 
 const newLineItem = (props) => {
   return (
@@ -14,27 +14,39 @@ const newLineItem = (props) => {
   )
 }
 
-const mapDispatch = (dispatch, ownProps) => {
-  const newItem = ownProps.selectedProduct
-  const newline = {
-    quantity: 1,
-    price: newItem.price,
-    productId: newItem.id
-  }
+const mapState = (state) => {
   return {
-   handleClick: () => dispatch(addLineItem(newline)),
-    }
+    quantity: 1,
+    user: state.user,
+    order: state.order
+  }
 }
 
-const mapState = () => {
+const mapDispatch = (dispatch, ownProps) => {
+  const newItem = ownProps.selectedProduct;
+  const user = ownProps.user;
+
   return {
-    quantity: 1
+    handleClick: () => {
+    const newOrder = {
+      orderStatus: 'orderComplete',
+      userId: user.id,
+  }
+       dispatch(postOrder(newOrder))
+       .then((createdOrderAction) => {
+         const newline = {
+          quantity: 1,
+          price: newItem.price,
+          productId: newItem.id,
+          orderId: createdOrderAction.order.id
+        }
+          dispatch(addLineItem(createdOrderAction.order.id, newline))
+       })
+    }
   }
 }
+
 
 export default connect(mapState, mapDispatch)(newLineItem)
 
-
-//upon clicking add to bag, a new line item is created containing the quantity, and the productID.
-//the productID can be found in the URL for that page.
 
