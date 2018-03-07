@@ -11,7 +11,7 @@ const SideBar = (props) => {
   return (
     <div id="sidebar-wrapper">
       <div>
-        <Link to="/"><h3 className="sidenav home">HOME</h3></Link>
+        <Link to="/home"><h3 className="sidenav home">HOME</h3></Link>
         <h3 className="sidenav home">Categories</h3>
         <ul>
         <Link to="/products"><li className="sidenav">all</li></Link>
